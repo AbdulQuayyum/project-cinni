@@ -42,7 +42,7 @@ a {
   font-size: 29px;
   font-weight: 600;
   margin: 60px 0px;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .marquee {
@@ -74,8 +74,8 @@ a {
   }
 }
 
-span.text-red {
-  -webkit-text-stroke: 1px #f02d34;
+span.text-gray {
+  -webkit-text-stroke: 1px #aaa;
   margin-left: 6px;
 }
 
@@ -104,7 +104,7 @@ span.text-red {
   right: -8px;
   font-size: 12px;
   color: #eee;
-  background-color: #f02d34;
+  background-color: #aaa;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -167,9 +167,9 @@ span.text-red {
 }
 
 .hero-banner-container button {
-  border-radius: 15px;
-  padding: 10px 16px;
-  background-color: #f02d34;
+  border-radius: 24px;
+  padding: 15px 25px;
+  background-color: #aaa;
   color: white;
   border: none;
   margin-top: 40px;
@@ -245,7 +245,7 @@ span.text-red {
 
 .footer-banner-container {
   padding: 100px 40px;
-  background-color: #f02d34;
+  background-color: #aaa;
   border-radius: 15px;
   position: relative;
   height: 400px;
@@ -264,7 +264,7 @@ span.text-red {
   border-radius: 15px;
   padding: 10px 16px;
   background-color: white;
-  color: red;
+  color: gray;
   border: none;
   margin-top: 40px;
   font-size: 18px;
@@ -368,7 +368,7 @@ span.text-red {
 
 .cart-num-items {
   margin-left: 10px;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .empty-cart {
@@ -437,7 +437,7 @@ span.text-red {
 
 .remove-item {
   font-size: 24px;
-  color: #f02d34;
+  color: #aaa;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -467,7 +467,7 @@ span.text-red {
   margin-top: 10px;
   margin-top: 40px;
   text-transform: uppercase;
-  background-color: #f02d34;
+  background-color: #aaa;
   color: #fff;
   cursor: pointer;
   transform: scale(1, 1);
@@ -498,7 +498,7 @@ span.text-red {
 }
 
 .product-detail-image:hover {
-  background-color: #f02d34;
+  background-color: #aaa;
 
 }
 
@@ -517,11 +517,11 @@ span.text-red {
 }
 
 .selected-image {
-  background-color: #f02d34;
+  background-color: #aaa;
 }
 
 .reviews {
-  color: #f02d34;
+  color: #aaa;
   margin-top: 10px;
   display: flex;
   gap: 5px;
@@ -545,7 +545,7 @@ span.text-red {
   font-weight: 700;
   font-size: 26px;
   margin-top: 30px;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .price .old-price,
@@ -569,12 +569,12 @@ span.text-red {
 
 .buttons .add-to-cart {
   padding: 10px 20px;
-  border: 1px solid #f02d34;
+  border: 1px solid #aaa;
   margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
   background-color: white;
-  color: #f02d34;
+  color: #aaa;
   cursor: pointer;
   width: 200px;
   transform: scale(1, 1);
@@ -589,7 +589,7 @@ span.text-red {
   width: 200px;
 
   padding: 10px 20px;
-  background-color: #f02d34;
+  background-color: #aaa;
   color: white;
   border: none;
   margin-top: 40px;
@@ -617,7 +617,7 @@ span.text-red {
 
 .quantity-desc .minus {
   border-right: 1px solid gray;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .quantity-desc .num {
@@ -651,7 +651,7 @@ span.text-red {
 
 .max-qty {
   font-weight: 500;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .success-wrapper,
@@ -709,7 +709,7 @@ span.text-red {
 
 .success .description .email {
   margin-left: 5px;
-  color: #f02d34;
+  color: #aaa;
 }
 
 .product-max-qty {
