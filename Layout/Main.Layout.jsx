@@ -7,7 +7,13 @@ const MainLayout = ({ children }) => {
     return (
         <div className="layout">
             <Head>
-                <title>Project Cinni</title>
+                <title>Project Cinni - Your Online Service Assistant</title>
+                <meta
+                    name="description"
+                    content="Your Online Service Assistant"
+                />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="shortcut icon" href="/logo.png" />
             </Head>
             <header>
                 <Navbar />
