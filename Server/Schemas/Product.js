@@ -27,6 +27,11 @@ export default {
             }
         },
         {
+            name: 'Category',
+            title: 'Category',
+            type: 'string',
+        },
+        {
             name: 'Price',
             title: 'Price',
             type: 'number',
@@ -35,6 +40,22 @@ export default {
             name: 'Details',
             title: 'Details',
             type: 'string',
-        }
+        },
+        {
+            name: 'UserID',
+            title: 'UserID',
+            type: 'string',
+        },
+        {
+            name: 'PostedBy',
+            title: 'PostedBy',
+            type: 'PostedBy',
+        },
+        {
+            name: 'Comments',
+            title: 'Comments',
+            type: 'array',
+            of: [{ type: 'Comment' }],
+        },
     ]
 }
