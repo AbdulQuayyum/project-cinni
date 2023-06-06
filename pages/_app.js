@@ -3,7 +3,7 @@ import { Toaster } from 'react-hot-toast';
 
 import MainLayout from '@/Layout/Main.Layout';
 import '../Styles/Index.css'
-
+import '../Styles/Style.css'
 
 const MyApp = ({ Component, pageProps }) => {
   return (
