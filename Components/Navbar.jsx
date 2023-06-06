@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link';
+import { AiOutlineShopping } from 'react-icons/ai'
+
+import { Cart } from "./Index"
 
 const Navbar = () => {
+    const [showCart, setShowCart] = useState()
     return (
-        <div>Navbar</div>
+        <div className="navbar-container">
+            <p className="logo">
+                <Link href="/">Project Cinni</Link>
+            </p>
+
+            <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
+                <AiOutlineShopping />
+                <span className="cart-item-qty">1</span>
+            </button>
+            {showCart && <Cart />}
+        </div>
     )
 }
 
