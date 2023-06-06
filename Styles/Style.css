@@ -83,6 +83,7 @@ span.text-gray {
 }
 
 .cart-icon {
+    display: flex;
     font-size: 25px;
     color: gray;
     cursor: pointer;

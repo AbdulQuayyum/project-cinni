@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
-import { AiOutlineShopping } from 'react-icons/ai'
+import { HiOutlineShoppingCart } from 'react-icons/hi'
 
 import { Cart } from "./Index"
 
@@ -13,7 +13,7 @@ const Navbar = () => {
             </p>
 
             <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
-                <AiOutlineShopping />
+                <HiOutlineShoppingCart size={32} />
                 <span className="cart-item-qty">1</span>
             </button>
         </div>
