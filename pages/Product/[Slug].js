@@ -4,7 +4,10 @@ import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-
 import { Client, UrlFor } from '@/Utilities/Client';
 import { Product } from "../Product"
 
-const ProductDetails = () => {
+const ProductDetails = ({ Product, Products }) => {
+    const { Image, Name, Details, Price } = Product
+    const [index, setIndex] = useState(0)
+
     return (
         <div>ProductDetails</div>
     )
