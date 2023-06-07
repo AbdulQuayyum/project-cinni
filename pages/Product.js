@@ -15,7 +15,7 @@ const Product = ({ product: { Image, Name, Slug, Price } }) => {
                         className="product-image"
                     />
                     <p className="product-name">{Name}</p>
-                    <p className="product-price">${Price}</p>
+                    <p className="product-price">₦{Price}</p>
                 </div>
             </Link>
         </div>
