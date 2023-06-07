@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { UrlFor } from '@/Utilities/Client';
 
-const Product = ({ Product: { Image, Name, Slug, Price } }) => {
+const Product = ({ product: { Image, Name, Slug, Price } }) => {
     return (
         <div>
             <Link href={`/Product/${Slug.current}`}>

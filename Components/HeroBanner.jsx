@@ -10,7 +10,7 @@ const HeroBanner = ({ HeroBanner }) => {
                 <p className="beats-solo">{HeroBanner?.SmallText}</p>
                 <h3>{HeroBanner?.MidText}</h3>
                 <h1>{HeroBanner?.LargeText1}</h1>
-                <img src={UrlFor(HeroBanner?.Image)} alt="image" className="hero-banner-image" />
+                <img src={UrlFor(HeroBanner?.Image)} className="hero-banner-image" />
                 <div>
                     <Link href={`/Product/${HeroBanner?.Product}`}>
                         <button type="button">{HeroBanner?.ButtonText}</button>

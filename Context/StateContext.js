@@ -52,7 +52,7 @@ export const StateContext = ({ children }) => {
         Index = CartItems.findIndex((Product) => Product._id === ID);
         const NewCartItems = CartItems.filter((Item) => Item._id !== ID)
 
-        if (Value === 'inccrease') {
+        if (Value === 'increase') {
             setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity + 1 }]);
             setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + FoundProduct.Price)
             setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities + 1)
