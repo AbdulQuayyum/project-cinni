@@ -458,8 +458,8 @@ span.text-gray {
 .btn {
     width: 100%;
     max-width: 400px;
-    padding: 10px 12px;
-    border-radius: 15px;
+    padding: 12px 24px;
+    border-radius: 50px;
     border: none;
     font-size: 20px;
     margin-top: 10px;
