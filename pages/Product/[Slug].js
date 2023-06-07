@@ -19,7 +19,7 @@ const ProductDetails = ({ product, products }) => {
     return (
         <div>
             <div className="product-detail-container">
-                <div>
+                <div className='product-detail-image-container'>
                     <div className="image-container">
                         <img src={UrlFor(Image && Image[index])} className="product-detail-image" />
                     </div>
@@ -36,7 +36,7 @@ const ProductDetails = ({ product, products }) => {
                 </div>
 
                 <div className="product-detail-desc">
-                    <h1>{Name}</h1>
+                    <h1 className='product-detail-desc-h1'>{Name}</h1>
                     <div className="reviews">
                         <div>
                             <TbStarFilled />
@@ -49,11 +49,11 @@ const ProductDetails = ({ product, products }) => {
                             (20)
                         </p>
                     </div>
-                    <h4>Details: </h4>
+                    <h4 className='product-detail-desc-h4'>Details: </h4>
                     <p>{Details}</p>
                     <p className="price">${Price}</p>
                     <div className="quantity">
-                        <h3>Quantity:</h3>
+                        <h3 className='product-detail-desc-h1'>Quantity:</h3>
                         <p className="quantity-desc">
                             <span className="minus" onClick={DecreaseQuantity}><TbMinus /></span>
                             <span className="num">{Qty}</span>

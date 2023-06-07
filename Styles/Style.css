@@ -477,10 +477,12 @@ span.text-gray {
 }
 
 .product-detail-container {
+    padding: 0 20px;
     display: flex;
+    justify-content: space-around;
     width: 100%;
     gap: 40px;
-    margin: 40px;
+    /* margin: 40px; */
     margin-top: 60px;
     color: #324d67;
 
@@ -489,7 +491,6 @@ span.text-gray {
 .product-detail-image {
     border-radius: 15px;
     background-color: #ebebeb;
-
     width: 400px;
     height: 400px;
     cursor: pointer;
@@ -519,8 +520,8 @@ span.text-gray {
     background-color: #aaa;
 }
 
-.reviews,
-.reviews div {
+.reviews {
+    align-items: center;
     color: #aaa;
     margin-top: 10px;
     display: flex;
@@ -528,7 +529,18 @@ span.text-gray {
     align-items: center;
 }
 
-.product-detail-desc h4 {
+.reviews div {
+    display: flex;
+    gap: 5px;
+}
+
+.product-detail-desc-h1 {
+    color: #324d67;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.product-detail-desc-h4 {
     margin-top: 10px;
 }
 
@@ -568,7 +580,8 @@ span.text-gray {
 }
 
 .buttons .add-to-cart {
-    padding: 10px 20px;
+    padding: 12px 32px;
+    border-radius: 50px;
     border: 1px solid #aaa;
     margin-top: 40px;
     font-size: 18px;
@@ -576,19 +589,17 @@ span.text-gray {
     background-color: white;
     color: #aaa;
     cursor: pointer;
-    width: 200px;
     transform: scale(1, 1);
     transition: transform 0.5s ease;
 }
 
 .buttons .add-to-cart:hover {
-    transform: scale(1.1, 1.1)
+    transform: scale(1.1, 1.1);
 }
 
 .buttons .buy-now {
-    width: 200px;
-
-    padding: 10px 20px;
+    padding: 12px 40px;
+    border-radius: 50px;
     background-color: #aaa;
     color: white;
     border: none;
@@ -601,10 +612,13 @@ span.text-gray {
 }
 
 .buttons .buy-now:hover {
-    transform: scale(1.1, 1.1)
+    transform: scale(1.1, 1.1);
 }
 
 .quantity-desc {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
     border: 1px solid gray;
     padding: 6px;
 }
