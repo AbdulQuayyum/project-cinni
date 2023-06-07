@@ -16,7 +16,7 @@ export const StateContext = ({ children }) => {
     const OnAdd = (Product, Quantity) => {
         const CheckProductInCart = CartItems.find((Item) => Item._id === Product._id);
 
-        setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.price * Quantity);
+        setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.Price * Quantity);
         setTotalQuantities((PreviousTotalQuantities) => PreviousTotalQuantities + Quantity);
 
         if (CheckProductInCart) {

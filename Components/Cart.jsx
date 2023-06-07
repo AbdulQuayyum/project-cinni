@@ -12,7 +12,9 @@ const Cart = () => {
     const cartRef = useRef();
     const { TotalPrice, TotalQuantities, CartItems, setShowCart, ToggleCartItemQuantity, OnRemove } = useStateContext();
 
-    const HandleCheckout = async () => { }
+    const HandleCheckout = async () => {
+        console.log(CartItems)
+    }
 
     return (
         <div className="cart-wrapper" ref={cartRef}>
