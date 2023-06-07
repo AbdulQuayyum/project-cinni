@@ -478,6 +478,7 @@ span.text-gray {
 
 .product-detail-container {
     display: flex;
+    width: 100%;
     gap: 40px;
     margin: 40px;
     margin-top: 60px;
@@ -518,7 +519,8 @@ span.text-gray {
     background-color: #aaa;
 }
 
-.reviews {
+.reviews,
+.reviews div {
     color: #aaa;
     margin-top: 10px;
     display: flex;

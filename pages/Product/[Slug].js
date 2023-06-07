@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TbMinus, TbPlus, TbStar, TbStarFilled } from 'react-icons/tb'
 
 import { Client, UrlFor } from '@/Utilities/Client';
-import { Product } from "../Product"
+import Product from '../Product';
 import { useStateContext } from '@/Context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
@@ -71,9 +71,9 @@ const ProductDetails = ({ product, products }) => {
                 <h2>You may also like</h2>
                 <div className="marquee">
                     <div className="maylike-products-container track">
-                        {/* {products.map((item) => (
+                        {products.map((item) => (
                             <Product key={item._id} product={item} />
-                        ))} */}
+                        ))}
                     </div>
                 </div>
             </div>
