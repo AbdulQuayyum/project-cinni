@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 
 import { Cart } from "./Index"
+import { useStateContext } from '@/Context/StateContext';
 
 const Navbar = () => {
-    const [showCart, setShowCart] = useState()
+    const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     return (
         <div className="navbar-container">
             <p className="logo">
@@ -14,8 +15,10 @@ const Navbar = () => {
 
             <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
                 <HiOutlineShoppingCart size={32} />
-                <span className="cart-item-qty">1</span>
+                <span className="cart-item-qty">{TotalQuantities}</span>
             </button>
+
+            {ShowCart && <Cart />}
         </div>
     )
 }
