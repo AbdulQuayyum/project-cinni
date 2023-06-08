@@ -52,6 +52,11 @@ export default {
             type: 'PostedBy',
         },
         {
+            name: 'Rating',
+            title: 'Rating',
+            type: 'number',
+        },
+        {
             name: 'Comments',
             title: 'Comments',
             type: 'array',
