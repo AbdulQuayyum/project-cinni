@@ -332,13 +332,15 @@ span.text-gray {
     color: #324d67;
     text-align: center;
     margin-top: 20px;
+    margin: 6px 18px;
     padding: 30px 10px;
     font-weight: 700;
     display: flex;
-    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
     align-items: center;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
 
 }
 

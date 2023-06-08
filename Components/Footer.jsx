@@ -6,7 +6,9 @@ const currentYear = new Date().getFullYear()
 const Footer = () => {
     return (
         <div className='footer-container'>
-            <span className="footer-copy dark:text-[#fff]">{currentYear} &#169; Project Cinni, All rights reserved</span>
+            <div>
+                <span className="footer-copy dark:text-[#fff]">{currentYear} &#169; Project Cinni, All rights reserved</span>
+            </div>
             <div className='icons'>
                 <a href="https://twitter.com/" target="_blank" rel="noreferrer" className="home-social-icon dark:text-[#fff]">
                     <BsTwitter />
