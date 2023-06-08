@@ -6,7 +6,9 @@ import Product from '../Product';
 import { useStateContext } from '@/Context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-    const { Image, Name, Details, Price } = product;
+    const { Image, Name, Details, Price, NumReviews, Rating } = product;
+    console.log(product)
+    console.log(product.Rating)
     const [index, setIndex] = useState(0)
     const { DecreaseQuantity, IncreaseQuantity, OnAdd, Qty, setShowCart } = useStateContext()
 
@@ -38,15 +40,14 @@ const ProductDetails = ({ product, products }) => {
                 <div className="product-detail-desc">
                     <h1 className='product-detail-desc-h1'>{Name}</h1>
                     <div className="reviews">
-                        <div>
-                            <TbStarFilled />
-                            <TbStarFilled />
-                            <TbStarFilled />
-                            <TbStarFilled />
-                            <TbStar />
-                        </div>
+                        {Array.from({ length: Rating }).map((item, index) => (
+                            <div key={index}> <TbStarFilled /> </div>
+                        ))}
+                        {Array.from({ length: 5 - Rating }).map((item, index) => (
+                            <div key={index}> <TbStar /> </div>
+                        ))}
                         <p>
-                            (20)
+                            {NumReviews} Reviews
                         </p>
                     </div>
                     <h4 className='product-detail-desc-h4'>Details: </h4>
