@@ -6,7 +6,7 @@ import Product from '../Product';
 import { useStateContext } from '@/Context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-    const { Image, Name, Details, Price, NumReviews, Rating } = product;
+    const { Image, Name, Details, Price, NumReviews, Rating, Category } = product;
     console.log(product)
     const [index, setIndex] = useState(0)
     const { DecreaseQuantity, IncreaseQuantity, OnAdd, Qty, setShowCart } = useStateContext()
@@ -38,6 +38,8 @@ const ProductDetails = ({ product, products }) => {
 
                 <div className="product-detail-desc">
                     <h1 className='product-detail-desc-h1'>{Name}</h1>
+                    <h1 className='price'> Category: {Category}</h1>
+                    <p className="price">Price: ₦{Price}</p>
                     <div className="reviews">
                         {
                             Rating ?
@@ -57,7 +59,6 @@ const ProductDetails = ({ product, products }) => {
                     </div>
                     <h4 className='product-detail-desc-h4'>Details: </h4>
                     <p>{Details}</p>
-                    <p className="price">₦{Price}</p>
                     <div className="quantity">
                         <h3 className='product-detail-desc-h1'>Quantity:</h3>
                         <p className="quantity-desc">
