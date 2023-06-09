@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import { setCookie, getCookie, removeCookie } from 'cookies-next';
 
 const Context = createContext()
 
@@ -11,14 +12,16 @@ export const StateContext = ({ children }) => {
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
 
+    const router = useRouter();
+
     // Load data from storage on initial component mount
     useEffect(() => {
-        const StoredCartItems = Cookies.get('CartItems');
-        const StoredTotalPrice = Cookies.get('TotalPrice');
-        const StoredTotalQuantities = Cookies.get('TotalQuantities');
-        // const StoredCartItems = Cookies.get('CartItems') ? JSON.parse(Cookies.get('CartItems')) : [];
-        // const StoredTotalPrice = Cookies.get('TotalPrice') ? Cookies.get('TotalPrice') : '';
-        // const StoredTotalQuantities = Cookies.get('TotalQuantities') ? Cookies.get('TotalQuantities') : '';
+        const StoredCartItems = getCookie('CartItems');
+        const StoredTotalPrice = getCookie('TotalPrice');
+        const StoredTotalQuantities = getCookie('TotalQuantities');
+        // const StoredCartItems = getCookie('CartItems') ? JSON.parse(getCookie('CartItems')) : [];
+        // const StoredTotalPrice = getCookie('TotalPrice') ? getCookie('TotalPrice') : '';
+        // const StoredTotalQuantities = getCookie('TotalQuantities') ? getCookie('TotalQuantities') : '';
 
         if (StoredCartItems) {
             setCartItems(JSON.parse(StoredCartItems));
@@ -35,15 +38,15 @@ export const StateContext = ({ children }) => {
 
     // Update storage whenever the cart items, total price, or total quantities change
     useEffect(() => {
-        Cookies.set('CartItems', JSON.stringify(CartItems), { expires: 1 });
+        setCookie('CartItems', JSON.stringify(CartItems));
     }, [CartItems]);
 
     useEffect(() => {
-        Cookies.set('TotalPrice', TotalPrice.toString(), { expires: 1 });
+        setCookie('TotalPrice', TotalPrice.toString());
     }, [TotalPrice]);
 
     useEffect(() => {
-        Cookies.set('TotalQuantities', TotalQuantities.toString(), { expires: 1 });
+        setCookie('TotalQuantities', TotalQuantities.toString());
     }, [TotalQuantities]);
 
     let FoundProduct;
