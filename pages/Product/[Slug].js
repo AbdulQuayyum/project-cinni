@@ -7,7 +7,7 @@ import { useStateContext } from '@/Context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
     const { Image, Name, Details, Price, NumReviews, Rating, Category } = product;
-    console.log(product)
+    // console.log(product)
     const [index, setIndex] = useState(0)
     const { DecreaseQuantity, IncreaseQuantity, OnAdd, Qty, setShowCart } = useStateContext()
 
