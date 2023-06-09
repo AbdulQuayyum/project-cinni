@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import Cookies from 'js-cookie';
 
 const Context = createContext()
 
@@ -9,6 +10,41 @@ export const StateContext = ({ children }) => {
     const [TotalPrice, setTotalPrice] = useState(0);
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
+
+    // Load data from storage on initial component mount
+    useEffect(() => {
+        const StoredCartItems = Cookies.get('CartItems');
+        const StoredTotalPrice = Cookies.get('TotalPrice');
+        const StoredTotalQuantities = Cookies.get('TotalQuantities');
+        // const StoredCartItems = Cookies.get('CartItems') ? JSON.parse(Cookies.get('CartItems')) : [];
+        // const StoredTotalPrice = Cookies.get('TotalPrice') ? Cookies.get('TotalPrice') : '';
+        // const StoredTotalQuantities = Cookies.get('TotalQuantities') ? Cookies.get('TotalQuantities') : '';
+
+        if (StoredCartItems) {
+            setCartItems(JSON.parse(StoredCartItems));
+        }
+
+        if (StoredTotalPrice) {
+            setTotalPrice(parseFloat(StoredTotalPrice));
+        }
+
+        if (StoredTotalQuantities) {
+            setTotalQuantities(parseInt(StoredTotalQuantities));
+        }
+    }, [])
+
+    // Update storage whenever the cart items, total price, or total quantities change
+    useEffect(() => {
+        Cookies.set('CartItems', JSON.stringify(CartItems), { expires: 1 });
+    }, [CartItems]);
+
+    useEffect(() => {
+        Cookies.set('TotalPrice', TotalPrice.toString(), { expires: 1 });
+    }, [TotalPrice]);
+
+    useEffect(() => {
+        Cookies.set('TotalQuantities', TotalQuantities.toString(), { expires: 1 });
+    }, [TotalQuantities]);
 
     let FoundProduct;
     let Index;
