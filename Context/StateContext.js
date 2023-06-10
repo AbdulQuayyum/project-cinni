@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
+import UseCartStore from '@/Store/CartStore';
+
 const Context = createContext()
 
 export const StateContext = ({ children }) => {
@@ -10,6 +12,7 @@ export const StateContext = ({ children }) => {
     const [TotalPrice, setTotalPrice] = useState(0);
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
+    const { AddCartItems, AddTotalPrice, AddTotalQuantities } = UseCartStore();
 
     const options = {
         maxAge: 60 * 60 * 24 * 7, // Expires in 7 days
@@ -25,7 +28,9 @@ export const StateContext = ({ children }) => {
             .then((response) => response.json())
             .then((data) => {
                 const { CartItems, TotalPrice, TotalQuantities } = data;
-
+                AddCartItems(CartItems)
+                AddTotalPrice(TotalPrice)
+                AddTotalQuantities(TotalQuantities)
                 setCartItems(CartItems);
                 setTotalPrice(TotalPrice);
                 setTotalQuantities(TotalQuantities);
@@ -42,6 +47,9 @@ export const StateContext = ({ children }) => {
             TotalPrice,
             TotalQuantities,
         };
+        AddCartItems(CartData.CartItems)
+        AddTotalPrice(CartData.TotalPrice)
+        AddTotalQuantities(CartData.TotalQuantities)
 
         fetch('/api/Cart', {
             method: 'POST',
