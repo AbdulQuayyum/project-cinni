@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
@@ -7,13 +8,19 @@ import { AiOutlineLogout } from 'react-icons/ai'
 import { BiSearch } from 'react-icons/bi'
 
 import { Cart } from "./Index"
+import { CreateOrGetUser } from '@/Utilities/CreateOrGetUser';
 import { useStateContext } from '@/Context/StateContext';
 import UseAuthStore from '@/Store/AuthStore';
 
 const Navbar = () => {
+    const [User, setUser] = useState()
     const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     const [searchValue, setSearchValue] = useState('')
     const { UserProfile, AddUser, RemoveUser } = UseAuthStore()
+
+    useEffect(() => {
+        setUser(UserProfile)
+    }, [UserProfile])
 
     const HandleSearch = (e) => {
         e.preventDefault()
@@ -47,7 +54,52 @@ const Navbar = () => {
                     </button>
                 </form>
             </div>
-            <div>
+            <div className='flex items-center gap-x-4'>
+                <div>
+                    {User ? (
+                        <div className="flex items-center gap-5 md:gap-10">
+                            {User.Image && (
+                                // <Link href={`/Profile/${User._id}`}>
+                                    <div>
+                                        <Image
+                                            className="rounded-full cursor-pointer"
+                                            src={User.Image}
+                                            alt="User"
+                                            width={40}
+                                            height={40}
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    </div>
+                                // </Link>
+                            )}
+                            {/* <button
+                                type="button"
+                                className="p-3 border-2 rounded-full shadow-md outline-none cursor-pointer "
+                                onClick={() => {
+                                    googleLogout()
+                                    RemoveUser()
+                                    localStorage.clear()
+                                }}
+                            >
+                                <AiOutlineLogout color="red" fontSize={21} />
+                            </button> */}
+                        </div>
+                    ) : (
+                        <GoogleLogin
+                            onSuccess={response => { CreateOrGetUser(response, AddUser) }}
+                            onError={() => {
+                                cogoToast.error('Please try again', {
+                                    position: 'top-right',
+                                    heading: 'Login Failed',
+                                })
+                            }}
+                            shape="circle"
+                            size="large"
+                            text="continue_with"
+                            theme="filled_black"
+                        />
+                    )}
+                </div>
                 <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
                     <HiOutlineShoppingCart size={32} />
                     <span className="cart-item-qty">{TotalQuantities}</span>
