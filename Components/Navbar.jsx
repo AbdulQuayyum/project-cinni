@@ -8,10 +8,12 @@ import { BiSearch } from 'react-icons/bi'
 
 import { Cart } from "./Index"
 import { useStateContext } from '@/Context/StateContext';
+import UseAuthStore from '@/Store/AuthStore';
 
 const Navbar = () => {
     const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     const [searchValue, setSearchValue] = useState('')
+    const { UserProfile, AddUser, RemoveUser } = UseAuthStore()
 
     const HandleSearch = (e) => {
         e.preventDefault()
