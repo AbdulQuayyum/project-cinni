@@ -553,7 +553,7 @@ span.text-gray {
     margin-top: 0px;
 }
 
- .price {
+.price {
     font-weight: 700;
     font-size: 26px;
     margin-top: 10px;
@@ -1021,5 +1021,18 @@ span.text-gray {
     .grid {
         width: 100%;
         flex-direction: column;
+    }
+}
+
+.onboard {
+    min-height: calc(100vh - 244px);
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .onboard {
+        min-height: 100%;
+        margin-top: 1rem;
+        margin-bottom: 4rem;
     }
 }

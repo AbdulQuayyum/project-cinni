@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { toast } from 'react-hot-toast';
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { AiOutlineLogout } from 'react-icons/ai'
@@ -60,16 +60,16 @@ const Navbar = () => {
                         <div className="flex items-center gap-5 md:gap-10">
                             {User.Image && (
                                 // <Link href={`/Profile/${User._id}`}>
-                                    <div>
-                                        <Image
-                                            className="rounded-full cursor-pointer"
-                                            src={User.Image}
-                                            alt="User"
-                                            width={40}
-                                            height={40}
-                                            referrerPolicy="no-referrer"
-                                        />
-                                    </div>
+                                <div>
+                                    <Image
+                                        className="rounded-full cursor-pointer"
+                                        src={User.Image}
+                                        alt="User"
+                                        width={40}
+                                        height={40}
+                                        referrerPolicy="no-referrer"
+                                    />
+                                </div>
                                 // </Link>
                             )}
                             {/* <button
@@ -87,12 +87,7 @@ const Navbar = () => {
                     ) : (
                         <GoogleLogin
                             onSuccess={response => { CreateOrGetUser(response, AddUser) }}
-                            onError={() => {
-                                cogoToast.error('Please try again', {
-                                    position: 'top-right',
-                                    heading: 'Login Failed',
-                                })
-                            }}
+                            onError={() => { toast.error('Try again') }}
                             shape="circle"
                             size="large"
                             text="continue_with"

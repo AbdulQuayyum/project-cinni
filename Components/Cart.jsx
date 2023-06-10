@@ -1,19 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router'
 import { TbMinus, TbPlus, TbChevronLeft } from 'react-icons/tb'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { MdDeleteOutline } from 'react-icons/md'
 
+import UseAuthStore from '@/Store/AuthStore';
 import { useStateContext } from '@/Context/StateContext';
 import { UrlFor } from '@/Utilities/Client';
 
 const Cart = () => {
     const cartRef = useRef();
+    const router = useRouter();
+    const [User, setUser] = useState()
+    const { UserProfile } = UseAuthStore()
     const { TotalPrice, TotalQuantities, CartItems, setShowCart, ToggleCartItemQuantity, OnRemove } = useStateContext();
 
+    useEffect(() => {
+        setUser(UserProfile)
+    }, [UserProfile])
+
     const HandleCheckout = async () => {
-        console.log(CartItems)
+        if (!User) {
+            console.log(CartItems)
+            toast.error('Login before checkout');
+        } else {
+
+        }
     }
 
     return (
