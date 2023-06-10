@@ -1,17 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { GetServerSideProps } from 'next';
 import { toast } from 'react-hot-toast';
 import { setCookie, getCookie } from 'cookies-next';
 
 const Context = createContext()
 
 export const StateContext = ({ children }) => {
+
     const [ShowCart, setShowCart] = useState(false);
-    const [CartItems, setCartItems] = useState(getCookie('CartItems') ? JSON.parse(getCookie('CartItems')) : []);
-    const [TotalPrice, setTotalPrice] = useState(getCookie('TotalPrice') ? getCookie('TotalPrice') : 0);
-    const [TotalQuantities, setTotalQuantities] = useState(getCookie('TotalQuantities') ? getCookie('TotalQuantities') : 0);
-    // const [CartItems, setCartItems] = useState([]);
-    // const [TotalPrice, setTotalPrice] = useState(0);
-    // const [TotalQuantities, setTotalQuantities] = useState(0);
+    const [CartItems, setCartItems] = useState([]);
+    const [TotalPrice, setTotalPrice] = useState(0);
+    const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
 
     const options = {
@@ -23,73 +22,79 @@ export const StateContext = ({ children }) => {
 
     // useEffect(() => {
     //     const StoredCartItems = getCookie('CartItems', options);
-
-    //     const parsedStoredCartItems =
-    //         StoredCartItems !== null ? (JSON.parse(StoredCartItems)) : []
-
-    //     setCartItems(parsedStoredCartItems)
-    // }, [])
-
-    // useEffect(() => {
     //     const StoredTotalPrice = getCookie('TotalPrice', options);
-
-    //     const parsedStoredTotalPrice =
-    //         StoredTotalPrice !== null ? (parseFloat(StoredTotalPrice)) : []
-
-    //     setTotalPrice(parsedStoredTotalPrice)
-    // }, [])
-
-    // useEffect(() => {
     //     const StoredTotalQuantities = getCookie('TotalQuantities', options);
 
-    //     const parsedStoredTotalQuantities =
-    //         StoredTotalQuantities !== null ? (parseInt(StoredTotalQuantities)) : []
+    //     if (StoredCartItems) {
+    //         setCartItems(JSON.parse(StoredCartItems));
+    //     }
 
-    //     setTotalPrice(parsedStoredTotalQuantities)
+    //     if (StoredTotalPrice) {
+    //         setTotalPrice(parseFloat(StoredTotalPrice));
+    //     }
+
+    //     if (StoredTotalQuantities) {
+    //         setTotalQuantities(parseInt(StoredTotalQuantities));
+    //     }
     // }, [])
 
-    // Load data from storage on initial component mount
-    useEffect(() => {
-        const StoredCartItems = getCookie('CartItems', options);
-        const StoredTotalPrice = getCookie('TotalPrice', options);
-        const StoredTotalQuantities = getCookie('TotalQuantities', options);
+    // // Update storage whenever the cart items, total price, or total quantities change
+    // useEffect(() => {
+    //     setCookie('CartItems', JSON.stringify(CartItems), options);
+    // }, [CartItems]);
 
+    // useEffect(() => {
+    //     setCookie('TotalPrice', TotalPrice.toString(), options);
+    // }, [TotalPrice]);
 
-        // const [CartItems, setCartItems] = useState(getCookie('CartItems') ? JSON.parse(getCookie('CartItems')) : []);
-        // const [TotalPrice, setTotalPrice] = useState(getCookie('TotalPrice') ? getCookie('TotalPrice') : 0);
-        // const [TotalQuantities, setTotalQuantities] = useState(getCookie('TotalQuantities') ? getCookie('TotalQuantities') : 0);
-        // const CartItems = StoredCartItems ? JSON.parse(StoredCartItems) : [];
-        // const TotalPrice = StoredTotalPrice ? parseFloat(StoredTotalPrice) : 0;
-        // const TotalQuantities = StoredTotalQuantities ? parseInt(StoredTotalQuantities) : 0;
-        // const StoredCartItems = getCookie('CartItems') ? JSON.parse(getCookie('CartItems')) : [];
-        // const StoredTotalPrice = getCookie('TotalPrice') ? getCookie('TotalPrice') : '';
-        // const StoredTotalQuantities = getCookie('TotalQuantities') ? getCookie('TotalQuantities') : '';
-
-        if (StoredCartItems) {
-            setCartItems(JSON.parse(StoredCartItems));
-        }
-
-        if (StoredTotalPrice) {
-            setTotalPrice(parseFloat(StoredTotalPrice));
-        }
-
-        if (StoredTotalQuantities) {
-            setTotalQuantities(parseInt(StoredTotalQuantities));
-        }
-    }, [])
-
-    // Update storage whenever the cart items, total price, or total quantities change
-    useEffect(() => {
-        setCookie('CartItems', JSON.stringify(CartItems), options);
-    }, [CartItems]);
+    // useEffect(() => {
+    //     setCookie('TotalQuantities', TotalQuantities.toString(), options);
+    // }, [TotalQuantities]);
 
     useEffect(() => {
-        setCookie('TotalPrice', TotalPrice.toString(), options);
-    }, [TotalPrice]);
+        // Fetch cart data from the server-side
+        fetch('/api/Cart')
+            .then((response) => response.json())
+            .then((data) => {
+                const { CartItems, TotalPrice, TotalQuantities } = data;
+
+                setCartItems(CartItems);
+                setTotalPrice(TotalPrice);
+                setTotalQuantities(TotalQuantities);
+            })
+            .catch((error) => {
+                console.error('Failed to fetch cart data', error);
+            });
+    }, []);
+
+    const UpdateCartData = () => {
+        // Save cart data to the server-side
+        const CartData = {
+            CartItems,
+            TotalPrice,
+            TotalQuantities,
+        };
+
+        fetch('/api/Cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(CartData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.message);
+            })
+            .catch((error) => {
+                console.error('Failed to save cart data', error);
+            });
+    };
 
     useEffect(() => {
-        setCookie('TotalQuantities', TotalQuantities.toString(), options);
-    }, [TotalQuantities]);
+        // Update storage whenever the cart items, total price, or total quantities change
+        UpdateCartData();
+    }, [CartItems, TotalPrice, TotalQuantities]);
 
     let FoundProduct;
     let Index;
@@ -114,9 +119,9 @@ export const StateContext = ({ children }) => {
 
             setCartItems([...CartItems, { ...Product }]);
         }
-
+        UpdateCartData()
         toast.success(`${Qty} ${Product.Name} added to your cart.`);
-        console.log(TotalPrice)
+        // console.log(TotalPrice)
     }
 
     const OnRemove = (Product) => {
@@ -126,6 +131,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price * FoundProduct.Quantity);
         setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - FoundProduct.Quantity);
         setCartItems(NewCartItems);
+        UpdateCartData()
     }
 
     const ToggleCartItemQuantity = (ID, Value) => {
@@ -149,6 +155,7 @@ export const StateContext = ({ children }) => {
 
     const IncreaseQuantity = () => {
         setQty((PreviousQuantity) => PreviousQuantity + 1)
+        UpdateCartData()
     }
 
     const DecreaseQuantity = () => {
@@ -156,6 +163,7 @@ export const StateContext = ({ children }) => {
             if (PreviousQuantity - 1 < 1) return 1;
             return PreviousQuantity - 1
         })
+        UpdateCartData()
     }
 
     return (
