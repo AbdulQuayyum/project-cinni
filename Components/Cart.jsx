@@ -26,7 +26,7 @@ const Cart = () => {
             console.log(CartItems)
             toast.error('Login before checkout');
         } else {
-
+            router.push('/Steps')
         }
     }
 
@@ -69,13 +69,13 @@ const Cart = () => {
                                 </div>
                                 <div className="flex bottom">
                                     <div>
-                                        <p className="quantity-desc">
+                                        <div className="quantity-desc">
                                             <span className="minus" onClick={() => ToggleCartItemQuantity(item._id, 'decrease')}>
                                                 <TbMinus />
                                             </span>
                                             <span className="num" onClick="">{item.Quantity}</span>
                                             <span className="plus" onClick={() => ToggleCartItemQuantity(item._id, 'increase')}><TbPlus /></span>
-                                        </p>
+                                        </div>
                                     </div>
                                     <button
                                         type="button"
