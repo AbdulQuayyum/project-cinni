@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import Slide, { SliderContext } from "./Slide";
+import Slide from "./Slide";
+import { SliderContext } from "./Slider";
 
 export default function SlidesList() {
   const { slideNumber, items } = useContext(SliderContext);

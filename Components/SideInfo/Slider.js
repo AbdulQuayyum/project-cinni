@@ -1,10 +1,8 @@
 import React, { useEffect, useState, createContext } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import Dots from "./Controls/Dots";
 import SlidesList from "./SlidesList";
-
-import bg from "/public/slider.svg"
 
 export const SliderContext = createContext();
 
@@ -16,17 +14,17 @@ const Slider = function ({ width, height, autoPlay, autoPlayTime }) {
   useEffect(() => {
   const images = [
     {
-      "src": bg,
+      "src": '/slider.svg',
       "title": "Access your medical records",
       "message": "Get access to all your medical records anytime, anywhere."
     },
     {
-      "src": bg,
+      "src": '/slider.svg',
       "title": "Register a family account",
       "message": "Get access to all your medical records anytime, anywhere."
     },
     {
-      "src": bg,
+      "src": '/slider.svg',
       "title": "Live chat with doctors",
       "message": "Take back your health. Send instant messages to doctors and get the consultation you need"
     },
@@ -112,12 +110,12 @@ const Slider = function ({ width, height, autoPlay, autoPlayTime }) {
   );
 };
 
-Slider.propTypes = {
-  autoPlay: PropTypes.bool,
-  autoPlayTime: PropTypes.number,
-  width: PropTypes.string,
-  height: PropTypes.string
-};
+// Slider.propTypes = {
+//   autoPlay: PropTypes.bool,
+//   autoPlayTime: PropTypes.number,
+//   width: PropTypes.string,
+//   height: PropTypes.string
+// };
 
 Slider.defaultProps = {
   autoPlay: true,

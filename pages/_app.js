@@ -6,7 +6,7 @@ import { StateContext } from '@/Context/StateContext';
 import MainLayout from '@/Layout/Main.Layout';
 import '../Styles/Index.css'
 import '../Styles/Style.css'
-import '../Styles/App.scss'
+// import '../Styles/App.scss'
 
 const MyApp = ({ Component, pageProps }) => {
   return (
