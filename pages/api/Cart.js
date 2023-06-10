@@ -1,5 +1,3 @@
-// pages/api/cart.js
-
 import { setCookie, getCookie } from 'cookies-next';
 
 export default function handler(req, res) {

@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { GetServerSideProps } from 'next';
 import { toast } from 'react-hot-toast';
-import { setCookie, getCookie } from 'cookies-next';
 
 const Context = createContext()
 
@@ -20,36 +18,6 @@ export const StateContext = ({ children }) => {
         sameSite: 'strict', // Restrict the cookie to same-site requests
     };
 
-    // useEffect(() => {
-    //     const StoredCartItems = getCookie('CartItems', options);
-    //     const StoredTotalPrice = getCookie('TotalPrice', options);
-    //     const StoredTotalQuantities = getCookie('TotalQuantities', options);
-
-    //     if (StoredCartItems) {
-    //         setCartItems(JSON.parse(StoredCartItems));
-    //     }
-
-    //     if (StoredTotalPrice) {
-    //         setTotalPrice(parseFloat(StoredTotalPrice));
-    //     }
-
-    //     if (StoredTotalQuantities) {
-    //         setTotalQuantities(parseInt(StoredTotalQuantities));
-    //     }
-    // }, [])
-
-    // // Update storage whenever the cart items, total price, or total quantities change
-    // useEffect(() => {
-    //     setCookie('CartItems', JSON.stringify(CartItems), options);
-    // }, [CartItems]);
-
-    // useEffect(() => {
-    //     setCookie('TotalPrice', TotalPrice.toString(), options);
-    // }, [TotalPrice]);
-
-    // useEffect(() => {
-    //     setCookie('TotalQuantities', TotalQuantities.toString(), options);
-    // }, [TotalQuantities]);
 
     useEffect(() => {
         // Fetch cart data from the server-side
