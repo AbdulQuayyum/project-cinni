@@ -29,6 +29,7 @@ a {
 }
 
 .navbar-container {
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin: 6px 18px;
@@ -74,12 +75,6 @@ a {
 span.text-gray {
     -webkit-text-stroke: 1px #aaa;
     margin-left: 6px;
-}
-
-.logo {
-    color: gray;
-    font-size: 18px;
-
 }
 
 .cart-icon {
@@ -558,7 +553,7 @@ span.text-gray {
     margin-top: 0px;
 }
 
-.product-detail-desc .price {
+ .price {
     font-weight: 700;
     font-size: 26px;
     margin-top: 10px;
@@ -1020,11 +1015,6 @@ span.text-gray {
     margin: 0;
     font-size: 1.25rem;
     line-height: 1.5;
-}
-
-.logo {
-    height: 1em;
-    margin-left: 0.5rem;
 }
 
 @media (max-width: 600px) {

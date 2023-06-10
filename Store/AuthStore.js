@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import axios from 'axios'
 
-import { BASE_URL } from '../Utilities/Index'
+import { BASE_URL } from '@/Utilities/CreateOrGetUser'
 
 const AuthStore = (set) => ({
     UserProfile: null,

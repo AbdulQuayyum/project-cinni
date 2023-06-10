@@ -25,9 +25,9 @@ const Navbar = () => {
 
     return (
         <div className="navbar-container">
-            <p className="logo">
-                <Link href="/">Project Cinni</Link>
-            </p>
+            <div className='logo'>
+                <Link className='price' href="/">Project Cinni</Link>
+            </div>
             <div className="relative hidden md:block">
                 <form
                     onSubmit={HandleSearch}
@@ -47,12 +47,14 @@ const Navbar = () => {
                     </button>
                 </form>
             </div>
-            <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
-                <HiOutlineShoppingCart size={32} />
-                <span className="cart-item-qty">{TotalQuantities}</span>
-            </button>
+            <div>
+                <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
+                    <HiOutlineShoppingCart size={32} />
+                    <span className="cart-item-qty">{TotalQuantities}</span>
+                </button>
 
-            {ShowCart && <Cart />}
+                {ShowCart && <Cart />}
+            </div>
         </div>
     )
 }
