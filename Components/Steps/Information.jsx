@@ -2,28 +2,30 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import { FiChevronRight } from 'react-icons/fi'
 
-import UseAuthStore from '@/Store/AuthStore';
+// import UseAuthStore from '@/Store/AuthStore';
 import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
-    const { AddUserAddress, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
+    const { AddUserAddress, AddUserAlias, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
     const [fullName, setFullName] = useState(AddUserFullName ? AddUserFullName : "")
+    const [alias, setAlias] = useState(AddUserAlias ? AddUserAlias : "")
     const [address, setAddress] = useState(AddUserAddress ? AddUserAddress : "")
     const [phone, setPhoneNumber] = useState(AddUserPhone ? AddUserPhone : "")
     const [landmark, setLandmark] = useState(AddUserLandmark ? AddUserLandmark : "")
-    const [User, setUser] = useState()
-    const { UserProfile } = UseAuthStore()
+    // const [User, setUser] = useState()
+    // const { UserProfile } = UseAuthStore()
+
+    // useEffect(() => {
+    //     setUser(UserProfile.UserName)
+    // }, [])
 
     useEffect(() => {
-        setUser(UserProfile.UserName)
-    }, [])
-
-    useEffect(() => {
-        AddUserFullName(User ? User : fullName)
+        AddUserFullName(fullName)
+        AddUserAlias(alias)
         AddUserAddress(address)
         AddUserLandmark(landmark)
         AddUserPhone(phone)
-    }, [address, landmark, phone, fullName])
+    }, [address, landmark, phone, fullName, alias])
 
     const { nextStep } = props;
     const HandleNext = () => { nextStep() }
@@ -38,9 +40,20 @@ export default function Information(props) {
                     <input
                         name='fullName'
                         type="text"
-                        value={User}
-                        onChange={e => setUser(e.target.value)}
+                        value={fullName}
+                        onChange={e => setFullName(e.target.value)}
                         placeholder="Your Full Name"
+                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                    />
+                </div>
+                <div className='mt-6  flex flex-col gap-y-4'>
+                    <label className='price' htmlFor="fullName">Alias/Nickname</label>
+                    <input
+                        name='alias'
+                        type="text"
+                        value={alias}
+                        onChange={e => setAlias(e.target.value)}
+                        placeholder="What you are known as in your location"
                         className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>

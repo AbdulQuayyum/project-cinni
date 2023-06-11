@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 
 const InfoStore = (set) => ({
     UserFullName: null,
+    UserAlias: null,
     UserAddress: null,
     UserLandmark: null,
     UserPhone: null,
@@ -11,7 +12,7 @@ const InfoStore = (set) => ({
     AddUserAddress: (address) => set({ UserAddress: address }),
     AddUserLandmark: (landmark) => set({ UserLandmark: landmark }),
     AddUserPhone: (phone) => set({ UserPhone: phone }),
-
+    AddUserAlias: (alias) => set({ UserAlias: alias }),
 })
 
 const UseInfoStore = create(
