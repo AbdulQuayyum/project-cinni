@@ -1054,7 +1054,7 @@ span.text-gray {
 
 .slide-message {
     max-width: 250px;
-    font-size: smaller;
+    /* font-size: smaller; */
     font-weight: lighter;
     text-align: center;
     margin-top: 5px;
@@ -1170,6 +1170,14 @@ span.text-gray {
         display: flex;
         justify-content: center;
     }
+}
+
+.side-info {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 900px) {

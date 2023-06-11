@@ -15,7 +15,7 @@ const StepsLayout = ({ children }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="/logo.png" />
             </Head>
-            <div className='z-40 flex items-center bg-[#aaa] transition-all side-info duration-1000'>
+            <div className='z-40 flex items-center transition-all side-info duration-1000'>
                 <SideInfo />
             </div>
             <div className='z-40 flex col-span-2 transition-all duration-1000 onboard'>
