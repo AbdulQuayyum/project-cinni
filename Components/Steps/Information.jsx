@@ -6,13 +6,13 @@ import UseAuthStore from '@/Store/AuthStore';
 import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
-    const [fullName, setFullName] = useState()
-    const [address, setAddress] = useState()
-    const [phone, setPhoneNumber] = useState()
-    const [landmark, setLandmark] = useState()
+    const { AddUserAddress, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
+    const [fullName, setFullName] = useState(AddUserFullName ? AddUserFullName : "")
+    const [address, setAddress] = useState(AddUserAddress ? AddUserAddress : "")
+    const [phone, setPhoneNumber] = useState(AddUserPhone ? AddUserPhone : "")
+    const [landmark, setLandmark] = useState(AddUserLandmark ? AddUserLandmark : "")
     const [User, setUser] = useState()
     const { UserProfile } = UseAuthStore()
-    const { AddUserAddress, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
 
     useEffect(() => {
         setUser(UserProfile.UserName)
