@@ -4,7 +4,7 @@ import { FiChevronRight } from 'react-icons/fi'
 
 import UseAuthStore from '@/Store/AuthStore';
 
-export default function Address(props) {
+export default function Information(props) {
     const [fullName, setFullName] = useState()
     const [address, setAddress] = useState()
     const [phone, setPhoneNumber] = useState()

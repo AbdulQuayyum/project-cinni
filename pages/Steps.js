@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StepWizard from "react-step-wizard";
 
-import { StepsNavbar, Address, Order, Payment } from "@/Components/Index";
+import { StepsNavbar, Information, Order, Payment } from "@/Components/Index";
 import StepsLayout from "@/Layout/Steps.Layout";
 
 export default function Steps(props) {
@@ -21,7 +21,7 @@ export default function Steps(props) {
                 instance={setInstance}
                 className="relative flex flex-col items-center pt-0 sm:pt-40 min-h-screen"
             >
-                <Address hashKey={"one"} />
+                <Information hashKey={"one"} />
                 <Payment hashKey={"two"} />
                 <Order hashKey={"three"} />
             </StepWizard>

@@ -1,4 +1,4 @@
-export { default as Address } from './Steps/Address.jsx'
+export { default as Information } from './Steps/Information.jsx'
 export { default as Order } from './Steps/Order.jsx'
 export { default as Payment } from './Steps/Payment.jsx'
 export { default as Cart } from "./Cart"
