@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TbMinus, TbPlus, TbStar, TbStarFilled } from 'react-icons/tb'
 
+import MainLayout from '@/Layout/Main.Layout';
 import { Client, UrlFor } from '@/Utilities/Client';
 import Product from '../Product';
 import { useStateContext } from '@/Context/StateContext';
@@ -18,7 +19,7 @@ const ProductDetails = ({ product, products }) => {
     }
 
     return (
-        <div>
+        <MainLayout>
             <div className="product-detail-container">
                 <div className='product-detail-image-container'>
                     <div className="image-container">
@@ -84,7 +85,7 @@ const ProductDetails = ({ product, products }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </MainLayout>
     )
 }
 

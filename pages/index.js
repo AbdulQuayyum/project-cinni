@@ -1,12 +1,13 @@
 import React from 'react';
 
+import MainLayout from '@/Layout/Main.Layout';
 import { Client } from '@/Utilities/Client';
 import { FooterBanner, HeroBanner } from '@/Components/Index';
 import Product from './Product';
 
 const Home = ({ products, bannerData }) => {
   return (
-    <>
+    <MainLayout>
       <HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
       <div className="products-heading">
         <h2>Best Seller Goods</h2>
@@ -17,7 +18,7 @@ const Home = ({ products, bannerData }) => {
           <Product key={product._id} product={product} />)}
       </div>
       <FooterBanner FooterBanner={bannerData && bannerData[0]} />
-    </>
+    </MainLayout>
   )
 }
 

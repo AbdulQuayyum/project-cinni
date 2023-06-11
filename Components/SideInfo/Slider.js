@@ -12,24 +12,24 @@ const Slider = function ({ width, height, autoPlay, autoPlayTime }) {
   const [touchPosition, setTouchPosition] = useState(null)
 
   useEffect(() => {
-  const images = [
-    {
-      "src": '/slider.svg',
-      "title": "Access your medical records",
-      "message": "Get access to all your medical records anytime, anywhere."
-    },
-    {
-      "src": '/slider.svg',
-      "title": "Register a family account",
-      "message": "Get access to all your medical records anytime, anywhere."
-    },
-    {
-      "src": '/slider.svg',
-      "title": "Live chat with doctors",
-      "message": "Take back your health. Send instant messages to doctors and get the consultation you need"
-    },
-  ]
-      setItems(images)
+    const images = [
+      {
+        "src": '/CS.png',
+        "title": "Our Customer Service",
+        "message": "lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "src": '/SM.png',
+        "title": "Our Social Media Accounts",
+        "message": "lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "src": '/OT.png',
+        "title": "Our Team",
+        "message": "lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+    ]
+    setItems(images)
   }, [])
 
   const changeSlide = (direction = 1) => {
@@ -83,7 +83,7 @@ const Slider = function ({ width, height, autoPlay, autoPlayTime }) {
     return () => {
       clearInterval(interval);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, slide]); // when images uploaded or slide changed manually we start timer
 
   return (
