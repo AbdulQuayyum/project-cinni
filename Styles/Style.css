@@ -1069,7 +1069,7 @@ span.text-gray {
 }
 
 .dot {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #999999;
     border-radius: 5px;
     height: 10px;
     margin: 5px;
@@ -1081,7 +1081,7 @@ span.text-gray {
 }
 
 .dot.selected {
-    background-color: #ffffff;
+    background-color: #101010;
 }
 
 .rsw_2Y {
