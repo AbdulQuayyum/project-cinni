@@ -23,7 +23,7 @@ const Cart = () => {
 
     const HandleCheckout = async () => {
         if (!User) {
-            console.log(CartItems)
+            // console.log(CartItems)
             toast.error('Login before checkout');
         } else {
             router.push('/Steps')
