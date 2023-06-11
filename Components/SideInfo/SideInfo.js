@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 import Slider from "./Slider";
 import { GoPrimitiveDot } from "react-icons/go"
 const SideInfo = () => {
@@ -7,7 +8,9 @@ const SideInfo = () => {
         <div className="flex flex-col lg:px-10 md:px-10 xl:px-20 justify-between">
             <div className="flex flex-col pt-40 text-left">
                 <div className="flex pb-20 pl-2">
-                    <span className='price'>Project Cinni</span>
+                    <Link href="/">
+                        <span className='price'>Project Cinni</span>
+                    </Link>
                 </div>
                 <div>
                     <Slider />
