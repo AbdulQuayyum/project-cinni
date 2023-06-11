@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FiChevronRight } from 'react-icons/fi'
 
 import UseAuthStore from '@/Store/AuthStore';
+import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
     const [fullName, setFullName] = useState()
@@ -11,10 +12,18 @@ export default function Information(props) {
     const [landmark, setLandmark] = useState()
     const [User, setUser] = useState()
     const { UserProfile } = UseAuthStore()
+    const { AddUserAddress, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
 
     useEffect(() => {
         setUser(UserProfile.UserName)
     }, [])
+
+    useEffect(() => {
+        AddUserFullName(User ? User : fullName)
+        AddUserAddress(address)
+        AddUserLandmark(landmark)
+        AddUserPhone(phone)
+    }, [address, landmark, phone, fullName])
 
     const { nextStep } = props;
     const HandleNext = () => { nextStep() }
@@ -25,8 +34,9 @@ export default function Information(props) {
         <form onSubmit={HandleSubmit}>
             <div className='flex flex-col items-center'>
                 <div className='mt-6  flex flex-col gap-y-4'>
-                    <label className='price' htmlFor="">Full Name</label>
+                    <label className='price' htmlFor="fullName">Full Name</label>
                     <input
+                        name='fullName'
                         type="text"
                         value={User}
                         onChange={e => setUser(e.target.value)}
@@ -35,8 +45,9 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
-                    <label className='price' htmlFor="">Address</label>
+                    <label className='price' htmlFor="address">Address</label>
                     <input
+                        name='address'
                         type="text"
                         value={address}
                         onChange={e => setAddress(e.target.value)}
@@ -45,8 +56,9 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
-                    <label className='price' htmlFor="">Landmark</label>
+                    <label className='price' htmlFor="landmark">Landmark</label>
                     <input
+                        name='landmark'
                         type="text"
                         value={landmark}
                         onChange={e => setLandmark(e.target.value)}
@@ -55,13 +67,14 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
-                    <label className='price' htmlFor="">Phone Number</label>
+                    <label className='price' htmlFor="phoneNumber">Phone Number</label>
                     <input
+                        name='phoneNumber'
                         type="tel"
                         maxLength={11}
                         minLength="11"
                         value={phone}
-                        onChange={e => setPhone(e.target.value)}
+                        onChange={e => setPhoneNumber(e.target.value)}
                         placeholder="Your Contact Number"
                         className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
