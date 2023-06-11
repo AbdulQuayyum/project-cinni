@@ -43,7 +43,7 @@ export default function Information(props) {
                         value={fullName}
                         onChange={e => setFullName(e.target.value)}
                         placeholder="Your Full Name"
-                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
@@ -54,7 +54,7 @@ export default function Information(props) {
                         value={alias}
                         onChange={e => setAlias(e.target.value)}
                         placeholder="What you are known as in your location"
-                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
@@ -65,7 +65,7 @@ export default function Information(props) {
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                         placeholder="Your Full Address or Hostel Name and Room Number"
-                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
@@ -76,7 +76,7 @@ export default function Information(props) {
                         value={landmark}
                         onChange={e => setLandmark(e.target.value)}
                         placeholder="A landmark near your location"
-                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='mt-6  flex flex-col gap-y-4'>
@@ -89,12 +89,12 @@ export default function Information(props) {
                         value={phone}
                         onChange={e => setPhoneNumber(e.target.value)}
                         placeholder="Your Contact Number"
-                        className="p-2 text-lg w-[250px] md:w-[700px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
 
             </div>
-            <div className='flex mt-10 justify-center'>
+            <div className='flex mt-10 justify-center sm:justify-end'>
                 <Link
                     onClick={HandleNext}
                     href="/"
