@@ -15,13 +15,13 @@ export default function Payment(props) {
             <div className="my-4">
                 <span className='price'>Choose any payment methond.</span>
             </div>
-            <div className='flex flex-col w-full items-center justify-start my-6'>
-                <div className="flex items-center justify-start mb-4">
+            <div className='flex items-start flex-col w-full my-6'>
+                <div className="flex mb-4">
                     <input
                         id="online"
                         type="radio"
                         value={online}
-                        name="online"
+                        name="online-1"
                         className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
                     <label
                         htmlFor="online"
@@ -29,12 +29,12 @@ export default function Payment(props) {
                         Online Payment
                     </label>
                 </div>
-                <div className="flex items-center mb-4">
+                <div className="flex  mb-4">
                     <input
                         id="cash"
                         type="radio"
                         value={cash}
-                        name="cash"
+                        name="cash-1"
                         className="w-6 h-6 cursor-pointer justify-start bg-white accent-black border-gray-300 outline-none" />
                     <label
                         htmlFor="cash"
