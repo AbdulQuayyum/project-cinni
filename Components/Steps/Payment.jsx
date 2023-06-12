@@ -11,32 +11,37 @@ export default function Payment(props) {
     }
 
     return (
-        <div className='flex flex-col items-center'>
-            <div className="flex items-center mb-4">
-                <input
-                    id="online"
-                    type="radio"
-                    value={online}
-                    name="online"
-                    className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
-                <label
-                    htmlFor="online"
-                    className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
-                    Online Payment
-                </label>
+        <div className='flex flex-col w-full text-start items-center'>
+            <div className="my-4">
+                <span className='price'>Choose any payment methond.</span>
             </div>
-            <div className="flex items-center mb-4">
-                <input
-                    id="cash"
-                    type="radio"
-                    value={cash}
-                    name="cash"
-                    className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
-                <label
-                    htmlFor="cash"
-                    className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
-                    Cash Payment
-                </label>
+            <div className='flex flex-col w-full items-center justify-start my-6'>
+                <div className="flex items-center justify-start mb-4">
+                    <input
+                        id="online"
+                        type="radio"
+                        value={online}
+                        name="online"
+                        className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
+                    <label
+                        htmlFor="online"
+                        className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
+                        Online Payment
+                    </label>
+                </div>
+                <div className="flex items-center mb-4">
+                    <input
+                        id="cash"
+                        type="radio"
+                        value={cash}
+                        name="cash"
+                        className="w-6 h-6 cursor-pointer justify-start bg-white accent-black border-gray-300 outline-none" />
+                    <label
+                        htmlFor="cash"
+                        className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
+                        Cash Payment
+                    </label>
+                </div>
             </div>
             <div className='flex mt-10 justify-center sm:justify-end'>
                 <button
