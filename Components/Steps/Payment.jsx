@@ -1,48 +1,46 @@
 import React, { useState, useEffect } from 'react'
 
 export default function Payment(props) {
+    const [value, setValue] = useState('')
     const [online, setOnline] = useState()
     const [cash, setCash] = useState()
 
     const { nextStep } = props;
     const HandleNext = (e) => {
         e.preventDefault()
+        setValue(e.target.value)
         nextStep()
     }
+
+    const options = [
+        { label: "Online Payment", value: "online" },
+        { label: "Cash Payment", value: "cash" }
+    ]
 
     return (
         <div className='flex flex-col w-full text-start items-center'>
             <div className="my-4">
                 <span className='price'>Choose any payment methond.</span>
             </div>
-            <div className='flex items-start flex-col w-full my-6'>
-                <div className="flex mb-4">
-                    <input
-                        id="online"
-                        type="radio"
-                        value={online}
-                        name="online-1"
-                        className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
-                    <label
-                        htmlFor="online"
-                        className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
-                        Online Payment
-                    </label>
-                </div>
-                <div className="flex  mb-4">
-                    <input
-                        id="cash"
-                        type="radio"
-                        value={cash}
-                        name="cash-1"
-                        className="w-6 h-6 cursor-pointer justify-start bg-white accent-black border-gray-300 outline-none" />
-                    <label
-                        htmlFor="cash"
-                        className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
-                        Cash Payment
-                    </label>
-                </div>
-            </div>
+            <ul className='flex items-start flex-col w-full gap-y-4 my-6'>
+                {options.map((option) => (
+                    <li key={option.value} className="flex cursor-pointer">
+                        <input
+                            // id="online"
+                            type="radio"
+                            value={option.value}
+                            checked={value === option.value}
+                            onChange={value !== option.value ? HandleNext : undefined}
+                            name="payment-method"
+                            className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
+                        <label
+                            htmlFor="payment-method"
+                            className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-black dark:text-gray-300">
+                            {option.label}
+                        </label>
+                    </li>
+                ))}
+            </ul>
             <div className='flex mt-10 justify-center sm:justify-end'>
                 <button
                     onClick={HandleNext}
