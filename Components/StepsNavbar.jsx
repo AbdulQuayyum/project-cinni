@@ -20,7 +20,7 @@ const StepsNavbar = (props) => {
         ))
     }
     return (
-        <section className="container flex flex-wrap items-center justify-between w-full py-6 text-center lg:py-10 ">
+        <section className="container flex flex-wrap items-center justify-center w-full py-6 text-center lg:py-10 ">
             {/* <div className='mx-auto '>{dots}</div> */}
             <ul className="w-full pt-6 steps dark:text-gray-100 lg:w-auto lg:py-0">
                 {dots}

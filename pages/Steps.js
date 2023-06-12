@@ -19,7 +19,7 @@ export default function Steps(props) {
                 isHashEnabled
                 nav={<StepsNavbar />}
                 instance={setInstance}
-                className="relative flex flex-col items-center pt-0 sm:pt-40 min-h-screen"
+                className="relative flex flex-col w-full items-center pt-0 sm:pt-40 min-h-screen"
             >
                 <Information hashKey={"one"} />
                 <Payment hashKey={"two"} />
