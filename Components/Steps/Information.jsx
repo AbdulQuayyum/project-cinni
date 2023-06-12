@@ -32,17 +32,17 @@ export default function Information(props) {
     }, [address, landmark, phone, fullName, alias])
 
     const { nextStep } = props;
-    const HandleNext = (e) => { 
+    const HandleNext = (e) => {
         e.preventDefault()
         nextStep()
-     }
+    }
 
     const HandleSubmit = () => { }
 
     return (
-        <form className='' onSubmit={HandleSubmit}>
-            <div className='flex flex-col items-center'>
-                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
+        <form className='pt-0 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
+            <div className='flex flex-col items-center max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="fullName">Full Name</label>
                     <input
                         name='fullName'
@@ -53,7 +53,7 @@ export default function Information(props) {
                         className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="fullName">Alias/Nickname</label>
                     <input
                         name='alias'
@@ -64,7 +64,7 @@ export default function Information(props) {
                         className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="address">Address</label>
                     <input
                         name='address'
@@ -75,7 +75,7 @@ export default function Information(props) {
                         className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="landmark">Landmark</label>
                     <input
                         name='landmark'
@@ -86,7 +86,7 @@ export default function Information(props) {
                         className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="phoneNumber">Phone Number</label>
                     <input
                         name='phoneNumber'
@@ -101,7 +101,7 @@ export default function Information(props) {
                 </div>
 
             </div>
-            <div className='flex mt-10 justify-center sm:justify-end'>
+            <div className='flex mt-10 justify-center max-w-xl w-full sm:justify-end'>
                 <button
                     onClick={HandleNext}
                     className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>

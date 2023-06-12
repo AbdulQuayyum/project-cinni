@@ -1123,7 +1123,7 @@ span.text-gray {
 .step {
     display: grid;
     place-items: center;
-    min-width: 10rem;
+    min-width: 15rem;
     font-size: 12px;
     cursor: pointer;
 }
@@ -1149,7 +1149,7 @@ span.text-gray {
 
 @media (max-width: 768px) {
     .step {
-        min-width: 4rem;
+        min-width: 6rem;
     }
 }
 
