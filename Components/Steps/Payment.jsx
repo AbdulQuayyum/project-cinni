@@ -21,11 +21,11 @@ export default function Payment(props) {
     ]
 
     return (
-        <div className='flex flex-col w-full text-start items-center'>
+        <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4">
                 <span className='price'>Choose a payment method.</span>
             </div>
-            <ul className='flex items-start flex-col w-full gap-y-4 my-6'>
+            <ul className='flex items-start flex-col max-w-xl w-full gap-y-4 my-6'>
                 {options.map((option) => (
                     <li key={option.value} className="flex cursor-pointer">
                         <input
@@ -44,7 +44,7 @@ export default function Payment(props) {
                     </li>
                 ))}
             </ul>
-            <div className='flex mt-10 justify-center sm:justify-end'>
+            <div className='flex mt-10 justify-center max-w-xl w-full sm:justify-end'>
                 <button
                     onClick={HandleNext}
                     className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>

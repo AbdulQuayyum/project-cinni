@@ -40,7 +40,10 @@ export default function Information(props) {
     const HandleSubmit = () => { }
 
     return (
-        <form className='pt-0 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
+        <form className='pt-8 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
+              <div className="my-4">
+                <span className='price'>Fill your information.</span>
+            </div>
             <div className='flex flex-col items-center max-w-xl w-full'>
                 <div className='flex flex-col gap-y-2 w-full'>
                     <label className='price' htmlFor="fullName">Full Name</label>
