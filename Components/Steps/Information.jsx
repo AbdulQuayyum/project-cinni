@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link';
 import { FiChevronRight } from 'react-icons/fi'
 
 // import UseAuthStore from '@/Store/AuthStore';
@@ -33,7 +32,10 @@ export default function Information(props) {
     }, [address, landmark, phone, fullName, alias])
 
     const { nextStep } = props;
-    const HandleNext = () => { nextStep() }
+    const HandleNext = (e) => { 
+        e.preventDefault()
+        nextStep()
+     }
 
     const HandleSubmit = () => { }
 
@@ -100,12 +102,11 @@ export default function Information(props) {
 
             </div>
             <div className='flex mt-10 justify-center sm:justify-end'>
-                <Link
+                <button
                     onClick={HandleNext}
-                    href="/"
                     className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
                     Continue
-                </Link>
+                </button>
             </div>
         </form>
     )
