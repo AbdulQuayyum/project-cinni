@@ -560,6 +560,15 @@ span.text-gray {
     color: #aaa;
 }
 
+@media screen and (max-width:600px) { 
+    .price {
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 10px;
+        color: #aaa;
+    }
+}
+
 .price .old-price,
 .product-price .old-price,
 .price .old-price {
