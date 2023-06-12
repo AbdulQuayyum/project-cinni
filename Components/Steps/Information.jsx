@@ -40,9 +40,9 @@ export default function Information(props) {
     const HandleSubmit = () => { }
 
     return (
-        <form onSubmit={HandleSubmit}>
+        <form className='' onSubmit={HandleSubmit}>
             <div className='flex flex-col items-center'>
-                <div className='flex flex-col gap-y-2 w--full'>
+                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
                     <label className='price' htmlFor="fullName">Full Name</label>
                     <input
                         name='fullName'
@@ -50,10 +50,10 @@ export default function Information(props) {
                         value={fullName}
                         onChange={e => setFullName(e.target.value)}
                         placeholder="Your Full Name"
-                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 w--full'>
+                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
                     <label className='price' htmlFor="fullName">Alias/Nickname</label>
                     <input
                         name='alias'
@@ -61,10 +61,10 @@ export default function Information(props) {
                         value={alias}
                         onChange={e => setAlias(e.target.value)}
                         placeholder="What you are known as in your location"
-                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 w--full'>
+                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
                     <label className='price' htmlFor="address">Address</label>
                     <input
                         name='address'
@@ -72,10 +72,10 @@ export default function Information(props) {
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                         placeholder="Your Full Address or Hostel Name and Room Number"
-                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 w--full'>
+                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
                     <label className='price' htmlFor="landmark">Landmark</label>
                     <input
                         name='landmark'
@@ -83,10 +83,10 @@ export default function Information(props) {
                         value={landmark}
                         onChange={e => setLandmark(e.target.value)}
                         placeholder="A landmark near your location"
-                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
-                <div className='flex flex-col gap-y-2 w--full'>
+                <div className='flex flex-col gap-y-2 max-w-xl w-full'>
                     <label className='price' htmlFor="phoneNumber">Phone Number</label>
                     <input
                         name='phoneNumber'
@@ -96,7 +96,7 @@ export default function Information(props) {
                         value={phone}
                         onChange={e => setPhoneNumber(e.target.value)}
                         placeholder="Your Contact Number"
-                        className="p-2 text-lg w-[250px] md:w-[500px] lg:w-[450px]  rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
 
