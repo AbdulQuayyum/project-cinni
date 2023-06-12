@@ -6,12 +6,12 @@ import { FiChevronRight } from 'react-icons/fi'
 import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
-    const { AddUserAddress, AddUserAlias, AddUserFullName, AddUserLandmark, AddUserPhone } = UseInfoStore()
-    const [fullName, setFullName] = useState(AddUserFullName ? AddUserFullName : "")
-    const [alias, setAlias] = useState(AddUserAlias ? AddUserAlias : "")
-    const [address, setAddress] = useState(AddUserAddress ? AddUserAddress : "")
-    const [phone, setPhoneNumber] = useState(AddUserPhone ? AddUserPhone : "")
-    const [landmark, setLandmark] = useState(AddUserLandmark ? AddUserLandmark : "")
+    const { AddInfo } = UseInfoStore()
+    const [fullName, setFullName] = useState(AddInfo ? AddInfo?.FullName : "")
+    const [alias, setAlias] = useState(AddInfo ? AddInfo?.Alias : "")
+    const [address, setAddress] = useState(AddInfo ? AddInfo?.Address : "")
+    const [phone, setPhoneNumber] = useState(AddInfo ? AddInfo?.Phone : "")
+    const [landmark, setLandmark] = useState(AddInfo ? AddInfo?.Landmark : "")
     // const [User, setUser] = useState()
     // const { UserProfile } = UseAuthStore()
 
@@ -19,12 +19,17 @@ export default function Information(props) {
     //     setUser(UserProfile.UserName)
     // }, [])
 
+
     useEffect(() => {
-        AddUserFullName(fullName)
-        AddUserAlias(alias)
-        AddUserAddress(address)
-        AddUserLandmark(landmark)
-        AddUserPhone(phone)
+        const CartInfo = {
+            FullName: fullName,
+            Alias: alias,
+            Address: address,
+            Landmark: landmark,
+            Phone: phone,
+        }
+
+        AddInfo(CartInfo)
     }, [address, landmark, phone, fullName, alias])
 
     const { nextStep } = props;
