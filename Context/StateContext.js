@@ -6,12 +6,12 @@ import UseCartStore from '@/Store/CartStore';
 const Context = createContext()
 
 export const StateContext = ({ children }) => {
-
     const [ShowCart, setShowCart] = useState(false);
     const [CartItems, setCartItems] = useState([]);
     const [TotalPrice, setTotalPrice] = useState(0);
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
+    const [Charges, setCharges] = useState(0)
     const { AddCartItems, AddTotalPrice, AddTotalQuantities } = UseCartStore();
 
     const options = {
@@ -21,6 +21,10 @@ export const StateContext = ({ children }) => {
         sameSite: 'strict', // Restrict the cookie to same-site requests
     };
 
+    // useEffect(() => {
+    //     const newCharges = TotalPrice * 0.1;
+    //     setCharges(newCharges);
+    // }, [TotalPrice]);
 
     useEffect(() => {
         // Fetch cart data from the server-side
@@ -44,6 +48,7 @@ export const StateContext = ({ children }) => {
         // Save cart data to the server-side
         const CartData = {
             CartItems,
+            Charges,
             TotalPrice,
             TotalQuantities,
         };
@@ -80,6 +85,7 @@ export const StateContext = ({ children }) => {
 
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.Price * Quantity);
         setTotalQuantities((PreviousTotalQuantities) => PreviousTotalQuantities + Quantity);
+        setCharges((previousCharges) => previousCharges + Product.Price * Quantity * 0.1);
 
         if (CheckProductInCart) {
             const UpdatedCartItems = CartItems.map((CartProduct) => {
@@ -105,6 +111,7 @@ export const StateContext = ({ children }) => {
         const NewCartItems = CartItems.filter((Item) => Item._id !== Product._id);
 
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price * FoundProduct.Quantity);
+        setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - FoundProduct.Quantity);
         setCartItems(NewCartItems);
         UpdateCartData()
@@ -119,11 +126,13 @@ export const StateContext = ({ children }) => {
         if (Value === 'increase') {
             setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity + 1 }]);
             setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + FoundProduct.Price)
+            setCharges((PreviousCharges) => PreviousCharges + FoundProduct.Price * 0.1)
             setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities + 1)
         } else if (Value === 'decrease') {
             if (FoundProduct.Quantity > 1) {
                 setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity - 1 }]);
                 setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price)
+                setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * 0.1)
                 setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - 1)
             }
         }
@@ -149,6 +158,8 @@ export const StateContext = ({ children }) => {
                 setShowCart,
                 CartItems,
                 setCartItems,
+                Charges,
+                setCharges,
                 TotalPrice,
                 setTotalPrice,
                 TotalQuantities,
