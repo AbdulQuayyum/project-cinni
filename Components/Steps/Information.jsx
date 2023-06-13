@@ -44,9 +44,9 @@ export default function Information(props) {
             <div className="my-4">
                 <span className='price'>Fill your information.</span>
             </div>
-            <div className='flex flex-col items-center max-w-xl w-full'>
+            <div className='flex flex-col items-center max-w-xl w-full gap-y-6'>
                 <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='price' htmlFor="fullName">Full Name</label>
+                    <label className='text-[#aaa] font-bold text-lg' htmlFor="fullName">Full Name</label>
                     <input
                         name='fullName'
                         type="text"
@@ -57,7 +57,7 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='price' htmlFor="fullName">Alias/Nickname</label>
+                    <label className='text-[#aaa] font-bold text-lg' htmlFor="fullName">Alias/Nickname</label>
                     <input
                         name='alias'
                         type="text"
@@ -68,7 +68,7 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='price' htmlFor="address">Address</label>
+                    <label className='text-[#aaa] font-bold text-lg' htmlFor="address">Address</label>
                     <input
                         name='address'
                         type="text"
@@ -79,7 +79,7 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='price' htmlFor="landmark">Landmark</label>
+                    <label className='text-[#aaa] font-bold text-lg' htmlFor="landmark">Landmark</label>
                     <input
                         name='landmark'
                         type="text"
@@ -90,7 +90,7 @@ export default function Information(props) {
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='price' htmlFor="phoneNumber">Phone Number</label>
+                    <label className='text-[#aaa] font-bold text-lg' htmlFor="phoneNumber">Phone Number</label>
                     <input
                         name='phoneNumber'
                         type="tel"

@@ -17,6 +17,7 @@ export default function Order(props) {
                     <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
                     <div className='flex justify-end'>
                         <button
+                            onClick={() => props.goToStep(1)}
                             className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
                             edit
                         </button>
@@ -27,6 +28,7 @@ export default function Order(props) {
                     <span> Lorem ipsum</span>
                     <div className='flex justify-end'>
                         <button
+                            onClick={() => props.goToStep(2)}
                             className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
                             edit
                         </button>
