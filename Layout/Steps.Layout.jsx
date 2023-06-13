@@ -18,7 +18,7 @@ const StepsLayout = ({ children }) => {
             <div className='z-40 flex items-center transition-all side-info duration-1000'>
                 <SideInfo />
             </div>
-            <div className='z-40 flex col-span-2 transition-all duration-1000 onboard'>
+            <div className='z-40 flex text-[#aaa] col-span-2 transition-all duration-1000 onboard'>
                 {children}
             </div>
         </div>
