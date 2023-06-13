@@ -2,13 +2,14 @@ import React from 'react';
 
 import MainLayout from '@/Layout/Main.Layout';
 import { Client } from '@/Utilities/Client';
-import { Features, FooterBanner, HeroBanner } from '@/Components/Index';
+import { Category, Features, FooterBanner, HeroBanner } from '@/Components/Index';
 import Product from './Product';
 
 const Home = ({ products, bannerData }) => {
   return (
     <MainLayout>
       <HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
+      <Category />
       <Features />
       <div className="products-heading">
         <h2>Best Seller Goods</h2>
