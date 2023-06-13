@@ -350,6 +350,12 @@ span.text-gray {
 
 }
 
+@media screen and (max-width:500px) {
+    .footer-container {
+        flex-direction: column;
+    }
+}
+
 .footer-container .icons {
     font-size: 30px;
     display: flex;
@@ -584,7 +590,8 @@ span.text-gray {
         padding: 50px 40px;
     }
 
-    .hero-banner-image {
+    .hero-banner-image,
+    .footer-banner-image {
         display: none;
     }
 }
@@ -772,12 +779,12 @@ span.text-gray {
     }
 
     .footer-banner-container {
-        height: 560px;
+        height: 500px;
         margin-top: 80px;
     }
 
     .footer-banner-image {
-        width: 77%;
+        width: 56%;
         left: 30%;
         top: 6%;
         height: 56%

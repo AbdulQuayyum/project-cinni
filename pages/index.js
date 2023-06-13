@@ -12,8 +12,8 @@ const Home = ({ products, bannerData }) => {
       <Category />
       <Features />
       <div className="products-heading">
-        <h2>Best Seller Goods</h2>
-        <p>Goods that most our Customers buy.</p>
+        <h2>Best Seller</h2>
+        <p>Goods and Services that most our Customers seek.</p>
       </div>
       <div className="products-container">
         {products?.map((product) =>
