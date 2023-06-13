@@ -25,6 +25,10 @@ a {
 }
 
 .layout {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 10px;
 }
 
@@ -145,6 +149,7 @@ span.text-gray {
 }
 
 .hero-banner-container {
+    margin-top: 20px;
     padding: 100px 40px;
     background-color: #dcdcdc;
     border-radius: 15px;

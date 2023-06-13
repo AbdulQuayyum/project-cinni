@@ -4,7 +4,9 @@ import MainLayout from '@/Layout/Main.Layout'
 
 const OrderHistory = () => {
     return (
-        <MainLayout>OrderHistory</MainLayout>
+        <MainLayout>
+            OrderHistory
+        </MainLayout>
     )
 }
 
