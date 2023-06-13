@@ -6,7 +6,7 @@ import { AiOutlineFormatPainter } from 'react-icons/ai'
 import { MdOutlineCarpenter, MdPlumbing } from 'react-icons/md'
 import { LuGlassWater, LuShirt } from 'react-icons/lu'
 
-export const Catgories = [
+export const Categories = [
     {
         name: 'Food',
         type: 'Goods',
