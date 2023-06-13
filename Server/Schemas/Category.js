@@ -10,17 +10,13 @@ export default {
             // validation: Rule => Rule.required().max(50)
         },
         {
-            title: 'Description',
-            name: 'Description',
-            type: 'text',
-            rows: 3
+            name: 'Image',
+            title: 'Image',
+            type: 'array',
+            of: [{ type: 'image' }],
+            options: {
+                hotspot: true,
+            }
         },
-        {
-            title: 'Parent Category',
-            name: 'ParentCategory',
-            type: 'reference',
-            to: [{ type: 'Category' }],
-            description: 'Select a parent category (optional)'
-        }
     ]
 }
