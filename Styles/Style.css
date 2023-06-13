@@ -578,6 +578,15 @@ span.text-gray {
         margin-top: 10px;
         color: #aaa;
     }
+
+    .hero-banner-container  {
+        height: 100%;
+        padding: 50px 40px;
+    }
+
+    .hero-banner-image {
+        display: none;
+    }
 }
 
 .price .old-price,
@@ -754,16 +763,6 @@ span.text-gray {
     .hero-banner-container {
         height: 560px;
     }
-
-    /* .navbar-2 {
-        order: 1;
-        width: 100%;
-    }
-
-    .navbar-3 {
-        justify-content: flex-end;
-        order: 2;
-    } */
 
     .hero-banner-image {
         width: 300px;
