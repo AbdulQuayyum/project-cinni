@@ -31,30 +31,11 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar-container">
-            <div className='logo'>
+        <div className="navbar-container flex-wrap items-center justify-between">
+            <div className='logo items-center md:w-full md:max-w-[154px] gap-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
             </div>
-            <div className="relative hidden md:block">
-                <form
-                    onSubmit={HandleSearch}
-                    className="absolute bg-white md:static top-10 -left-20"
-                >
-                    <input
-                        value={searchValue}
-                        onChange={(e) => setSearchValue(e.target.value)}
-                        className="bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0"
-                        placeholder="Search for product"
-                    />
-                    <button
-                        onClick={HandleSearch}
-                        className="absolute pl-4 text-2xl text-gray-400 border-l-2 border-gray-300 md:right-5 right-6 top-4"
-                    >
-                        <BiSearch />
-                    </button>
-                </form>
-            </div>
-            <div className='flex items-center gap-x-4'>
+            <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
                 <div>
                     {User ? (
                         <div className="flex items-center gap-5 md:gap-10">
@@ -101,6 +82,25 @@ const Navbar = () => {
                 </button>
 
                 {ShowCart && <Cart />}
+            </div>
+            <div className="relative navbar-2 lg:mt-0 mt-6 w-full justify-center lg:order-1 lg:w-auto lg:py-0">
+                <form
+                    onSubmit={HandleSearch}
+                    className="bg-transparent static top-10 -left-20"
+                >
+                    <input
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        className="bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-full lg:w-[350px] rounded-full  md:top-0"
+                        placeholder="Search for product"
+                    />
+                    <button
+                        onClick={HandleSearch}
+                        className="absolute pl-4 text-2xl text-gray-400 border-l-2 border-gray-300 md:right-5 right-6 top-4"
+                    >
+                        <BiSearch />
+                    </button>
+                </form>
             </div>
         </div>
     )
