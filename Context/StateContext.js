@@ -11,10 +11,12 @@ export const StateContext = ({ children }) => {
     const [TotalPrice, setTotalPrice] = useState(0);
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
-    const [Charges, setCharges] = useState(0)
-    const { AddCartItems, AddTotalPrice, AddTotalQuantities } = UseCartStore();
+    const [Charges, setCharges] = useState(0);
+    // const { AddCartItems, AddTotalPrice, AddTotalQuantities } = UseCartStore();
 
     const options = {
+        //     secure: true, // Set the Secure flag
+        // httpOnly: true,
         maxAge: 60 * 60 * 24 * 7, // Expires in 7 days
         secure: true, // Only send the cookie over HTTPS
         path: '/', // Set the cookie for the entire domain
@@ -31,10 +33,11 @@ export const StateContext = ({ children }) => {
         fetch('/api/Cart')
             .then((response) => response.json())
             .then((data) => {
-                const { CartItems, TotalPrice, TotalQuantities } = data;
-                AddCartItems(CartItems)
-                AddTotalPrice(TotalPrice)
-                AddTotalQuantities(TotalQuantities)
+                const { CartItems, Charges, TotalPrice, TotalQuantities } = data;
+                // AddCartItems(CartItems)
+                // AddTotalPrice(TotalPrice)
+                // AddTotalQuantities(TotalQuantities)
+                setCharges(Charges)
                 setCartItems(CartItems);
                 setTotalPrice(TotalPrice);
                 setTotalQuantities(TotalQuantities);
@@ -52,9 +55,9 @@ export const StateContext = ({ children }) => {
             TotalPrice,
             TotalQuantities,
         };
-        AddCartItems(CartData.CartItems)
-        AddTotalPrice(CartData.TotalPrice)
-        AddTotalQuantities(CartData.TotalQuantities)
+        // AddCartItems(CartData.CartItems)
+        // AddTotalPrice(CartData.TotalPrice)
+        // AddTotalQuantities(CartData.TotalQuantities)
 
         fetch('/api/Cart', {
             method: 'POST',
@@ -75,7 +78,7 @@ export const StateContext = ({ children }) => {
     useEffect(() => {
         // Update storage whenever the cart items, total price, or total quantities change
         UpdateCartData();
-    }, [CartItems, TotalPrice, TotalQuantities]);
+    }, [CartItems, TotalPrice, TotalQuantities, Charges]);
 
     let FoundProduct;
     let Index;

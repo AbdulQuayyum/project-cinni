@@ -2,6 +2,8 @@ import { setCookie, getCookie } from 'cookies-next';
 
 export default function handler(req, res) {
   const options = {
+    // secure: true, // Set the Secure flag
+    // httpOnly: true,
     maxAge: 60 * 60 * 24 * 7, // Expires in 7 days
     secure: true, // Only send the cookie over HTTPS
     path: '/', // Set the cookie for the entire domain
