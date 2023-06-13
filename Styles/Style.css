@@ -1139,7 +1139,7 @@ span.text-gray {
     border-radius: 9999px;
     --tw-bg-opacity: 1;
     --tw-text-opacity: 1;
-    background-color: #32a5b6 !important;
+    background-color: #aaa !important;
 }
 
 .steps {
@@ -1153,7 +1153,7 @@ span.text-gray {
 .step-primary::after,
 .step-primary::before {
     color: white;
-    background-color: #32a5b6 !important;
+    background-color: #aaa !important;
 }
 
 .step {

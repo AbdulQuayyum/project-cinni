@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { FiChevronRight } from 'react-icons/fi'
 
 // import UseAuthStore from '@/Store/AuthStore';
 import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
     const { AddInfo } = UseInfoStore()
-    const [fullName, setFullName] = useState(AddInfo ? AddInfo?.FullName : "")
-    const [alias, setAlias] = useState(AddInfo ? AddInfo?.Alias : "")
     const [address, setAddress] = useState(AddInfo ? AddInfo?.Address : "")
     const [phone, setPhoneNumber] = useState(AddInfo ? AddInfo?.Phone : "")
     const [landmark, setLandmark] = useState(AddInfo ? AddInfo?.Landmark : "")
@@ -21,15 +18,13 @@ export default function Information(props) {
 
     useEffect(() => {
         const CartInfo = {
-            FullName: fullName,
-            Alias: alias,
             Address: address,
             Landmark: landmark,
             Phone: phone,
         }
 
         AddInfo(CartInfo)
-    }, [address, landmark, phone, fullName, alias])
+    }, [address, landmark, phone])
 
     const { nextStep } = props;
     const HandleNext = (e) => {
@@ -45,28 +40,6 @@ export default function Information(props) {
                 <span className='price'>Fill your information.</span>
             </div>
             <div className='flex flex-col items-center max-w-xl w-full gap-y-6'>
-                <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='text-[#aaa] font-bold text-lg' htmlFor="fullName">Full Name</label>
-                    <input
-                        name='fullName'
-                        type="text"
-                        value={fullName}
-                        onChange={e => setFullName(e.target.value)}
-                        placeholder="Your Full Name"
-                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
-                    />
-                </div>
-                <div className='flex flex-col gap-y-2 w-full'>
-                    <label className='text-[#aaa] font-bold text-lg' htmlFor="fullName">Alias/Nickname</label>
-                    <input
-                        name='alias'
-                        type="text"
-                        value={alias}
-                        onChange={e => setAlias(e.target.value)}
-                        placeholder="What you are known as in your location"
-                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
-                    />
-                </div>
                 <div className='flex flex-col gap-y-2 w-full'>
                     <label className='text-[#aaa] font-bold text-lg' htmlFor="address">Address</label>
                     <input

@@ -26,6 +26,7 @@ const Cart = () => {
             // console.log(CartItems)
             toast.error('Login before checkout');
         } else {
+            setShowCart(false)
             router.push('/Steps')
         }
     }
