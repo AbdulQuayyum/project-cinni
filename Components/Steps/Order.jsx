@@ -1,6 +1,11 @@
 import React from 'react'
 
+import { useStateContext } from '@/Context/StateContext'
+import { UrlFor } from '@/Utilities/Client'
+
 export default function Order() {
+    const { TotalPrice, TotalQuantities, CartItems } = useStateContext()
+
     const HandleOrder = () => { }
 
     return (
@@ -27,12 +32,16 @@ export default function Order() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td className="px-6 py-4"></td>
-                                <td className="px-6 py-4"></td>
-                                <td className="px-6 py-4"></td>
-                                <td className="px-6 py-4"></td>
-                            </tr>
+                            {CartItems.length >= 1 && CartItems.map((item) => (
+                                <tr key={item._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td className="px-6 py-4">
+                                        <img src={UrlFor(item?.Image[0])} className="cart-product-image" />
+                                    </td>
+                                    <td className="px-6 py-4">{item?.Name}</td>
+                                    <td className="px-6 py-4">{item?.Quantity}</td>
+                                    <td className="px-6 py-4">₦{item?.Price}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -49,10 +58,12 @@ export default function Order() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td className="px-6 py-4"></td>
-                            <td className="px-6 py-4"></td>
-                        </tr>
+                        {CartItems.length >= 1 && (
+                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td className="px-6 py-4">₦{TotalPrice}</td>
+                                <td className="px-6 py-4"></td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
                 <button
