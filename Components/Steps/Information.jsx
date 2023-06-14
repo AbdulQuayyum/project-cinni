@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 // import UseAuthStore from '@/Store/AuthStore';
-import UseInfoStore from '@/Store/InfoStore';
+// import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
-    const { AddInfo } = UseInfoStore()
     const [address, setAddress] = useState()
     const [phone, setPhone] = useState()
     const [landmark, setLandmark] = useState()
-    // const [User, setUser] = useState()
-    // const { UserProfile } = UseAuthStore()
-
-    // useEffect(() => {
-    //     setUser(UserProfile.UserName)
-    // }, [])
-
-
-    useEffect(() => {
-        const CartInfo = {
-            Address: address,
-            Landmark: landmark,
-            Phone: phone,
-        }
-
-        AddInfo(CartInfo)
-    }, [address, landmark, phone])
 
     useEffect(() => {
         // Fetch cart data from the server-side
@@ -43,10 +25,10 @@ export default function Information(props) {
 
     const UpdateInfoData = () => {
         const UserAddressData = {
-            UserAddres: address, phone, landmark
+            UserAddress: { address, phone, landmark }
         }
 
-        // console.log(UserAddressData)
+        console.log(UserAddressData)
 
         fetch('/api/Information', {
             method: 'POST',

@@ -15,7 +15,6 @@ export default function handler(req, res) {
         const { UserAddress } = req.body
 
         setCookie('123456', JSON.stringify(UserAddress), { req, res, maxAge: 60 * 60 * 24 * 7 });
-        // console.log(UserAddress)
         res.status(200).json({ message: 'data saved successfully' });
 
     } else {
