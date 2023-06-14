@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
-import UseCartStore from '@/Store/CartStore';
-
 const Context = createContext()
 
 export const StateContext = ({ children }) => {
@@ -12,21 +10,6 @@ export const StateContext = ({ children }) => {
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
     const [Charges, setCharges] = useState(0);
-    // const { AddCartItems, AddTotalPrice, AddTotalQuantities } = UseCartStore();
-
-    const options = {
-        //     secure: true, // Set the Secure flag
-        // httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7, // Expires in 7 days
-        secure: true, // Only send the cookie over HTTPS
-        path: '/', // Set the cookie for the entire domain
-        sameSite: 'strict', // Restrict the cookie to same-site requests
-    };
-
-    // useEffect(() => {
-    //     const newCharges = TotalPrice * 0.1;
-    //     setCharges(newCharges);
-    // }, [TotalPrice]);
 
     useEffect(() => {
         // Fetch cart data from the server-side
@@ -34,9 +17,6 @@ export const StateContext = ({ children }) => {
             .then((response) => response.json())
             .then((data) => {
                 const { CartItems, Charges, TotalPrice, TotalQuantities } = data;
-                // AddCartItems(CartItems)
-                // AddTotalPrice(TotalPrice)
-                // AddTotalQuantities(TotalQuantities)
                 setCharges(Charges)
                 setCartItems(CartItems);
                 setTotalPrice(TotalPrice);
@@ -55,9 +35,6 @@ export const StateContext = ({ children }) => {
             TotalPrice,
             TotalQuantities,
         };
-        // AddCartItems(CartData.CartItems)
-        // AddTotalPrice(CartData.TotalPrice)
-        // AddTotalQuantities(CartData.TotalQuantities)
 
         fetch('/api/Cart', {
             method: 'POST',
@@ -106,7 +83,6 @@ export const StateContext = ({ children }) => {
         }
         UpdateCartData()
         toast.success(`${Qty} ${Product.Name} added to your cart.`);
-        // console.log(TotalPrice)
     }
 
     const OnRemove = (Product) => {
