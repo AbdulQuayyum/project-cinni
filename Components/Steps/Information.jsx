@@ -28,7 +28,7 @@ export default function Information(props) {
             UserAddress: { address, phone, landmark }
         }
 
-        console.log(UserAddressData)
+        // console.log(UserAddressData)
 
         fetch('/api/Information', {
             method: 'POST',

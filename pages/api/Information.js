@@ -9,7 +9,6 @@ export default function handler(req, res) {
             UserAddress: UserAddress ? JSON.parse(UserAddress) : []
         }
 
-        // console.log(UserAddressData)
         res.status(200).json(UserAddressData)
     } else if (req.method === 'POST') {
         const { UserAddress } = req.body
