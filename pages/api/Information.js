@@ -21,7 +21,7 @@ export default function handler(req, res) {
         const { UserAddress } = req.body
 
         setCookie('123456', JSON.stringify(UserAddress), { req, res, options });
-        res.status(200).json({ message: 'Cart data saved successfully' });
+        res.status(200).json({ message: 'data saved successfully' });
 
     } else {
         // Handle other HTTP methods if needed
