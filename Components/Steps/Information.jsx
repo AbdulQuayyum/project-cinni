@@ -5,9 +5,9 @@ import UseInfoStore from '@/Store/InfoStore';
 
 export default function Information(props) {
     const { AddInfo } = UseInfoStore()
-    const [address, setAddress] = useState(AddInfo ? AddInfo?.Address : "")
-    const [phone, setPhoneNumber] = useState(AddInfo ? AddInfo?.Phone : "")
-    const [landmark, setLandmark] = useState(AddInfo ? AddInfo?.Landmark : "")
+    const [address, setAddress] = useState()
+    const [phone, setPhone] = useState()
+    const [landmark, setLandmark] = useState()
     // const [User, setUser] = useState()
     // const { UserProfile } = UseAuthStore()
 
@@ -25,6 +25,48 @@ export default function Information(props) {
 
         AddInfo(CartInfo)
     }, [address, landmark, phone])
+
+    useEffect(() => {
+        // Fetch cart data from the server-side
+        fetch('/api/Information')
+            .then((response) => response.json())
+            .then((data) => {
+                const { UserAddress } = data;
+                setAddress(UserAddress?.address)
+                setPhone(UserAddress?.phone);
+                setLandmark(UserAddress?.landmark);
+            })
+            .catch((error) => {
+                console.error('Failed to fetch user data', error);
+            });
+    }, []);
+
+    const UpdateInfoData = () => {
+        const UserAddressData = {
+            UserAddres: address, phone, landmark
+        }
+
+        // console.log(UserAddressData)
+
+        fetch('/api/Information', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(UserAddressData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.message);
+            })
+            .catch((error) => {
+                console.error('Failed to save user data', error);
+            });
+    }
+
+    useEffect(() => {
+        UpdateInfoData()
+    }, [address, phone, landmark])
 
     const { nextStep } = props;
     const HandleNext = (e) => {
@@ -70,7 +112,7 @@ export default function Information(props) {
                         maxLength={11}
                         minLength="11"
                         value={phone}
-                        onChange={e => setPhoneNumber(e.target.value)}
+                        onChange={e => setPhone(e.target.value)}
                         placeholder="Your Contact Number"
                         className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
