@@ -59,10 +59,8 @@ export default function Order(props) {
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div className='flex flex-col mt-10 max-w-xl w-full'>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
-                    <span className='text-center font-bold'>Order summary</span>
+                    <span className='font-bold text-lg'>Order summary</span>
                     <div className='flex justify-between'>
                         <span>Order cost:</span>
                         <span className="">₦{TotalPrice}</span>
@@ -72,13 +70,13 @@ export default function Order(props) {
                         <span className="">₦{Charges}</span>
                     </div>
                 </div>
-                <div className='flex my-10 max-w-xl w-full justify-end'>
-                    <button
-                        onClick={HandleOrder}
-                        className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
-                        Place Order
-                    </button>
-                </div>
+            </div>
+            <div className='flex my-10 flex-col max-w-xl w-full'>
+                <button
+                    onClick={HandleOrder}
+                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                    Place Order
+                </button>
             </div>
         </div>
     )

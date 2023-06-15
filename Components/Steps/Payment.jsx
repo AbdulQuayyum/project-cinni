@@ -29,7 +29,6 @@ export default function Payment(props) {
                 {options.map((option) => (
                     <li key={option.value} className="flex cursor-pointer">
                         <input
-                            // id="online"
                             type="radio"
                             value={option.value}
                             checked={value === option.value}
