@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Select from 'react-select'
 
 export default function Payment(props) {
     const [value, setValue] = useState('')
@@ -15,8 +16,8 @@ export default function Payment(props) {
         fetch('/api/Payment')
             .then((response) => response.json())
             .then((data) => {
-                const { UserPaymentMethod } = data;
-                setValue(UserPaymentMethod?.value)
+                console.log(data.UserPaymentMethod);
+                setValue(data?.UserPaymentMethod?.value)
             })
             .catch((error) => {
                 console.error('Failed to fetch user data', error);
@@ -27,8 +28,6 @@ export default function Payment(props) {
         const UserPaymentMethodData = {
             UserPaymentMethod: { value }
         }
-
-        // console.log(UserPaymentMethodData)
 
         fetch('/api/Payment', {
             method: 'POST',
@@ -59,10 +58,8 @@ export default function Payment(props) {
         UpdateInfoData()
     }, [value])
 
-    const HandleSelect = (e) => {
-        e.preventDefault()
-        const newValue = e.target.value
-        setValue(newValue)
+    const HandleSelect = (value) => {
+        setValue(value?.value || '')
     }
 
     const HandleNext = (e) => {
@@ -70,34 +67,52 @@ export default function Payment(props) {
         nextStep()
     }
 
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            cursor: 'pointer',
+            width: '100%',
+            background: 'transparent',
+            borderColor: "#aaa",
+            borderRadius: "12px",
+            minHeight: '48px',
+            padding: "0px 10px"
+        })
+    };
+
     return (
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4 flex justify-start max-w-xl w-full">
                 <span className='price'>Choose a payment method.</span>
             </div>
-            <ul className='flex items-start flex-col max-w-xl w-full gap-y-4 my-6'>
-                {options.map((option) => (
-                    <li key={option.value} className="flex cursor-pointer">
-                        <input
-                            type="radio"
-                            value={option.value}
-                            checked={value === option.value}
-                            onChange={(e) => HandleSelect(e)}
-                            name="payment-method"
-                            className="w-6 h-6 cursor-pointer bg-white accent-black border-gray-300 outline-none" />
-                        <label
-                            htmlFor="payment-method"
-                            className="ml-2 text-base sm:text-lg cursor-pointer font-medium text-[#aaa] dark:text-gray-300">
-                            {option.label}
-                        </label>
-                    </li>
-                ))}
-            </ul>
-            <div className='flex max-w-xl w-full justify-end'>
+            <div className='flex items-start flex-col max-w-xl w-full gap-y-4 my-6'>
+                <Select
+                    value={options.find((option) => option.value === value)}
+                    // value={value}
+                    options={options}
+                    styles={customStyles}
+                    onChange={HandleSelect}
+                    className='w-full focus:bg-[#aaa]'
+                    placeholder="Slect a payment method"
+                    theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 0,
+                        colors: {
+                          ...theme.colors,
+                          primary25: '#D3D3D3',
+                          primary: '#aaa',
+                        },
+                      })}
+                  
+                // getOptionLabel={(options) => options.label}
+                // getOptionValue={(options) => options.value}
+                />
+            </div>
+            <div className='flex max-w-xl mt-10 w-full justify-end'>
                 <button
                     disabled={!formValid}
                     onClick={HandleNext}
-                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed'>
                     Continue
                 </button>
             </div>
