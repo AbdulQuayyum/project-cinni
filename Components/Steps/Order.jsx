@@ -12,7 +12,7 @@ export default function Order(props) {
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                 <span className='price'>Confirm your order.</span>
-                <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
+                <div className='flex flex-col gap-y-2 w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Address:</span>
                     <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
                     <div className='flex justify-end'>
@@ -23,7 +23,7 @@ export default function Order(props) {
                         </button>
                     </div>
                 </div>
-                <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
+                <div className='flex flex-col gap-y-2 w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your preferred payment method</span>
                     <span> Lorem ipsum</span>
                     <div className='flex justify-end'>
@@ -34,7 +34,7 @@ export default function Order(props) {
                         </button>
                     </div>
                 </div>
-                <div className='flex flex-col gap-y-2 w-full'>
+                <div className='flex flex-col gap-y-2 w-full mx-2'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Order</span>
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -72,7 +72,7 @@ export default function Order(props) {
                         <span className="">₦{Charges}</span>
                     </div>
                 </div>
-                <div className='flex my-10 justify-center max-w-xl w-full sm:justify-end'>
+                <div className='flex my-10 max-w-xl w-full justify-end'>
                     <button
                         onClick={HandleOrder}
                         className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>

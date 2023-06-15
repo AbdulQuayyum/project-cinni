@@ -101,7 +101,7 @@ export default function Information(props) {
                 </div>
 
             </div>
-            <div className='flex mt-10 justify-center max-w-xl w-full sm:justify-end'>
+            <div className='flex mt-10 max-w-xl w-full justify-end'>
                 <button
                     onClick={HandleNext}
                     className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>

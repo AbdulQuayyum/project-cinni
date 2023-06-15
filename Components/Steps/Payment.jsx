@@ -4,6 +4,11 @@ export default function Payment(props) {
     const [value, setValue] = useState('')
     const { nextStep } = props;
 
+    const options = [
+        { label: "Online Payment", value: "online" },
+        { label: "Cash Payment", value: "cash" }
+    ]
+
     const HandleSelect = (e) => {
         const newValue = e.target.value
         e.preventDefault()
@@ -14,11 +19,6 @@ export default function Payment(props) {
         e.preventDefault()
         nextStep()
     }
-
-    const options = [
-        { label: "Online Payment", value: "online" },
-        { label: "Cash Payment", value: "cash" }
-    ]
 
     return (
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
