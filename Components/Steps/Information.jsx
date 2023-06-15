@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-
-// import UseAuthStore from '@/Store/AuthStore';
-// import UseInfoStore from '@/Store/InfoStore';
+import { toast } from 'react-hot-toast';
 
 export default function Information(props) {
-    const [address, setAddress] = useState()
-    const [phone, setPhone] = useState()
-    const [landmark, setLandmark] = useState()
+    const [address, setAddress] = useState('')
+    const [phone, setPhone] = useState('')
+    const [landmark, setLandmark] = useState('')
+    const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
         // Fetch cart data from the server-side
@@ -46,21 +45,41 @@ export default function Information(props) {
             });
     }
 
+    const checkFormValidity = () => {
+        if (address && landmark && phone && address.trim() !== '' && landmark.trim() !== '' && phone.trim() !== '') {
+            setFormValid(true);
+        } else {
+            setFormValid(false);
+        }
+    };
+
     useEffect(() => {
+        checkFormValidity()
         UpdateInfoData()
     }, [address, phone, landmark])
 
     const { nextStep } = props;
     const HandleNext = (e) => {
         e.preventDefault()
-        nextStep()
+        if (address === "") {
+            toast.error('Fill in all required fields');
+        } else {
+            nextStep();
+        }
     }
 
-    const HandleSubmit = () => { }
+    const HandleSubmit = (e) => {
+        e.preventDefault();
+        if (address === "") {
+            toast.error('Fill in all required fields');
+        } else {
+            nextStep();
+        }
+    }
 
     return (
         <form className='pt-8 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
-            <div className="my-4">
+            <div className="my-4 flex justify-start max-w-xl w-full">
                 <span className='price'>Fill your information.</span>
             </div>
             <div className='flex flex-col items-center max-w-xl w-full gap-y-6'>
@@ -72,7 +91,7 @@ export default function Information(props) {
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                         placeholder="Your Full Address or Hostel Name and Room Number"
-                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-base rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none focus:bg-none bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
@@ -83,7 +102,7 @@ export default function Information(props) {
                         value={landmark}
                         onChange={e => setLandmark(e.target.value)}
                         placeholder="A landmark near your location"
-                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-base rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none focus:bg-none bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
@@ -96,15 +115,16 @@ export default function Information(props) {
                         value={phone}
                         onChange={e => setPhone(e.target.value)}
                         placeholder="Your Contact Number"
-                        className="p-2 w-full text-lg rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
+                        className="p-2 w-full text-base rounded-xl transition-all duration-500 border-2 border-gray-200 outline-none focus:bg-none bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
                     />
                 </div>
 
             </div>
             <div className='flex mt-10 max-w-xl w-full justify-end'>
                 <button
+                    disabled={!formValid}
                     onClick={HandleNext}
-                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed'>
                     Continue
                 </button>
             </div>

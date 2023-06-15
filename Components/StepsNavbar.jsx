@@ -1,9 +1,9 @@
 const StepsNavbar = (props) => {
     const dots = [];
     //   const List = [
-    //   "Option",
-    //   "NIN",
-    //   "Verification",
+    //   "Address",
+    //   "Payment Method",
+    //   "Place Order",
     // ]
     for (let i = 1; i <= props.totalSteps; i += 1) {
         const isActive = props.currentStep === i;
