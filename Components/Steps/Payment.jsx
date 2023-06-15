@@ -9,6 +9,46 @@ export default function Payment(props) {
         { label: "Cash Payment", value: "cash" }
     ]
 
+    useEffect(() => {
+        // Fetch cart data from the server-side
+        fetch('/api/Payment')
+            .then((response) => response.json())
+            .then((data) => {
+                const { UserPaymentMethod } = data;
+                setValue(UserPaymentMethod?.value)
+            })
+            .catch((error) => {
+                console.error('Failed to fetch user data', error);
+            });
+    }, []);
+
+    const UpdateInfoData = () => {
+        const UserPaymentMethodData = {
+            UserPaymentMethod: { value }
+        }
+
+        // console.log(UserPaymentMethodData)
+
+        fetch('/api/Payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(UserPaymentMethodData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.message);
+            })
+            .catch((error) => {
+                console.error('Failed to save user data', error);
+            });
+    }
+
+    useEffect(() => {
+        UpdateInfoData()
+    }, [value])
+
     const HandleSelect = (e) => {
         const newValue = e.target.value
         e.preventDefault()

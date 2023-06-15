@@ -61,20 +61,12 @@ export default function Information(props) {
     const { nextStep } = props;
     const HandleNext = (e) => {
         e.preventDefault()
-        if (address === "") {
-            toast.error('Fill in all required fields');
-        } else {
-            nextStep();
-        }
+        nextStep();
     }
 
     const HandleSubmit = (e) => {
         e.preventDefault();
-        if (address === "") {
-            toast.error('Fill in all required fields');
-        } else {
-            nextStep();
-        }
+        nextStep();
     }
 
     return (
