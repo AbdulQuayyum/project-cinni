@@ -1,4 +1,5 @@
 import React from 'react'
+import { getCookie } from 'cookies-next';
 
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
@@ -7,6 +8,12 @@ export default function Order(props) {
     const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
 
     const HandleOrder = () => { }
+    const UserAddress = getCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
+    const UserPaymentMethod = getCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
+
+    const NewAddress = UserAddress ? JSON.parse(UserAddress) : null;
+    const NewPayment = UserPaymentMethod ? JSON.parse(UserPaymentMethod) : null;
+    // console.log(NewPayment)
 
     return (
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
@@ -14,7 +21,11 @@ export default function Order(props) {
                 <span className='price'>Confirm your order.</span>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Address:</span>
-                    <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
+                    <span className=' capitalize'>{NewAddress?.address}</span>
+                    <span className='text-[#aaa] font-bold text-lg'>Major Landmark near your address:</span>
+                    <span className=' capitalize'>{NewAddress?.landmark}</span>
+                    <span className='text-[#aaa] font-bold text-lg'>Your Contact Number:</span>
+                    <span className=' capitalize'>{NewAddress?.phone}</span>
                     <div className='flex justify-end'>
                         <button
                             onClick={() => props.goToStep(1)}
@@ -25,7 +36,7 @@ export default function Order(props) {
                 </div>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your preferred payment method</span>
-                    <span> Lorem ipsum</span>
+                    <span className=' capitalize'>{NewPayment?.value}</span>
                     <div className='flex justify-end'>
                         <button
                             onClick={() => props.goToStep(2)}

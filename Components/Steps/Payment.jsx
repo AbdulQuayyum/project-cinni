@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function Payment(props) {
     const [value, setValue] = useState('')
+    const [formValid, setFormValid] = useState(false);
     const { nextStep } = props;
 
     const options = [
@@ -45,13 +46,22 @@ export default function Payment(props) {
             });
     }
 
+    const checkFormValidity = () => {
+        if (value && value.trim() !== '') {
+            setFormValid(true);
+        } else {
+            setFormValid(false);
+        }
+    };
+
     useEffect(() => {
+        checkFormValidity()
         UpdateInfoData()
     }, [value])
 
     const HandleSelect = (e) => {
-        const newValue = e.target.value
         e.preventDefault()
+        const newValue = e.target.value
         setValue(newValue)
     }
 
@@ -85,6 +95,7 @@ export default function Payment(props) {
             </ul>
             <div className='flex max-w-xl w-full justify-end'>
                 <button
+                    disabled={!formValid}
                     onClick={HandleNext}
                     className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
                     Continue
