@@ -12,7 +12,7 @@ export default function Order(props) {
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                 <span className='price'>Confirm your order.</span>
-                <div className='flex flex-col gap-y-2 w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
+                <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Address:</span>
                     <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
                     <div className='flex justify-end'>
@@ -23,7 +23,7 @@ export default function Order(props) {
                         </button>
                     </div>
                 </div>
-                <div className='flex flex-col gap-y-2 w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
+                <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your preferred payment method</span>
                     <span> Lorem ipsum</span>
                     <div className='flex justify-end'>
@@ -34,7 +34,7 @@ export default function Order(props) {
                         </button>
                     </div>
                 </div>
-                <div className='flex flex-col gap-y-2 w-full mx-2'>
+                <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Order</span>
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -60,8 +60,8 @@ export default function Order(props) {
                     </table>
                 </div>
             </div>
-            <div className='flex flex-col mt-10 justify-center max-w-xl w-full sm:justify-end'>
-                <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
+            <div className='flex flex-col mt-10 max-w-xl w-full'>
+                <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-center font-bold'>Order summary</span>
                     <div className='flex justify-between'>
                         <span>Order cost:</span>
