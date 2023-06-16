@@ -18,13 +18,8 @@ export default {
             type: 'string',
         },
         {
-            name: 'ItemsPrice',
-            title: 'ItemsPrice',
-            type: 'number',
-        },
-        {
-            name: 'ShippingPrice',
-            title: 'ShippingPrice',
+            name: 'Charges',
+            title: 'Charges',
             type: 'number',
         },
         {
@@ -40,12 +35,12 @@ export default {
         {
             title: 'ShippingAddress',
             name: 'ShippingAddress',
-            type: 'shippingAddress',
+            type: 'ShippingAddress',
         },
         {
             title: 'PaymentResult',
             name: 'PaymentResult',
-            type: 'paymentResult',
+            type: 'PaymentResult',
         },
         {
             title: 'Order Items',

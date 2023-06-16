@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { getCookie } from 'cookies-next';
+import { getCookie, deleteCookie } from 'cookies-next';
 
 import UseAuthStore from '@/Store/AuthStore';
 import { useStateContext } from '@/Context/StateContext'
@@ -38,9 +38,15 @@ function Order(props) {
             }, {
                 headers: {
                     Authorization: `Bearer ${UserProfile.token}`
-                }
+                },
             }
             )
+            // deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 }); 
+            // deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
         } catch (error) {
             setLoading(false);
             toast.error(error)
