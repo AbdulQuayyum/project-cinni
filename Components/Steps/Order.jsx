@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,7 +9,7 @@ import { getCookie } from 'cookies-next';
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
 
-export default function Order(props) {
+function Order(props) {
     const router = useRouter();
     const [loading, setLoading] = useState(false)
     const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
@@ -117,3 +119,4 @@ export default function Order(props) {
         </div>
     )
 }
+export default dynamic(() => Promise.resolve(Order), { ssr: false });

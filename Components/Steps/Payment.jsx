@@ -16,7 +16,7 @@ export default function Payment(props) {
         fetch('/api/Payment')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.UserPaymentMethod);
+                // console.log(data.UserPaymentMethod);
                 setValue(data?.UserPaymentMethod?.value)
             })
             .catch((error) => {
