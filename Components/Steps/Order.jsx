@@ -42,11 +42,11 @@ function Order(props) {
                     Image: CartItems.Image,
                     Price: CartItems.Price
                 },
-                // UserName: UserProfile?.UserName,
-                // User: {
-                //   _type: 'reference',
-                //   _ref: UserProfile?._id,
-                // },
+                UserName: UserProfile?.UserName,
+                User: {
+                  _type: 'reference',
+                  _ref: UserProfile?._id,
+                },
             }, {
                 headers: {
                     Authorization: `Bearer ${UserProfile.token}`
