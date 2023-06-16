@@ -15,13 +15,8 @@ export default {
         },
         {
             title: 'Phone',
-            name: 'Phoone',
+            name: 'Phone',
             type: 'number'
-        },
-        {
-            title: 'country',
-            name: 'country',
-            type: 'string',
         },
     ],
 };

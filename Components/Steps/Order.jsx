@@ -6,7 +6,6 @@ import { getCookie } from 'cookies-next';
 
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
-import { useState } from 'react';
 
 export default function Order(props) {
     const [loading, setLoading] = useState(false)

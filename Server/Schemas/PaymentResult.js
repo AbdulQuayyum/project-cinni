@@ -14,8 +14,8 @@ export default {
             type: 'string',
         },
         {
-            title: 'Email_address',
-            name: 'Email_address',
+            title: 'EmailAddress',
+            name: 'EmailAddress',
             type: 'string',
         },
     ],

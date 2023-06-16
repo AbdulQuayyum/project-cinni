@@ -28,11 +28,6 @@ export default {
             type: 'number',
         },
         {
-            name: 'TaxPrice',
-            title: 'TaxPrice',
-            type: 'number',
-        },
-        {
             name: 'TotalPrice',
             title: 'TotalPrice',
             type: 'number',
