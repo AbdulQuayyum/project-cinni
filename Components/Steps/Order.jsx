@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -27,20 +28,33 @@ function Order(props) {
             setLoading(true);
             const { data } = await axios.post(
                 '/api/Orders', {
-                OrderItems: CartItems.map((items) => ({
-                    ...items,
-                    Slug: undefined,
-                })),
-                ShippingAddress: NewAddress,
-                PaymentMethod: NewPayment,
-                Charges,
-                TotalPrice,
+                Charges: Charges,
+                TotalPrice: TotalPrice,
+                PaymentMethod: NewPayment.value,
+                ShippingAddress: {
+                    Address: NewAddress.address,
+                    Landmark: NewAddress.landmark,
+                    Phone: NewAddress.phone,
+                },
+                OrderItems: {
+                    Name: CartItems.Name,
+                    Quantity: CartItems.Quantity,
+                    Image: CartItems.Image,
+                    Price: CartItems.Price
+                },
+                // UserName: UserProfile?.UserName,
+                // User: {
+                //   _type: 'reference',
+                //   _ref: UserProfile?._id,
+                // },
             }, {
                 headers: {
                     Authorization: `Bearer ${UserProfile.token}`
                 },
             }
             )
+            setLoading(false)
+            // router.push(`/Order/${data}`)
             // deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
             // deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 }); 
             // deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
@@ -49,7 +63,12 @@ function Order(props) {
             // deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
         } catch (error) {
             setLoading(false);
-            toast.error(error)
+            if (error.response && error.response.data && error.response.data.message) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error('An error occurred');
+                console.log(error)
+            }
         }
     }
 
