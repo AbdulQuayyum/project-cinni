@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,6 +8,7 @@ import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
 
 export default function Order(props) {
+    const router = useRouter();
     const [loading, setLoading] = useState(false)
     const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
 
@@ -18,7 +19,7 @@ export default function Order(props) {
     const NewPayment = UserPaymentMethod ? JSON.parse(UserPaymentMethod) : null;
     // console.log(NewPayment)
 
-    const HandleOrder = async () => { 
+    const HandleOrder = async () => {
         try {
             setLoading(true);
         } catch (error) {
@@ -27,17 +28,25 @@ export default function Order(props) {
         }
     }
 
+    useEffect(() => {
+        if (NewAddress === "") {
+            props.goToStep(1)
+        } if (NewPayment === "") {
+            props.goToStep(2)
+        }
+    }, [])
+
     return (
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                 <span className='price'>Confirm your order.</span>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your Address:</span>
-                    <span className=' capitalize'>{NewAddress?.address}</span>
+                    <span className=' capitalize'>{NewAddress?.address || ""}</span>
                     <span className='text-[#aaa] font-bold text-lg'>Major Landmark near your address:</span>
-                    <span className=' capitalize'>{NewAddress?.landmark}</span>
+                    <span className=' capitalize'>{NewAddress?.landmark || ""}</span>
                     <span className='text-[#aaa] font-bold text-lg'>Your Contact Number:</span>
-                    <span className=' capitalize'>{NewAddress?.phone}</span>
+                    <span className=' capitalize'>{NewAddress?.phone || ""}</span>
                     <div className='flex justify-end'>
                         <button
                             onClick={() => props.goToStep(1)}
@@ -48,7 +57,7 @@ export default function Order(props) {
                 </div>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='text-[#aaa] font-bold text-lg'>Your preferred payment method</span>
-                    <span className=' capitalize'>{NewPayment?.value}</span>
+                    <span className=' capitalize'>{NewPayment?.value || ""}</span>
                     <div className='flex justify-end'>
                         <button
                             onClick={() => props.goToStep(2)}
@@ -85,12 +94,16 @@ export default function Order(props) {
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                     <span className='font-bold text-lg'>Order summary</span>
                     <div className='flex justify-between'>
+                        <span>Order Quantity:</span>
+                        <span className="">{TotalQuantities || ""}</span>
+                    </div>
+                    <div className='flex justify-between'>
                         <span>Order cost:</span>
-                        <span className="">₦{TotalPrice}</span>
+                        <span className="">₦{TotalPrice || ""}</span>
                     </div>
                     <div className='flex justify-between'>
                         <span>Additional charges:</span>
-                        <span className="">₦{Charges}</span>
+                        <span className="">₦{Charges || ""}</span>
                     </div>
                 </div>
             </div>
