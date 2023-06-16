@@ -1,6 +1,6 @@
 export default {
     title: 'Order Item',
-    name: 'orderItem',
+    name: 'OrderItem',
     type: 'object',
     fields: [
         {

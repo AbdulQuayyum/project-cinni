@@ -1,6 +1,6 @@
 export default {
     title: 'Shipping Address',
-    name: 'shippingAddress',
+    name: 'ShippingAddress',
     type: 'object',
     fields: [
         {
