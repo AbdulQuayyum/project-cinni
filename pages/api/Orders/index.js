@@ -28,7 +28,7 @@ export default async function handler(req, res) {
                 }
             );
 
-            res.status(201).json({ orderId: data.results[0].id });
+            res.status(201).json({ OrderID: data.results[0].id });
         } catch (error) {
             console.error('Error creating order:', error);
             res.status(500).json({ message: 'Internal Server Error' });

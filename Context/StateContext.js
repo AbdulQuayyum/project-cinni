@@ -130,6 +130,15 @@ export const StateContext = ({ children }) => {
         UpdateCartData()
     }
 
+    const ClearCart = () => {
+        setCartItems([]);
+        setTotalPrice(0);
+        setTotalQuantities(0);
+        setQty(1);
+        setCharges(0);
+        UpdateCartData();
+    }
+
     return (
         <Context.Provider
             value={{
@@ -149,7 +158,8 @@ export const StateContext = ({ children }) => {
                 OnRemove,
                 ToggleCartItemQuantity,
                 IncreaseQuantity,
-                DecreaseQuantity
+                DecreaseQuantity,
+                ClearCart
             }}>
             {children}
         </Context.Provider>

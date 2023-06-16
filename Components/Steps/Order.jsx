@@ -15,7 +15,7 @@ function Order(props) {
     const { UserProfile } = UseAuthStore()
     const router = useRouter();
     const [loading, setLoading] = useState(false)
-    const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
+    const { Charges, TotalPrice, TotalQuantities, CartItems, ClearCart } = useStateContext()
 
     const UserAddress = getCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
     const UserPaymentMethod = getCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
@@ -44,8 +44,8 @@ function Order(props) {
                 },
                 UserName: UserProfile?.UserName,
                 User: {
-                  _type: 'reference',
-                  _ref: UserProfile?._id,
+                    _type: 'reference',
+                    _ref: UserProfile?._id,
                 },
             }, {
                 headers: {
@@ -54,13 +54,17 @@ function Order(props) {
             }
             )
             setLoading(false)
-            // router.push(`/Order/${data}`)
-            // deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 }); 
-            // deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            ClearCart()
+            deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            router.push(`/Order/${data.OrderID}`)
+            // setTimeout(() => {
+            //     router.push(`/Order/${data}`)
+            // }, 3000);
         } catch (error) {
             setLoading(false);
             if (error.response && error.response.data && error.response.data.message) {
@@ -77,6 +81,8 @@ function Order(props) {
             props.goToStep(1)
         } if (NewPayment === "") {
             props.goToStep(2)
+        } if (!CartItems) {
+            router.push('/')
         }
     }, [])
 
