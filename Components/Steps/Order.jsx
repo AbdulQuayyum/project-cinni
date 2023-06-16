@@ -6,10 +6,12 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { getCookie } from 'cookies-next';
 
+import UseAuthStore from '@/Store/AuthStore';
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
 
 function Order(props) {
+    const { UserProfile } = UseAuthStore()
     const router = useRouter();
     const [loading, setLoading] = useState(false)
     const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
@@ -19,11 +21,26 @@ function Order(props) {
 
     const NewAddress = UserAddress ? JSON.parse(UserAddress) : null;
     const NewPayment = UserPaymentMethod ? JSON.parse(UserPaymentMethod) : null;
-    // console.log(NewPayment)
 
     const HandleOrder = async () => {
         try {
             setLoading(true);
+            const { data } = await axios.post(
+                '/api/Orders', {
+                OrderItems: CartItems.map((items) => ({
+                    ...items,
+                    Slug: undefined,
+                })),
+                ShippingAddress: NewAddress,
+                PaymentMethod: NewPayment,
+                Charges,
+                TotalPrice,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${UserProfile.token}`
+                }
+            }
+            )
         } catch (error) {
             setLoading(false);
             toast.error(error)
