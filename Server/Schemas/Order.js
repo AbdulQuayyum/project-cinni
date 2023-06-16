@@ -8,26 +8,85 @@ export default {
             name: 'User',
             type: 'reference',
             to: [{ type: 'User' }],
-            // validation: Rule => Rule.required()
+            options: {
+                disableNew: true,
+            },
         },
         {
-            title: 'Products',
-            name: 'Products',
-            type: 'array',
-            of: [{ type: 'reference', to: [{ type: 'Product' }] }],
-            // validation: Rule => Rule.required().min(1)
+            name: 'UserName',
+            title: 'User Name',
+            type: 'string',
         },
         {
-            title: 'Total Amount',
-            name: 'TotalAmount',
+            name: 'ItemsPrice',
+            title: 'ItemsPrice',
             type: 'number',
-            // validation: Rule => Rule.required().positive()
         },
         {
-            title: 'Order Date',
-            name: 'OrderDate',
+            name: 'ShippingPrice',
+            title: 'ShippingPrice',
+            type: 'number',
+        },
+        {
+            name: 'TaxPrice',
+            title: 'TaxPrice',
+            type: 'number',
+        },
+        {
+            name: 'TotalPrice',
+            title: 'TotalPrice',
+            type: 'number',
+        },
+        {
+            name: 'PaymentMethod',
+            title: 'PaymentMethod',
+            type: 'string',
+        },
+        {
+            title: 'ShippingAddress',
+            name: 'ShippingAddress',
+            type: 'shippingAddress',
+        },
+        {
+            title: 'PaymentResult',
+            name: 'PaymentResult',
+            type: 'paymentResult',
+        },
+        {
+            title: 'Order Items',
+            name: 'OrderItems',
+            type: 'array',
+            of: [
+                {
+                    title: 'Order Item',
+                    type: 'OrderItem',
+                },
+            ],
+        },
+        {
+            title: 'IsPaid',
+            name: 'IsPaid',
+            type: 'boolean',
+        },
+        {
+            title: 'Paid Date',
+            name: 'PaidAt',
             type: 'datetime',
-            // validation: Rule => Rule.required()
-        }
-    ]
+        },
+        {
+            title: 'IsDelivered',
+            name: 'IsDelivered',
+            type: 'boolean',
+        },
+        {
+            title: 'DeliveredAt',
+            name: 'DeliveredAt',
+            type: 'datetime',
+        },
+        {
+            title: 'CreatedAt',
+            name: 'CreatedAt',
+            type: 'datetime',
+        },
+    ],
 }

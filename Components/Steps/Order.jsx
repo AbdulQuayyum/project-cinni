@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Image from 'next/image';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { getCookie } from 'cookies-next';
 
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
+import { useState } from 'react';
 
 export default function Order(props) {
+    const [loading, setLoading] = useState(false)
     const { Charges, TotalPrice, TotalQuantities, CartItems } = useStateContext()
 
-    const HandleOrder = () => { }
     const UserAddress = getCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
     const UserPaymentMethod = getCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
 
     const NewAddress = UserAddress ? JSON.parse(UserAddress) : null;
     const NewPayment = UserPaymentMethod ? JSON.parse(UserPaymentMethod) : null;
     // console.log(NewPayment)
+
+    const HandleOrder = async () => { 
+        try {
+            setLoading(true);
+        } catch (error) {
+            setLoading(false);
+            toast.error(error)
+        }
+    }
 
     return (
         <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
