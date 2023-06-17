@@ -1,6 +1,7 @@
 export { default as Information } from './Steps/Information.jsx'
 export { default as Order } from './Steps/Order.jsx'
 export { default as Payment } from './Steps/Payment.jsx'
+export { default as BackToTop } from './BackToTop.jsx'
 export { default as Cart } from "./Cart"
 export { default as Category } from "./Category"
 export { default as Features } from "./Features"
