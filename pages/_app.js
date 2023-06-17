@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 
 import { StateContext } from '@/Context/StateContext';
 // import MainLayout from '@/Layout/Main.Layout';
+import '../Styles/BackToTop.css'
 import '../Styles/Index.css'
 import '../Styles/Style.css'
 
