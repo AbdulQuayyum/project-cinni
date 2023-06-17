@@ -30,6 +30,7 @@ function Order(props) {
                 '/api/Orders', {
                 Charges: Charges,
                 TotalPrice: TotalPrice,
+                TotalCost: TotalCost,
                 PaymentMethod: NewPayment.value,
                 ShippingAddress: {
                     Address: NewAddress.address,

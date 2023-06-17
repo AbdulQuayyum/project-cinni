@@ -51,7 +51,7 @@ const OrderDetails = () => {
                         </table>
                     </div>
                 </div>
-                <div className='flex flex-col mt-4 justify-center max-w-xl w-full sm:justify-end'>
+                <div className='flex flex-col mt-4 justify-center max-w-xs w-full sm:justify-end'>
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                         <span className='text-center font-bold'>Order summary</span>
                         <div className='flex justify-between'>
@@ -62,11 +62,13 @@ const OrderDetails = () => {
                             <span>Additional charges:</span>
                             <span className="">₦1</span>
                         </div>
-                    </div>
-                    <div className='flex my-10 justify-center max-w-xl w-full sm:justify-end'>
+                        <div className='flex justify-between'>
+                            <span>Total Cost:</span>
+                            <span className="">₦1</span>
+                        </div>
                         <button
                             onClick={HandlePay}
-                            className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                            className='rounded-full border mt-10 border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
                             Pay now
                         </button>
                     </div>
