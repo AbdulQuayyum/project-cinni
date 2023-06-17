@@ -15,7 +15,7 @@ function Order(props) {
     const { UserProfile } = UseAuthStore()
     const router = useRouter();
     const [loading, setLoading] = useState(false)
-    const { Charges, TotalPrice, TotalQuantities, CartItems, ClearCart } = useStateContext()
+    const { Charges, TotalPrice, TotalCost, TotalQuantities, CartItems, ClearCart } = useStateContext()
 
     const UserAddress = getCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
     const UserPaymentMethod = getCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
@@ -154,6 +154,10 @@ function Order(props) {
                     <div className='flex justify-between'>
                         <span>Additional charges:</span>
                         <span className="">₦{Charges || ""}</span>
+                    </div>
+                    <div className='flex justify-between'>
+                        <span>Total Cost:</span>
+                        <span className="">₦{TotalCost || ""}</span>
                     </div>
                 </div>
             </div>

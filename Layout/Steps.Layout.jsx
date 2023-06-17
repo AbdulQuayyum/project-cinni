@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head';
 
 import SideInfo from '@/Components/SideInfo/SideInfo'
+import BackToTop from '@/Components/BackToTop';
 
 const StepsLayout = ({ children }) => {
     return (
@@ -21,6 +22,7 @@ const StepsLayout = ({ children }) => {
             <div className='z-40 flex text-[#aaa] col-span-2 transition-all duration-1000 onboard'>
                 {children}
             </div>
+            <BackToTop />
         </div>
     )
 }

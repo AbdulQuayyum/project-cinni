@@ -6,8 +6,8 @@ const BackToTop = () => {
         //This code is executed in the browser
         window.addEventListener("scroll", function () {
             const backToTop = document.querySelector(".back-to-top")
-            if (this.scrollY >= 560) backToTop.classList.add("show-back-to-top")
-            else backToTop.classList.remove("show-back-to-top")
+            if (this?.scrollY >= 560) backToTop?.classList.add("show-back-to-top")
+            else backToTop?.classList.remove("show-back-to-top")
         })
     }
     return (
