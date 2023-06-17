@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { Footer, Navbar } from "../Components/Index"
+import { BackToTop, Footer, Navbar } from "../Components/Index"
 
 const MainLayout = ({ children }) => {
     return (
@@ -23,6 +23,7 @@ const MainLayout = ({ children }) => {
             </main>
             <footer>
                 <Footer />
+                <BackToTop />
             </footer>
         </div>
     )
