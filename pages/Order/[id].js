@@ -1,8 +1,12 @@
 import React from 'react'
+import NextLink from 'next/link';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import axios from 'axios';
 
 import MainLayout from '@/Layout/Main.Layout'
 
-const OrderDetails = () => {
+function OrderDetails({ params }) {
 
     const HandlePay = () => { }
 
@@ -77,5 +81,8 @@ const OrderDetails = () => {
         </MainLayout>
     )
 }
-
-export default OrderDetails
+export function getServerSideProps({ params }) {
+    return { props: { params } };
+  }
+  
+  export default dynamic(() => Promise.resolve(OrderDetails), { ssr: false });
