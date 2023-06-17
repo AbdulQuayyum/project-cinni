@@ -7,6 +7,7 @@ export const StateContext = ({ children }) => {
     const [ShowCart, setShowCart] = useState(false);
     const [CartItems, setCartItems] = useState([]);
     const [TotalPrice, setTotalPrice] = useState(0);
+    const [TotalCost, setTotalCost] = useState(0)
     const [TotalQuantities, setTotalQuantities] = useState(0);
     const [Qty, setQty] = useState(1);
     const [Charges, setCharges] = useState(0);
@@ -16,9 +17,10 @@ export const StateContext = ({ children }) => {
         fetch('/api/Cart')
             .then((response) => response.json())
             .then((data) => {
-                const { CartItems, Charges, TotalPrice, TotalQuantities } = data;
+                const { CartItems, Charges, TotalPrice, TotalCost, TotalQuantities } = data;
                 setCharges(Charges)
                 setCartItems(CartItems);
+                setTotalCost(TotalCost)
                 setTotalPrice(TotalPrice);
                 setTotalQuantities(TotalQuantities);
             })
@@ -33,6 +35,7 @@ export const StateContext = ({ children }) => {
             CartItems,
             Charges,
             TotalPrice,
+            TotalCost,
             TotalQuantities,
         };
 
@@ -55,7 +58,7 @@ export const StateContext = ({ children }) => {
     useEffect(() => {
         // Update storage whenever the cart items, total price, or total quantities change
         UpdateCartData();
-    }, [CartItems, TotalPrice, TotalQuantities, Charges]);
+    }, [CartItems, TotalPrice, TotalCost, TotalQuantities, Charges]);
 
     let FoundProduct;
     let Index;
@@ -66,6 +69,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.Price * Quantity);
         setTotalQuantities((PreviousTotalQuantities) => PreviousTotalQuantities + Quantity);
         setCharges((previousCharges) => previousCharges + Product.Price * Quantity * 0.1);
+        setTotalCost()
 
         if (CheckProductInCart) {
             const UpdatedCartItems = CartItems.map((CartProduct) => {
@@ -92,6 +96,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price * FoundProduct.Quantity);
         setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - FoundProduct.Quantity);
+        setTotalCost()
         setCartItems(NewCartItems);
         UpdateCartData()
     }
@@ -107,12 +112,14 @@ export const StateContext = ({ children }) => {
             setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + FoundProduct.Price)
             setCharges((PreviousCharges) => PreviousCharges + FoundProduct.Price * 0.1)
             setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities + 1)
+            setTotalCost()
         } else if (Value === 'decrease') {
             if (FoundProduct.Quantity > 1) {
                 setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity - 1 }]);
                 setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price)
                 setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * 0.1)
                 setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - 1)
+                setTotalCost()
             }
         }
     }
@@ -133,6 +140,7 @@ export const StateContext = ({ children }) => {
     const ClearCart = () => {
         setCartItems([]);
         setTotalPrice(0);
+        setTotalCost(0)
         setTotalQuantities(0);
         setQty(1);
         setCharges(0);
@@ -148,6 +156,8 @@ export const StateContext = ({ children }) => {
                 setCartItems,
                 Charges,
                 setCharges,
+                TotalCost,
+                setTotalCost,
                 TotalPrice,
                 setTotalPrice,
                 TotalQuantities,
