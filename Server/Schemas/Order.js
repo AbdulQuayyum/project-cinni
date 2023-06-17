@@ -28,6 +28,11 @@ export default {
             type: 'number',
         },
         {
+            name: 'TotalCost',
+            title: 'TotalCost',
+            type: 'number',
+        },
+        {
             name: 'PaymentMethod',
             title: 'PaymentMethod',
             type: 'string',

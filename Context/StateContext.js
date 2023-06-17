@@ -17,7 +17,7 @@ export const StateContext = ({ children }) => {
         fetch('/api/Cart')
             .then((response) => response.json())
             .then((data) => {
-                const { CartItems, Charges, TotalPrice, TotalCost, TotalQuantities } = data;
+                const { CartItems, Charges, TotalCost, TotalPrice, TotalQuantities } = data;
                 setCharges(Charges)
                 setCartItems(CartItems);
                 setTotalCost(TotalCost)
@@ -34,8 +34,8 @@ export const StateContext = ({ children }) => {
         const CartData = {
             CartItems,
             Charges,
-            TotalPrice,
             TotalCost,
+            TotalPrice,
             TotalQuantities,
         };
 
@@ -69,7 +69,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.Price * Quantity);
         setTotalQuantities((PreviousTotalQuantities) => PreviousTotalQuantities + Quantity);
         setCharges((previousCharges) => previousCharges + Product.Price * Quantity * 0.1);
-        setTotalCost()
+        setTotalCost((previousTotalCost) => previousTotalCost + Product.Price * Product.Quantity + Product.Price * Product.Quantity * 0.1);
 
         if (CheckProductInCart) {
             const UpdatedCartItems = CartItems.map((CartProduct) => {
@@ -96,13 +96,12 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price * FoundProduct.Quantity);
         setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - FoundProduct.Quantity);
-        setTotalCost()
+        setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price * FoundProduct.Quantity - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setCartItems(NewCartItems);
         UpdateCartData()
     }
 
     const ToggleCartItemQuantity = (ID, Value) => {
-
         FoundProduct = CartItems.find((Item) => Item._id === ID)
         Index = CartItems.findIndex((Product) => Product._id === ID);
         const NewCartItems = CartItems.filter((Item) => Item._id !== ID)
@@ -112,14 +111,14 @@ export const StateContext = ({ children }) => {
             setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + FoundProduct.Price)
             setCharges((PreviousCharges) => PreviousCharges + FoundProduct.Price * 0.1)
             setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities + 1)
-            setTotalCost()
+            setTotalCost((previousTotalCost) => previousTotalCost + FoundProduct.Price + FoundProduct.Price * 0.1);
         } else if (Value === 'decrease') {
             if (FoundProduct.Quantity > 1) {
                 setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity - 1 }]);
                 setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price)
                 setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * 0.1)
                 setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - 1)
-                setTotalCost()
+                setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price - FoundProduct.Price * 0.1);
             }
         }
     }
