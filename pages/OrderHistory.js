@@ -1,9 +1,48 @@
-import React from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
+import axios from 'axios';
 import Link from 'next/link'
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
+import { GetError } from '@/Utilities/Error';
 import MainLayout from '@/Layout/Main.Layout'
+import UseAuthStore from '@/Store/AuthStore';
 
-const OrderHistory = () => {
+function reducer(state, action) {
+    switch (action.type) {
+        case 'FETCH_REQUEST':
+            return { ...state, loading: true, error: '' };
+        case 'FETCH_SUCCESS':
+            return { ...state, loading: false, Orders: action.payload, error: '' };
+        case 'FETCH_FAIL':
+            return { ...state, loading: false, error: action.payload };
+    }
+}
+
+function OrderHistory() {
+    const { UserProfile } = UseAuthStore()
+    const [{ Loading, Error, Orders }, dispatch] = useReducer(reducer, { Loading: true, Orders: [], Error: '', });
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!UserProfile) {
+            return router.push('/')
+        }
+        const FetchOrder = async () => {
+            try {
+                dispatch({ type: 'FETCH_REQUEST' });
+                const { data } = await axios.get(`/api/Orders/History`)
+                dispatch({ type: 'FETCH_SUCCESS', payload: data });
+            } catch (err) {
+                dispatch({ type: 'FETCH_FAIL', payload: GetError(err) });
+            }
+        }
+        FetchOrder()
+    }, [Orders, router, UserProfile])
+
+    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#37b400] hover:text-[#37b400]'
+    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#f31700] hover:text-[#f31700]'
+
     return (
         <MainLayout>
             <div className='flex flex-col gap-y-2 px-4 sm:px-8 mt-10 w-full'>
@@ -19,21 +58,28 @@ const OrderHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td className=" px-2 sm:px-6 py-8">qwertyuiop</td>
-                            <td className=" px-2 sm:px-6 py-8">	2023-06-13T01:58:56.766Z</td>
-                            <td className=" px-2 sm:px-6 py-8">₦10</td>
-                            <td className=" px-2 sm:px-6 py-8">Not Paid</td>
-                            <td className=" px-2 sm:px-6 py-8">
-                                <Link
-                                    href={`Order/`}>
-                                    <span
-                                        className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
-                                        Details
-                                    </span>
-                                </Link>
-                            </td>
-                        </tr>
+                        {Orders &&
+                            Orders.map((item) => (
+                                <tr key={item?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td className=" px-2 sm:px-6 py-8">{item?._id}</td>
+                                    <td className=" px-2 sm:px-6 py-8">{item?.CreatedAt}</td>
+                                    <td className=" px-2 sm:px-6 py-8">₦{item?.TotalCost}</td>
+                                    <td className=" px-2 sm:px-6 py-8">
+                                        <span className={item?.IsPaid ? PositiveBtn : NegativeBtn}>
+                                            {item?.IsPaid ? `Paid at ${item?.PaidAt}` : 'Not Paid'}
+                                        </span>
+                                    </td>
+                                    <td className=" px-2 sm:px-6 py-8">
+                                        <Link
+                                            href={`Order/${item?._id}`}>
+                                            <span
+                                                className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                                                Details
+                                            </span>
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>
@@ -41,4 +87,4 @@ const OrderHistory = () => {
     )
 }
 
-export default OrderHistory
+export default dynamic(() => Promise.resolve(OrderHistory), { ssr: false });
