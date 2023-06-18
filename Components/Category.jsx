@@ -12,8 +12,8 @@ const Category = () => {
     const activeCategoryStyle = 'border-2 hover:bg-primary border-black px-3 py-2 rounded-full flex items-center gap-2 justify-center cursor-pointer text-black'
     const categoryStyle = 'border-2 hover:bg-primary border-gray-300 px-3 py-2 rounded-full flex items-center gap-2 justify-center cursor-pointer text-black'
 
-    const GoodsCategories = Categories.filter((item) => item.form === 'goods');
-    const ServicesCategories = Categories.filter((item) => item.form === 'services');
+    const GoodsCategories = Categories.filter((item) => item?.form === 'goods');
+    const ServicesCategories = Categories.filter((item) => item?.form === 'services');
 
     return (
         <div>
@@ -26,15 +26,15 @@ const Category = () => {
                     <span className='price'>Goods</span>
                     <div className="flex justify-center gap-3 flex-wrap">
                         {GoodsCategories?.map((item) => (
-                            <Link href={`/?PCategory=${item.name}`} key={item.name}>
+                            <Link href={`/?PCategory=${item?.name}`} key={item?.name}>
                                 <div
-                                    className={PCategory === item.name ? activeCategoryStyle : categoryStyle}
+                                    className={PCategory === item?.name ? activeCategoryStyle : categoryStyle}
                                 >
                                     <div className="font-bold text-2xl xl:text-md ">
-                                        {item.icon}
+                                        {item?.icon}
                                     </div>
                                     <span className={`font-medium flex text-center text-md capitalize`}  >
-                                        {item.name}
+                                        {item?.name}
                                     </span>
                                 </div>
                             </Link>
@@ -45,15 +45,15 @@ const Category = () => {
                     <span className='price'>Services</span>
                     <div className="flex justify-center gap-3 flex-wrap">
                         {ServicesCategories?.map((item) => (
-                            <Link href={`/?PCategory=${item.name}`} key={item.name}>
+                            <Link href={`/?PCategory=${item?.name}`} key={item?.name}>
                                 <div
-                                    className={PCategory === item.name ? activeCategoryStyle : categoryStyle}
+                                    className={PCategory === item?.name ? activeCategoryStyle : categoryStyle}
                                 >
                                     <div className="font-bold text-2xl xl:text-md ">
-                                        {item.icon}
+                                        {item?.icon}
                                     </div>
                                     <span className={`font-medium flex text-center text-md capitalize`}  >
-                                        {item.name}
+                                        {item?.name}
                                     </span>
                                 </div>
                             </Link>

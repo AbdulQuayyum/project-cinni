@@ -100,7 +100,7 @@ function OrderDetails({ params }) {
                                                 <img src={UrlFor(item?.Image[0])} alt="..." className=" h-16 w-16 rounded-lg" />
                                             </td>
                                             <td className=" px-2 sm:px-6 py-4">
-                                                <Link href={`/Product/${item.Slug}`}>
+                                                <Link href={`/Product/${item?.Slug}`}>
                                                     {item?.Name}
                                                 </Link>
                                             </td>

@@ -42,7 +42,7 @@ function Order(props) {
                 UserName: UserProfile?.UserName,
                 User: {
                     _type: 'reference',
-                    _ref: UserProfile?._id,
+                    _ref: UserProfile._id,
                 },
             }, {
                 headers: {
@@ -51,7 +51,6 @@ function Order(props) {
             }
             )
             setLoading(false)
-            router.push(`/Order/${data.OrderID}`)
             ClearCart()
             deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
@@ -59,6 +58,7 @@ function Order(props) {
             deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            router.push(`/Order/${data?.OrderID}`)
             // setTimeout(() => {
             //     router.push(`/Order/${data}`)
             // }, 3000);

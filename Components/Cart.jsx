@@ -65,8 +65,8 @@ const Cart = () => {
                             <img src={UrlFor(item?.Image[0])} className="cart-product-image" />
                             <div className="item-desc">
                                 <div className="flex top">
-                                    <h5>{item.Name}</h5>
-                                    <h4>₦{item.Price}</h4>
+                                    <h5>{item?.Name}</h5>
+                                    <h4>₦{item?.Price}</h4>
                                 </div>
                                 <div className="flex bottom">
                                     <div>
@@ -74,7 +74,7 @@ const Cart = () => {
                                             <span className="minus" onClick={() => ToggleCartItemQuantity(item._id, 'decrease')}>
                                                 <TbMinus />
                                             </span>
-                                            <span className="num" onClick="">{item.Quantity}</span>
+                                            <span className="num" onClick="">{item?.Quantity}</span>
                                             <span className="plus" onClick={() => ToggleCartItemQuantity(item._id, 'increase')}><TbPlus /></span>
                                         </div>
                                     </div>
