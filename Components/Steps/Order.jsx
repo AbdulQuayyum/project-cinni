@@ -16,6 +16,7 @@ function Order(props) {
     const router = useRouter();
     const [loading, setLoading] = useState(false)
     const { Charges, TotalPrice, TotalCost, TotalQuantities, CartItems, ClearCart } = useStateContext()
+    const { Name, Quantity, Image, Price } = CartItems
 
     const UserAddress = getCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
     const UserPaymentMethod = getCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
@@ -37,12 +38,7 @@ function Order(props) {
                     Landmark: NewAddress.landmark,
                     Phone: NewAddress.phone,
                 },
-                OrderItems: {
-                    Name: CartItems.Name,
-                    Quantity: CartItems.Quantity,
-                    Image: CartItems.Image,
-                    Price: CartItems.Price
-                },
+                OrderItems: CartItems,
                 UserName: UserProfile?.UserName,
                 User: {
                     _type: 'reference',
@@ -55,6 +51,7 @@ function Order(props) {
             }
             )
             setLoading(false)
+            router.push(`/Order/${data.OrderID}`)
             ClearCart()
             deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
@@ -62,7 +59,6 @@ function Order(props) {
             deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
-            router.push(`/Order/${data.OrderID}`)
             // setTimeout(() => {
             //     router.push(`/Order/${data}`)
             // }, 3000);

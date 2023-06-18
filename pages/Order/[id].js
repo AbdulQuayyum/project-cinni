@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import NextLink from 'next/link';
+import Link from 'next/link'
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 import { GetError } from '@/Utilities/Error';
 import UseAuthStore from '@/Store/AuthStore';
 import MainLayout from '@/Layout/Main.Layout'
+import { UrlFor } from '@/Utilities/Client';
 
 function reducer(state, action) {
     switch (action.type) {
@@ -33,7 +34,7 @@ function OrderDetails({ params }) {
         TotalCost,
         Charges,
         IsPaid,
-        paidAt,
+        PaidAt,
         IsDelivered,
         DeliveredAt,
     } = Order;
@@ -46,7 +47,6 @@ function OrderDetails({ params }) {
             try {
                 dispatch({ type: 'FETCH_REQUEST' });
                 const { data } = await axios.get(`/api/Orders/${OrderID}`)
-                console.log(data);
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (err) {
                 dispatch({ type: 'FETCH_FAIL', payload: GetError(err) });
@@ -55,28 +55,30 @@ function OrderDetails({ params }) {
         FetchOrder()
     }, [Order, OrderID, router, UserProfile])
 
+    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#37b400] hover:text-[#37b400]'
+    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#f31700] hover:text-[#f31700]'
 
     const HandlePay = () => { }
 
     return (
         <MainLayout>
-            <span className='price flex justify-center !mt-10 mb-4'>Order qwertyuiop</span>
-            <div className='flex flex-col md:flex-row justify-around items-center md:items-start w-full'>
+            <span className='price flex justify-center mx-4 !mt-10 mb-4'>Order {OrderID}</span>
+            <div className='flex flex-col gap-x-8 md:flex-row justify-around items-center md:items-start w-full'>
                 <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                         <span className='text-[#aaa] font-bold text-lg'>Your Address:</span>
-                        <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
-                        <div className='flex'>
+                        <span>{ShippingAddress?.Address}</span>
+                        <div className='items-center flex gap-x-1'>
                             <span>Status:</span>
-                            <span>Not Delivered</span>
+                            <span className={IsDelivered ? PositiveBtn : NegativeBtn}>{IsDelivered ? `Delivered At ${DeliveredAt}` : 'Not Delivered'}</span>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
-                        <span className='text-[#aaa] font-bold text-lg'>Your preferred payment method</span>
-                        <span> Lorem ipsum</span>
-                        <div className='flex'>
+                        <span className='text-[#aaa] font-bold text-lg'>Your Preferred Payment Method</span>
+                        <span className=' capitalize' >{PaymentMethod}</span>
+                        <div className='items-center flex gap-x-1'>
                             <span>Status:</span>
-                            <span>Not Paid</span>
+                            <span className={IsPaid ? PositiveBtn : NegativeBtn}>{IsPaid ? `Paid at ${PaidAt}` : 'Not Paid'}</span>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-2 w-full'>
@@ -91,32 +93,39 @@ function OrderDetails({ params }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td className=" px-2 sm:px-6 py-4">
-                                        <img src={''} alt="..." className=" h-16 w-16 rounded-lg" />
-                                    </td>
-                                    <td className=" px-2 sm:px-6 py-4">lorem</td>
-                                    <td className=" px-2 sm:px-6 py-4">1</td>
-                                    <td className=" px-2 sm:px-6 py-4">₦10</td>
-                                </tr>
+                                {OrderItems &&
+                                    OrderItems.map((item) => (
+                                        <tr key={item._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td className=" px-2 sm:px-6 py-4">
+                                                <img src={UrlFor(item?.Image[0])} alt="..." className=" h-16 w-16 rounded-lg" />
+                                            </td>
+                                            <td className=" px-2 sm:px-6 py-4">
+                                                <Link href={`/Product/${item.Slug}`}>
+                                                    {item?.Name}
+                                                </Link>
+                                            </td>
+                                            <td className=" px-2 sm:px-6 py-4">{item?.Quantity}</td>
+                                            <td className=" px-2 sm:px-6 py-4">₦{item?.Price}</td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div className='flex flex-col mt-4 justify-center max-w-xs w-full sm:justify-end'>
+                <div className='flex flex-col mt-4 justify-center max-w-none md:max-w-xs w-full sm:justify-end'>
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
                         <span className='text-center font-bold'>Order summary</span>
                         <div className='flex justify-between'>
                             <span>Order cost:</span>
-                            <span className="">₦10</span>
+                            <span className="">₦{TotalPrice}</span>
                         </div>
                         <div className='flex justify-between'>
                             <span>Additional charges:</span>
-                            <span className="">₦1</span>
+                            <span className="">₦{Charges}</span>
                         </div>
                         <div className='flex justify-between'>
                             <span>Total Cost:</span>
-                            <span className="">₦1</span>
+                            <span className="">₦{TotalCost}</span>
                         </div>
                         <button
                             onClick={HandlePay}
