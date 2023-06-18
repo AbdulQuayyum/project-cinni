@@ -5,6 +5,7 @@ import NextLink from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
+import { GetError } from '@/Utilities/Error';
 import UseAuthStore from '@/Store/AuthStore';
 import MainLayout from '@/Layout/Main.Layout'
 
@@ -48,7 +49,7 @@ function OrderDetails({ params }) {
                 console.log(data);
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (err) {
-                dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+                dispatch({ type: 'FETCH_FAIL', payload: GetError(err) });
             }
         }
         FetchOrder()
