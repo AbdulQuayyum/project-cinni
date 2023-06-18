@@ -37,7 +37,6 @@ export default async function handler(req, res) {
         res.status(405).json({ message: 'Method Not Allowed' });
     }
 }
-//     const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 //     const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 //     const tokenWithWriteAccess = process.env.NEXT_PUBLIC_SANITY_TOKEN
 //     const { data } = await axios.post(

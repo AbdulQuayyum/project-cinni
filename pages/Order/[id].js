@@ -1,12 +1,58 @@
-import React from 'react'
+import React, { useContext, useEffect, useReducer } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import axios from 'axios';
+import { useRouter } from 'next/router';
 
+import UseAuthStore from '@/Store/AuthStore';
 import MainLayout from '@/Layout/Main.Layout'
 
+function reducer(state, action) {
+    switch (action.type) {
+        case 'FETCH_REQUEST':
+            return { ...state, loading: true, error: '' };
+        case 'FETCH_SUCCESS':
+            return { ...state, loading: false, Order: action.payload, error: '' };
+        case 'FETCH_FAIL':
+            return { ...state, loading: false, error: action.payload };
+    }
+}
+
 function OrderDetails({ params }) {
+    const { id: OrderID } = params
+    const { UserProfile } = UseAuthStore()
+    const [{ Loading, Error, Order }, dispatch] = useReducer(reducer, { Loading: true, Order: {}, Error: '', });
+    const router = useRouter();
+    const {
+        ShippingAddress,
+        PaymentMethod,
+        OrderItems,
+        TotalPrice,
+        TotalCost,
+        Charges,
+        IsPaid,
+        paidAt,
+        IsDelivered,
+        DeliveredAt,
+    } = Order;
+
+    useEffect(() => {
+        if (!UserProfile) {
+            return router.push('/')
+        }
+        const FetchOrder = async () => {
+            try {
+                dispatch({ type: 'FETCH_REQUEST' });
+                const { data } = await axios.get(`/api/Orders/${OrderID}`)
+                dispatch({ type: 'FETCH_SUCCESS', payload: data });
+            } catch (err) {
+                dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+            }
+        }
+        FetchOrder()
+    }, [Order, OrderID, router, UserProfile])
+
 
     const HandlePay = () => { }
 
@@ -83,6 +129,6 @@ function OrderDetails({ params }) {
 }
 export function getServerSideProps({ params }) {
     return { props: { params } };
-  }
-  
-  export default dynamic(() => Promise.resolve(OrderDetails), { ssr: false });
+}
+
+export default dynamic(() => Promise.resolve(OrderDetails), { ssr: false });
