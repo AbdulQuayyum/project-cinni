@@ -31,7 +31,7 @@ function OrderHistory() {
         const FetchOrder = async () => {
             try {
                 dispatch({ type: 'FETCH_REQUEST' });
-                const { data } = await axios.get(`/api/Orders/History`)
+                const { data } = await axios.get('/api/Orders/History')
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (err) {
                 dispatch({ type: 'FETCH_FAIL', payload: GetError(err) });
