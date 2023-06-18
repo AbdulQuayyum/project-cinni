@@ -69,7 +69,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + Product.Price * Quantity);
         setTotalQuantities((PreviousTotalQuantities) => PreviousTotalQuantities + Quantity);
         setCharges((previousCharges) => previousCharges + Product.Price * Quantity * 0.1);
-        setTotalCost((previousTotalCost) => previousTotalCost + Product.Price * Product.Quantity + Product.Price * Product.Quantity * 0.1);
+        // setTotalCost((previousTotalCost) => previousTotalCost + Product.Price * Product.Quantity + Product.Price * Product.Quantity * 0.1);
 
         if (CheckProductInCart) {
             const UpdatedCartItems = CartItems.map((CartProduct) => {
@@ -96,7 +96,7 @@ export const StateContext = ({ children }) => {
         setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price * FoundProduct.Quantity);
         setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - FoundProduct.Quantity);
-        setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price * FoundProduct.Quantity - FoundProduct.Price * FoundProduct.Quantity * 0.1);
+        // setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price * FoundProduct.Quantity - FoundProduct.Price * FoundProduct.Quantity * 0.1);
         setCartItems(NewCartItems);
         UpdateCartData()
     }
@@ -111,14 +111,14 @@ export const StateContext = ({ children }) => {
             setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice + FoundProduct.Price)
             setCharges((PreviousCharges) => PreviousCharges + FoundProduct.Price * 0.1)
             setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities + 1)
-            setTotalCost((previousTotalCost) => previousTotalCost + FoundProduct.Price + FoundProduct.Price * 0.1);
+            // setTotalCost((previousTotalCost) => previousTotalCost + FoundProduct.Price + FoundProduct.Price * 0.1);
         } else if (Value === 'decrease') {
             if (FoundProduct.Quantity > 1) {
                 setCartItems([...NewCartItems, { ...FoundProduct, Quantity: FoundProduct.Quantity - 1 }]);
                 setTotalPrice((PreviousTotalPrice) => PreviousTotalPrice - FoundProduct.Price)
                 setCharges((PreviousCharges) => PreviousCharges - FoundProduct.Price * 0.1)
                 setTotalQuantities(PreviousTotalQuantities => PreviousTotalQuantities - 1)
-                setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price - FoundProduct.Price * 0.1);
+                // setTotalCost((previousTotalCost) => previousTotalCost - FoundProduct.Price - FoundProduct.Price * 0.1);
             }
         }
     }
@@ -145,6 +145,16 @@ export const StateContext = ({ children }) => {
         setCharges(0);
         UpdateCartData();
     }
+
+    useEffect(() => {
+        // Calculate the total cost based on the updated CartItems array
+        const updatedTotalCost = CartItems.reduce((acc, item) => {
+            const itemCost = item.Price * item.Quantity + item.Price * item.Quantity * 0.1;
+            return acc + itemCost;
+        }, 0);
+
+        setTotalCost(updatedTotalCost);
+    }, [CartItems]);
 
     return (
         <Context.Provider
