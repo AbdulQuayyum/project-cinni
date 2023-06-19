@@ -58,6 +58,7 @@ function Order(props) {
             deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
             deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('PLMOKN', { maxAge: 60 * 60 * 24 * 7 });
             router.push(`/Order/${data?.OrderID}`)
             // setTimeout(() => {
             //     router.push(`/Order/${data}`)
