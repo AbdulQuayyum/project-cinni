@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Select from 'react-select'
+import { TbStar, TbStarFilled } from 'react-icons/tb'
 
 import { Client } from '@/Utilities/Client';
 import MainLayout from '@/Layout/Main.Layout';
@@ -22,17 +23,26 @@ const Prices = [
     },
 ];
 
-const Ratings = [1, 2, 3, 4, 5];
+const Forms = [
+    {
+        name: "Goods",
+        value: "Goods"
+    },
+    {
+        name: "Services",
+        value: "Services"
+    }
+]
 
 export default function Search() {
     const router = useRouter()
-    const { Category = 'all', Query = 'all', Price = 'all', Rating = 'all', Sort = 'default' } = router.query;
+    const { Category = 'all', Query = 'all', Price = 'all', Form = 'all', Sort = 'default' } = router.query;
     const [state, setState] = useState({ Categories: [], Products: [], Error: '', Loading: true })
 
     const { Loading, Products, Error } = state;
     const [Categories, setCategories] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState(null);
-    const [selectedRating, setSelectedRating] = useState(null)
+    const [selectedForm, setSelectedForm] = useState([])
 
     useEffect(() => {
         const FetchCategories = () => {
@@ -51,6 +61,9 @@ export default function Search() {
                 if (Category !== 'all') {
                     gQuery += ` && Category match "${Category}" `;
                 }
+                if (Form !== 'all') {
+                    gQuery += ` && Form match "${Form}" `;
+                }
                 if (Query !== 'all') {
                     gQuery += ` && Name match "${Query}" `;
                 }
@@ -58,9 +71,6 @@ export default function Search() {
                     const minPrice = Number(Price.split('-')[0]);
                     const maxPrice = Number(Price.split('-')[1]);
                     gQuery += ` && Price >= ${minPrice} && Price <= ${maxPrice}`;
-                }
-                if (Rating !== 'all') {
-                    gQuery += ` && Rating >= ${Number(Rating)} `;
                 }
                 let Order = '';
                 if (Sort !== 'default') {
@@ -81,9 +91,9 @@ export default function Search() {
         }
 
         FetchData()
-    }, [Category, Query, Price, Rating, Sort])
+    }, [Category, Query, Price, Sort])
 
-    const FilterSearch = ({ Category, Sort, SearchQuery, Price, Rating }) => {
+    const FilterSearch = ({ Category, Sort, SearchQuery, Price }) => {
         const path = router.pathname;
         const { query } = router;
         if (SearchQuery) query.SearchQuery = SearchQuery;
@@ -106,9 +116,11 @@ export default function Search() {
     const PriceHandler = (selectedPrice) => {
         FilterSearch({ Price: selectedPrice.value });
     };
-    const RatingHandler = (selectedRating) => {
-        FilterSearch({ Rating: selectedRating });
+    const FormHandler = (selectedForm) => {
+        FilterSearch({ Price: selectedForm.value });
     };
+
+    const FormCategories = [...new Set(AllCategories.map(item => item.form))]
 
     const customStyles = {
         control: (provided) => ({
@@ -128,6 +140,30 @@ export default function Search() {
             <div className='grid grid-cols-3 mt-10'>
                 <div className='flex flex-col px-10 gap-y-4'>
                     <div>
+                        <span className='flex text-[#aaa] mb-2 font-extrabold'>Form of Product</span>
+                        <Select
+                            value={Forms.find((option) => option.value === selectedForm)}
+                            options={Forms}
+                            getOptionLabel={(Forms) => Forms.name}
+                            getOptionValue={(Forms) => Forms.value}
+                            styles={customStyles}
+                            id="Forms"
+                            instanceId="Forms"
+                            onChange={FormHandler}
+                            className='w-full focus:bg-[#aaa]'
+                            placeholder="Select a form of product"
+                            theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#D3D3D3',
+                                    primary: '#aaa',
+                                },
+                            })}
+                        />
+                    </div>
+                    <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Category</span>
                         <Select
                             value={Categories.find((option) => option.name === name)}
@@ -139,7 +175,7 @@ export default function Search() {
                             instanceId="categories"
                             onChange={CategoryHandler}
                             className='w-full focus:bg-[#aaa]'
-                            placeholder="Slect a category"
+                            placeholder="Select a category"
                             theme={(theme) => ({
                                 ...theme,
                                 borderRadius: 0,
@@ -163,31 +199,7 @@ export default function Search() {
                             instanceId="Prices"
                             onChange={PriceHandler}
                             className='w-full focus:bg-[#aaa]'
-                            placeholder="Slect a price range"
-                            theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary25: '#D3D3D3',
-                                    primary: '#aaa',
-                                },
-                            })}
-                        />
-                    </div>
-                    <div>
-                        <span className='flex text-[#aaa] mb-2 font-extrabold'>Ratings</span>
-                        <Select
-                            value={Ratings.find((option) => option)}
-                            options={Ratings}
-                            // getOptionLabel={(Ratings) => Ratings.name}
-                            // getOptionValue={(Ratings) => Ratings.name}
-                            styles={customStyles}
-                            id="Ratings"
-                            instanceId="Ratings"
-                            onChange={RatingHandler}
-                            className='w-full focus:bg-[#aaa]'
-                            placeholder="Slect a rating value"
+                            placeholder="Select a price range"
                             theme={(theme) => ({
                                 ...theme,
                                 borderRadius: 0,

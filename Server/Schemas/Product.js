@@ -32,6 +32,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'Form',
+            title: 'Form',
+            type: 'string',
+        },
+        {
             name: 'Price',
             title: 'Price',
             type: 'number',
