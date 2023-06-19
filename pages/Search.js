@@ -76,7 +76,6 @@ export default function Search() {
                 if (Sort !== 'default') {
                     if (Sort === 'Lowest') Order = '| Order(Price asc)';
                     if (Sort === 'Highest') Order = '| Order(Price Desc)';
-                    if (Sort === 'TopRated') Order = '| Order(Rating Desc)';
                 }
 
                 gQuery += `] ${Order}`;
@@ -91,16 +90,16 @@ export default function Search() {
         }
 
         FetchData()
-    }, [Category, Query, Price, Sort])
+    }, [Category, Query, Price, Form, Sort])
 
-    const FilterSearch = ({ Category, Sort, SearchQuery, Price }) => {
+    const FilterSearch = ({ Category, Sort, SearchQuery, Price, Form }) => {
         const path = router.pathname;
         const { query } = router;
         if (SearchQuery) query.SearchQuery = SearchQuery;
         if (Category) query.Category = Category;
         if (Sort) query.Sort = Sort;
         if (Price) query.Price = Price;
-        if (Rating) query.Rating = Rating;
+        if (Form) query.Form = Form;
 
         router.push({
             pathname: path,
@@ -117,7 +116,7 @@ export default function Search() {
         FilterSearch({ Price: selectedPrice.value });
     };
     const FormHandler = (selectedForm) => {
-        FilterSearch({ Price: selectedForm.value });
+        FilterSearch({ Form: selectedForm.value });
     };
 
     const FormCategories = [...new Set(AllCategories.map(item => item.form))]
