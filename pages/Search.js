@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Select from 'react-select'
-import { TbStar, TbStarFilled } from 'react-icons/tb'
 
+import Spinner from '@/Components/Spinner';
+import Product from './Product';
 import { Client } from '@/Utilities/Client';
 import MainLayout from '@/Layout/Main.Layout';
 import { AllCategories } from '@/Utilities/Data';
@@ -34,6 +35,21 @@ const Forms = [
     }
 ]
 
+const SortList = [
+    {
+        name: "Default",
+        value: "Default"
+    },
+    {
+        name: "Price: Lowest to Highest",
+        value: "Lowest"
+    },
+    {
+        name: "Price: Highest to Lowest",
+        value: "Highest"
+    }
+]
+
 export default function Search() {
     const router = useRouter()
     const { Category = 'all', Query = 'all', Price = 'all', Form = 'all', Sort = 'default' } = router.query;
@@ -43,6 +59,7 @@ export default function Search() {
     const [Categories, setCategories] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState(null);
     const [selectedForm, setSelectedForm] = useState([])
+    const [selectedSort, setSelectedSort] = useState('')
 
     useEffect(() => {
         const FetchCategories = () => {
@@ -109,8 +126,8 @@ export default function Search() {
     const CategoryHandler = (Categories) => {
         FilterSearch({ Category: Categories.name });
     };
-    const SortHandler = (e) => {
-        FilterSearch({ Sort: e.target.value });
+    const SortHandler = (selectedSort) => {
+        FilterSearch({ Sort: selectedSort.value });
     };
     const PriceHandler = (selectedPrice) => {
         FilterSearch({ Price: selectedPrice.value });
@@ -118,8 +135,6 @@ export default function Search() {
     const FormHandler = (selectedForm) => {
         FilterSearch({ Form: selectedForm.value });
     };
-
-    const FormCategories = [...new Set(AllCategories.map(item => item.form))]
 
     const customStyles = {
         control: (provided) => ({
@@ -212,7 +227,53 @@ export default function Search() {
                     </div>
                 </div>
                 <div className='col-span-2'>
-
+                    <div className='flex justify-between'>
+                        <div className=''>
+                            {Products && Products.length !== 0 ? Products.length : 'No'}{' '}
+                            Results
+                            {Query !== 'all' && Query !== '' && ' : ' + Query}
+                            {Price !== 'all' && ' : Price ' + Price}
+                            {(Query !== 'all' && Query !== '') ||
+                                Price !== 'all' ? (
+                                <Button onClick={() => router.push('/Search')}>X</Button>
+                            ) : null}
+                        </div>
+                        <div className=''>
+                            <span className='flex text-[#aaa] mb-2 font-extrabold'>Sort By</span>
+                            <Select
+                                value={SortList.find((option) => option.value === selectedSort)}
+                                options={SortList}
+                                getOptionLabel={(SortList) => SortList.name}
+                                getOptionValue={(SortList) => SortList.value}
+                                styles={customStyles}
+                                id="SortList"
+                                instanceId="SortList"
+                                onChange={SortHandler}
+                                className='w-full max-w-xs focus:bg-[#aaa]'
+                                placeholder="Select a method to sort by"
+                                theme={(theme) => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary25: '#D3D3D3',
+                                        primary: '#aaa',
+                                    },
+                                })}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        {Loading ? (
+                            <Spinner message={'Loading...'} />
+                        ) : (
+                            <div className='products-container'>
+                                {Products && Products.map((product) => (
+                                        <Product key={product._id} product={product} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </MainLayout>
