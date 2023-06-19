@@ -95,8 +95,8 @@ export default function Search() {
             query: query,
         });
     };
-    const CategoryHandler = (value) => {
-        FilterSearch({ Category: value});
+    const CategoryHandler = (Categories) => {
+        FilterSearch({ Category: Categories.name });
     };
     const SortHandler = (e) => {
         FilterSearch({ Sort: e.target.value });
@@ -126,7 +126,7 @@ export default function Search() {
             <div className='grid grid-cols-3 mt-10'>
                 <div>
                     <div>
-                        <span className='price'>Category</span>
+                        <span className='flex font-extrabold'>Category</span>
                         <Select
                             value={Categories.find((option) => option.name === name)}
                             options={Categories}
