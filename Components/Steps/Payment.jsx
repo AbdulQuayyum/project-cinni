@@ -96,8 +96,9 @@ function Payment(props) {
             <div className='flex items-start flex-col max-w-xl w-full gap-y-4 my-6'>
                 <Select
                     value={options.find((option) => option.value === value)}
-                    // value={value}
                     options={options}
+                    id="payment"
+                    instanceId="payment"
                     styles={customStyles}
                     onChange={HandleSelect}
                     className='w-full focus:bg-[#aaa]'
@@ -111,9 +112,6 @@ function Payment(props) {
                             primary: '#aaa',
                         },
                     })}
-
-                // getOptionLabel={(options) => options.label}
-                // getOptionValue={(options) => options.value}
                 />
             </div>
             <div className='flex max-w-xl mt-10 w-full justify-end'>
