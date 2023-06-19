@@ -26,22 +26,26 @@ function OrderHistory() {
 
     useEffect(() => {
         if (!UserProfile) {
-            return router.push('/')
+            router.push('/')
         }
         const FetchOrder = async () => {
             try {
                 dispatch({ type: 'FETCH_REQUEST' });
-                const { data } = await axios.get('/api/Orders/History')
+                const { data } = await axios.get('/api/Orders/History', {
+                    params: {
+                        UserID: UserProfile._id
+                    }
+                })
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (err) {
                 dispatch({ type: 'FETCH_FAIL', payload: GetError(err) });
             }
         }
         FetchOrder()
-    }, [Orders, router, UserProfile])
+    }, [router, UserProfile])
 
-    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#37b400] hover:text-[#37b400]'
-    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#f31700] hover:text-[#f31700]'
+    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white'
+    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white'
 
     return (
         <MainLayout>

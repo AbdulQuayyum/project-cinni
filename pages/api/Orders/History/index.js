@@ -2,13 +2,14 @@ import { Client } from "@/Utilities/Client";
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {
-        const Orders = await Client.fetch(`*[_type == "Order" && User._rev == $UserID]`, {
-            UserID: req.User._id,
-        });
-        res.send(Orders);
-    }
-    else {
-        // res.status(405).json({ message: 'Error fetching data' });
-        console.error(error)
+        const { UserID } = req.query;
+        try {
+            const Orders = await Client.fetch(`*[_type == "Order" && User._ref == '${UserID}']`);
+            res.send(Orders);
+        } catch (error) {
+            res.status(500).json({ message: 'Internal Server Error' });
+        }
+    } else {
+        res.status(405).json({ message: 'Method Not Allowed' });
     }
 }
