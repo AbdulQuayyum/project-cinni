@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import Select from 'react-select'
 
-export default function Payment(props) {
+import UseAuthStore from '@/Store/AuthStore';
+
+function Payment(props) {
+    const { UserProfile } = UseAuthStore()
     const [value, setValue] = useState('')
     const [formValid, setFormValid] = useState(false);
     const { nextStep } = props;
@@ -12,6 +17,9 @@ export default function Payment(props) {
     ]
 
     useEffect(() => {
+        if (!UserProfile) {
+            router.push('/')
+        }
         // Fetch cart data from the server-side
         fetch('/api/Payment')
             .then((response) => response.json())
@@ -98,12 +106,12 @@ export default function Payment(props) {
                         ...theme,
                         borderRadius: 0,
                         colors: {
-                          ...theme.colors,
-                          primary25: '#D3D3D3',
-                          primary: '#aaa',
+                            ...theme.colors,
+                            primary25: '#D3D3D3',
+                            primary: '#aaa',
                         },
-                      })}
-                  
+                    })}
+
                 // getOptionLabel={(options) => options.label}
                 // getOptionValue={(options) => options.value}
                 />
@@ -119,3 +127,5 @@ export default function Payment(props) {
         </div>
     )
 }
+
+export default dynamic(() => Promise.resolve(Payment), { ssr: false });

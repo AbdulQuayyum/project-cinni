@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { toast } from 'react-hot-toast';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
-export default function Information(props) {
+import UseAuthStore from '@/Store/AuthStore';
+
+function Information(props) {
+    const { UserProfile } = UseAuthStore()
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const [landmark, setLandmark] = useState('')
     const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
+        if (!UserProfile) {
+            router.push('/')
+        }
         // Fetch cart data from the server-side
         fetch('/api/Information')
             .then((response) => response.json())
@@ -123,3 +130,5 @@ export default function Information(props) {
         </form>
     )
 }
+
+export default dynamic(() => Promise.resolve(Information), { ssr: false });
