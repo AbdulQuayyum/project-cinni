@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Categories } from '@/Utilities/Data'
+import { AllCategories } from '@/Utilities/Data'
 
 const Category = () => {
     const router = useRouter()
@@ -12,8 +12,8 @@ const Category = () => {
     const activeCategoryStyle = 'border-2 hover:bg-primary border-black px-3 py-2 rounded-full flex items-center gap-2 justify-center cursor-pointer text-black'
     const categoryStyle = 'border-2 hover:bg-primary border-gray-300 px-3 py-2 rounded-full flex items-center gap-2 justify-center cursor-pointer text-black'
 
-    const GoodsCategories = Categories.filter((item) => item?.form === 'goods');
-    const ServicesCategories = Categories.filter((item) => item?.form === 'services');
+    const GoodsCategories = AllCategories.filter((item) => item?.form === 'Goods');
+    const ServicesCategories = AllCategories.filter((item) => item?.form === 'Services');
 
     return (
         <div>

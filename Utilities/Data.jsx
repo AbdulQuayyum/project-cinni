@@ -6,50 +6,50 @@ import { AiOutlineFormatPainter } from 'react-icons/ai'
 import { MdOutlineCarpenter, MdPlumbing } from 'react-icons/md'
 import { LuGlassWater, LuShirt } from 'react-icons/lu'
 
-export const Categories = [
+export const AllCategories = [
     {
-        name: 'food',
-        form: 'goods',
+        name: 'Food',
+        form: 'Goods',
         icon: <IoFastFoodOutline />,
     },
     {
-        name: 'water',
-        form: 'goods',
+        name: 'Water',
+        form: 'Goods',
         icon: <LuGlassWater />,
     },
     {
-        name: 'clothes',
-        form: 'goods',
+        name: 'Clothes',
+        form: 'Goods',
         icon: <LuShirt />,
     },
     {
-        name: 'shoes',
-        form: 'goods',
+        name: 'Shoes',
+        form: 'Goods',
         icon: <GiConverseShoe />,
     },
     {
-        name: 'movers',
-        form: 'services',
+        name: 'Movers',
+        form: 'Services',
         icon: <RiTruckLine />,
     },
     {
-        name: 'gym instructor',
-        form: 'services',
+        name: 'Gym Instructor',
+        form: 'Services',
         icon: <CgGym />,
     },
     {
-        name: 'carpenter',
-        form: 'services',
+        name: 'Carpenter',
+        form: 'Services',
         icon: <MdOutlineCarpenter />,
     },
     {
-        name: 'plumber',
-        form: 'services',
+        name: 'Plumber',
+        form: 'Services',
         icon: <MdPlumbing />,
     },
     {
-        name: 'painter',
-        form: 'services',
+        name: 'Painter',
+        form: 'Services',
         icon: <AiOutlineFormatPainter />,
     },
 ];
