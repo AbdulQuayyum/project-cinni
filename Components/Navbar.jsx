@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 import { toast } from 'react-hot-toast';
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
@@ -13,6 +14,7 @@ import { useStateContext } from '@/Context/StateContext';
 import UseAuthStore from '@/Store/AuthStore';
 
 const Navbar = () => {
+    const router = useRouter();
     const [User, setUser] = useState()
     const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     const [searchValue, setSearchValue] = useState('')
@@ -38,9 +40,8 @@ const Navbar = () => {
             <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
                 <div>
                     {User ? (
-                        <div className="flex items-center gap-5 md:gap-10">
+                        <div className="flex items-center gap-2">
                             {User.Image && (
-                                // <Link href={`/Profile/${User._id}`}>
                                 <div>
                                     <Image
                                         className="rounded-full cursor-pointer"
@@ -51,19 +52,19 @@ const Navbar = () => {
                                         referrerPolicy="no-referrer"
                                     />
                                 </div>
-                                // </Link>
                             )}
-                            {/* <button
+                            <button
                                 type="button"
                                 className="p-3 border-2 rounded-full shadow-md outline-none cursor-pointer "
                                 onClick={() => {
                                     googleLogout()
                                     RemoveUser()
                                     localStorage.clear()
+                                    router.push('/')
                                 }}
                             >
-                                <AiOutlineLogout color="red" fontSize={21} />
-                            </button> */}
+                                <AiOutlineLogout color="red" fontSize={20} />
+                            </button>
                         </div>
                     ) : (
                         <GoogleLogin
