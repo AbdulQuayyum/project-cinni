@@ -44,8 +44,8 @@ function OrderHistory() {
         FetchOrder()
     }, [router, UserProfile])
 
-    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white'
-    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white'
+    const PositiveBtn = 'rounded-full bolder bg-[#90EE90] py-[2px] px-[8px] text-[10px] text-[#013220]'
+    const NegativeBtn = 'rounded-full bolder bg-[#FFCCCB] py-[2px] px-[8px] text-[10px] text-[#8B0000]'
 
     return (
         <MainLayout>

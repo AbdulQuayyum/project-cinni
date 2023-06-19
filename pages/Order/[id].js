@@ -54,14 +54,14 @@ function OrderDetails({ params }) {
         FetchOrder()
     }, [Order, OrderID, router, UserProfile])
 
-    const PositiveBtn = 'rounded-full border-2 border-[#37b400] bold bg-[#37b400] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#37b400] hover:text-[#37b400]'
-    const NegativeBtn = 'rounded-full border-2 border-[#f31700] bold bg-[#f31700] py-1 px-3 text-xs text-white hover:bg-white hover:border-2 hover:border-[#f31700] hover:text-[#f31700]'
+    const PositiveBtn = 'rounded-full bolder bg-[#90EE90] py-[2px] px-[8px] text-[10px] text-[#013220]'
+    const NegativeBtn = 'rounded-full bolder bg-[#FFCCCB] py-[2px] px-[8px] text-[10px] text-[#8B0000]'
 
     const HandlePay = () => { }
 
     return (
         <MainLayout>
-            <span className='price flex justify-center mx-4 !mt-10 mb-4'>Order {OrderID}</span>
+            <span className='price flex justify-center text-center mx-4 !mt-10 mb-4'>Order {OrderID}</span>
             <div className='flex flex-col gap-x-8 md:flex-row justify-around items-center md:items-start w-full'>
                 <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>
