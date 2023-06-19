@@ -31,6 +31,8 @@ export default function Search() {
 
     const { Loading, Products, Error } = state;
     const [Categories, setCategories] = useState([]);
+    const [selectedPrice, setSelectedPrice] = useState(null);
+    const [selectedRating, setSelectedRating] = useState(null)
 
     useEffect(() => {
         const FetchCategories = () => {
@@ -101,11 +103,11 @@ export default function Search() {
     const SortHandler = (e) => {
         FilterSearch({ Sort: e.target.value });
     };
-    const PriceHandler = (e) => {
-        FilterSearch({ Price: e.target.value });
+    const PriceHandler = (selectedPrice) => {
+        FilterSearch({ Price: selectedPrice.value });
     };
-    const RatingHandler = (e) => {
-        FilterSearch({ Rating: e.target.value });
+    const RatingHandler = (selectedRating) => {
+        FilterSearch({ Rating: selectedRating });
     };
 
     const customStyles = {
@@ -124,9 +126,9 @@ export default function Search() {
     return (
         <MainLayout>
             <div className='grid grid-cols-3 mt-10'>
-                <div>
+                <div className='flex flex-col px-10 gap-y-4'>
                     <div>
-                        <span className='flex font-extrabold'>Category</span>
+                        <span className='flex text-[#aaa] mb-2 font-extrabold'>Category</span>
                         <Select
                             value={Categories.find((option) => option.name === name)}
                             options={Categories}
@@ -138,6 +140,54 @@ export default function Search() {
                             onChange={CategoryHandler}
                             className='w-full focus:bg-[#aaa]'
                             placeholder="Slect a category"
+                            theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#D3D3D3',
+                                    primary: '#aaa',
+                                },
+                            })}
+                        />
+                    </div>
+                    <div>
+                        <span className='flex text-[#aaa] mb-2 font-extrabold'>Prices</span>
+                        <Select
+                            value={Prices.find((option) => option.value === selectedPrice)}
+                            options={Prices}
+                            getOptionLabel={(Prices) => Prices.name}
+                            getOptionValue={(Prices) => Prices.value}
+                            styles={customStyles}
+                            id="Prices"
+                            instanceId="Prices"
+                            onChange={PriceHandler}
+                            className='w-full focus:bg-[#aaa]'
+                            placeholder="Slect a price range"
+                            theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#D3D3D3',
+                                    primary: '#aaa',
+                                },
+                            })}
+                        />
+                    </div>
+                    <div>
+                        <span className='flex text-[#aaa] mb-2 font-extrabold'>Ratings</span>
+                        <Select
+                            value={Ratings.find((option) => option)}
+                            options={Ratings}
+                            // getOptionLabel={(Ratings) => Ratings.name}
+                            // getOptionValue={(Ratings) => Ratings.name}
+                            styles={customStyles}
+                            id="Ratings"
+                            instanceId="Ratings"
+                            onChange={RatingHandler}
+                            className='w-full focus:bg-[#aaa]'
+                            placeholder="Slect a rating value"
                             theme={(theme) => ({
                                 ...theme,
                                 borderRadius: 0,
