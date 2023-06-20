@@ -33,7 +33,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar-container flex-wrap items-center justify-between">
+        <div className="navbar-container px-0 sm:px-4 flex-wrap items-center justify-between">
             <div className='logo items-center md:w-full md:max-w-[154px] gap-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
             </div>
