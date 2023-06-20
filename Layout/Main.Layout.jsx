@@ -3,11 +3,11 @@ import Head from 'next/head';
 
 import { BackToTop, Footer, Navbar } from "../Components/Index"
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, Title }) => {
     return (
         <div className="layout">
             <Head>
-                <title>Project Cinni - Your Online Service Assistant</title>
+                <title>{Title ? `Project Cinni || ${Title}` : 'Project Cinni'}</title>
                 <meta
                     name="description"
                     content="Your Online Service Assistant"

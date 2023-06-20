@@ -19,7 +19,7 @@ const ProductDetails = ({ product, products }) => {
     }
 
     return (
-        <MainLayout>
+        <MainLayout Title={'Product ' + Name + ' Page'}>
             <div className="product-detail-container">
                 <div className='product-detail-image-container'>
                     <div className="image-container">

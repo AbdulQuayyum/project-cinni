@@ -48,7 +48,7 @@ function OrderHistory() {
     const NegativeBtn = 'rounded-full font-extrabold bg-[#FFCCCB] py-[2px] px-[8px] text-[10px] text-[#8B0000]'
 
     return (
-        <MainLayout>
+        <MainLayout Title="Order History Page">
             <div className='flex flex-col gap-y-2 px-4 sm:px-8 mt-10 w-full'>
                 <span className='price'>Your Order History</span>
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

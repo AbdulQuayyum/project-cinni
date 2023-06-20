@@ -7,7 +7,7 @@ import Product from './Product';
 
 const Home = ({ products, bannerData }) => {
   return (
-    <MainLayout>
+    <MainLayout Title='Home Page'>
       <HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
       <Category />
       <Features />

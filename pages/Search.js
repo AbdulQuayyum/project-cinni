@@ -159,7 +159,7 @@ export default function Search() {
     };
 
     return (
-        <MainLayout>
+        <MainLayout Title='Search Page'>
             <div className='flex flex-col gap-y-5 sm:grid sm:grid-cols-3 mt-4 sm:mt-10'>
                 <div className='flex flex-col px-10 gap-y-4'>
                     <div>

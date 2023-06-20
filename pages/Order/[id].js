@@ -60,7 +60,7 @@ function OrderDetails({ params }) {
     const HandlePay = () => { }
 
     return (
-        <MainLayout>
+        <MainLayout Title={'Order ' + OrderID + ' Page'}>
             <span className='price flex justify-center text-center mx-4 !mt-10 mb-4'>Order {OrderID}</span>
             <div className='flex flex-col gap-x-8 md:flex-row justify-around items-center md:items-start w-full'>
                 <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
