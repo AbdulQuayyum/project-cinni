@@ -119,16 +119,16 @@ export default function Search() {
 
     const FilterSearch = ({ Category, Sort, SearchQuery, Price, Form }) => {
         const path = router.pathname;
-        const { Query } = router;
-        if (SearchQuery) Query.SearchQuery = SearchQuery;
-        if (Category) Query.Category = Category;
-        if (Sort) Query.Sort = Sort;
-        if (Price) Query.Price = Price;
-        if (Form) Query.Form = Form;
+        const { query } = router;
+        if (SearchQuery) query.SearchQuery = SearchQuery;
+        if (Category) query.Category = Category;
+        if (Sort) query.Sort = Sort;
+        if (Price) query.Price = Price;
+        if (Form) query.Form = Form;
 
         router.push({
             pathname: path,
-            query: Query,
+            query: query,
         });
     };
     const CategoryHandler = (Categories) => {
@@ -141,7 +141,8 @@ export default function Search() {
         FilterSearch({ Price: selectedPrice.value });
     };
     const FormHandler = (selectedForm) => {
-        FilterSearch({ Form: selectedForm.value });
+        const formValue = selectedForm ? selectedForm.value : 'All';
+        FilterSearch({ Form: formValue });      
     };
 
     const customStyles = {
