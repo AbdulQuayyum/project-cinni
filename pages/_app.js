@@ -1,6 +1,7 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import { Analytics } from '@vercel/analytics/react'
 
 import { StateContext } from '@/Context/StateContext';
 // import MainLayout from '@/Layout/Main.Layout';
@@ -15,8 +16,9 @@ const MyApp = ({ Component, pageProps }) => {
     >
       <StateContext>
         {/* <MainLayout> */}
-          <Toaster />
-          <Component {...pageProps} />
+        <Toaster />
+        <Component {...pageProps} />
+        <Analytics />
         {/* </MainLayout> */}
       </StateContext>
     </GoogleOAuthProvider>

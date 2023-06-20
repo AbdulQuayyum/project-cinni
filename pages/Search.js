@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Select from 'react-select'
+import { MdClear } from 'react-icons/md'
 
-import Spinner from '@/Components/Spinner';
+import { Spinner, NoResults } from "@/Components/Index"
 import Product from './Product';
 import { Client } from '@/Utilities/Client';
 import MainLayout from '@/Layout/Main.Layout';
@@ -91,8 +91,8 @@ export default function Search() {
                 }
                 let Order = '';
                 if (Sort !== 'default') {
-                    if (Sort === 'Lowest') Order = '| Order(Price asc)';
-                    if (Sort === 'Highest') Order = '| Order(Price Desc)';
+                    if (Sort === 'Lowest') Order = '| order(Price asc)';
+                    if (Sort === 'Highest') Order = '| order(Price desc)';
                 }
 
                 gQuery += `] ${Order}`;
@@ -228,14 +228,13 @@ export default function Search() {
                 </div>
                 <div className='col-span-2'>
                     <div className='flex justify-between'>
-                        <div className=''>
-                            {Products && Products.length !== 0 ? Products.length : 'No'}{' '}
-                            Results
+                        <div className='flex items-start gap-x-4'>
+                            {Products && Products.length !== 0 ? `${Products.length} Found` : <NoResults text={`No results found`} />}{' '}
                             {Query !== 'all' && Query !== '' && ' : ' + Query}
                             {Price !== 'all' && ' : Price ' + Price}
                             {(Query !== 'all' && Query !== '') ||
                                 Price !== 'all' ? (
-                                <Button onClick={() => router.push('/Search')}>X</Button>
+                                <button onClick={() => router.push('/Search')}>< MdClear size={24} /></button>
                             ) : null}
                         </div>
                         <div className=''>
@@ -269,7 +268,7 @@ export default function Search() {
                         ) : (
                             <div className='products-container'>
                                 {Products && Products.map((product) => (
-                                        <Product key={product._id} product={product} />
+                                    <Product key={product._id} product={product} />
                                 ))}
                             </div>
                         )}
