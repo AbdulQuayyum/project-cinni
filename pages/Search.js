@@ -11,6 +11,10 @@ import { AllCategories } from '@/Utilities/Data';
 
 const Prices = [
     {
+        name: 'All',
+        value: 'All',
+    },
+    {
         name: '₦1 to ₦10',
         value: '1-10',
     },
@@ -25,6 +29,10 @@ const Prices = [
 ];
 
 const Forms = [
+    {
+        name: 'All',
+        value: 'All',
+    },
     {
         name: "Goods",
         value: "Goods"
@@ -52,7 +60,7 @@ const SortList = [
 
 export default function Search() {
     const router = useRouter()
-    const { Category = 'all', Query = 'all', Price = 'all', Form = 'all', Sort = 'default' } = router.query;
+    const { Category = 'All', Query = 'All', Price = 'All', Form = 'All', Sort = 'default' } = router.query;
     const [state, setState] = useState({ Categories: [], Products: [], Error: '', Loading: true })
 
     const { Loading, Products, Error } = state;
@@ -75,16 +83,16 @@ export default function Search() {
         const FetchData = async () => {
             try {
                 let gQuery = '*[_type == "Product"';
-                if (Category !== 'all') {
+                if (Category !== 'All') {
                     gQuery += ` && Category match "${Category}" `;
                 }
-                if (Form !== 'all') {
+                if (Form !== 'All') {
                     gQuery += ` && Form match "${Form}" `;
                 }
-                if (Query !== 'all') {
+                if (Query !== 'All') {
                     gQuery += ` && Name match "${Query}" `;
                 }
-                if (Price !== 'all') {
+                if (Price !== 'All') {
                     const minPrice = Number(Price.split('-')[0]);
                     const maxPrice = Number(Price.split('-')[1]);
                     gQuery += ` && Price >= ${minPrice} && Price <= ${maxPrice}`;
@@ -111,16 +119,16 @@ export default function Search() {
 
     const FilterSearch = ({ Category, Sort, SearchQuery, Price, Form }) => {
         const path = router.pathname;
-        const { query } = router;
-        if (SearchQuery) query.SearchQuery = SearchQuery;
-        if (Category) query.Category = Category;
-        if (Sort) query.Sort = Sort;
-        if (Price) query.Price = Price;
-        if (Form) query.Form = Form;
+        const { Query } = router;
+        if (SearchQuery) Query.SearchQuery = SearchQuery;
+        if (Category) Query.Category = Category;
+        if (Sort) Query.Sort = Sort;
+        if (Price) Query.Price = Price;
+        if (Form) Query.Form = Form;
 
         router.push({
             pathname: path,
-            query: query,
+            query: Query,
         });
     };
     const CategoryHandler = (Categories) => {
@@ -156,6 +164,7 @@ export default function Search() {
                     <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Form of Product</span>
                         <Select
+                            defaultValue={Prices[0]}
                             value={Forms.find((option) => option.value === selectedForm)}
                             options={Forms}
                             getOptionLabel={(Forms) => Forms.name}
@@ -180,6 +189,7 @@ export default function Search() {
                     <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Category</span>
                         <Select
+                            defaultValue={Prices[0]}
                             value={Categories.find((option) => option.name === name)}
                             options={Categories}
                             getOptionLabel={(Categories) => Categories.name}
@@ -204,6 +214,7 @@ export default function Search() {
                     <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Prices</span>
                         <Select
+                            defaultValue={Prices[0]}
                             value={Prices.find((option) => option.value === selectedPrice)}
                             options={Prices}
                             getOptionLabel={(Prices) => Prices.name}
@@ -229,17 +240,17 @@ export default function Search() {
                 <div className='col-span-2'>
                     <div className='flex justify-between'>
                         <div className='flex items-start gap-x-4'>
-                            {Products && Products.length !== 0 ? `${Products.length} Found` : <NoResults text={`No results found`} />}{' '}
-                            {Query !== 'all' && Query !== '' && ' : ' + Query}
-                            {Price !== 'all' && ' : Price ' + Price}
-                            {(Query !== 'all' && Query !== '') ||
-                                Price !== 'all' ? (
+                            {Products && Products.length !== 0 ? `${Products.length} Found` : <NoResults text={`No results found`} />}
+                            {Query !== 'All' && Query !== '' && ' : ' + Query}
+                            {Price !== 'All' && ' : Price ' + Price}
+                            {(Query !== 'All' && Query !== '') ||  Price !== 'All' ? (
                                 <button onClick={() => router.push('/Search')}>< MdClear size={24} /></button>
                             ) : null}
                         </div>
                         <div className=''>
                             <span className='flex text-[#aaa] mb-2 font-extrabold'>Sort By</span>
                             <Select
+                                defaultValue={Prices[0]}
                                 value={SortList.find((option) => option.value === selectedSort)}
                                 options={SortList}
                                 getOptionLabel={(SortList) => SortList.name}
