@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 import Select from 'react-select'
 import { MdClear } from 'react-icons/md'
 
-import { Spinner, NoResults } from "@/Components/Index"
-import Product from './Product';
+import { Spinner, NoResults, Product } from "@/Components/Index"
 import { Client } from '@/Utilities/Client';
 import MainLayout from '@/Layout/Main.Layout';
 import { AllCategories } from '@/Utilities/Data';

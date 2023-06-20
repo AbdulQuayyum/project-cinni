@@ -2,8 +2,7 @@ import React from 'react';
 
 import MainLayout from '@/Layout/Main.Layout';
 import { Client } from '@/Utilities/Client';
-import { Category, Features, FooterBanner, HeroBanner } from '@/Components/Index';
-import Product from './Product';
+import { Category, Features, FooterBanner, HeroBanner, Product } from '@/Components/Index';
 
 const Home = ({ products, bannerData }) => {
   return (

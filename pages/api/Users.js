@@ -1,4 +1,4 @@
-import { Client } from '../../../Utilities/Client'
+import { Client } from "@/Utilities/Client";
 
 export default async function handler(req, res) {
     const Query = `*[_type == "User"]`;

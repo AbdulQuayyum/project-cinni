@@ -3,12 +3,11 @@ import { TbMinus, TbPlus, TbStar, TbStarFilled } from 'react-icons/tb'
 
 import MainLayout from '@/Layout/Main.Layout';
 import { Client, UrlFor } from '@/Utilities/Client';
-import Product from '../Product';
+import { Product } from '@/Components/Index';
 import { useStateContext } from '@/Context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
     const { Image, Name, Details, Price, NumReviews, Rating, Category } = product;
-    // console.log(product)
     const [index, setIndex] = useState(0)
     const { DecreaseQuantity, IncreaseQuantity, OnAdd, Qty, setShowCart } = useStateContext()
 
@@ -26,7 +25,7 @@ const ProductDetails = ({ product, products }) => {
                         <img src={UrlFor(Image && Image[index])} className="product-detail-image" />
                     </div>
                     <div className="small-images-container">
-                        {Image?.map((item, i) => (
+                        {Image && Image?.map((item, i) => (
                             <img
                                 key={i}
                                 src={UrlFor(item)}
