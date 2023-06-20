@@ -1189,18 +1189,22 @@ span.text-gray {
     }
 }
 
-.onboard {
+.onboard::-webkit-scrollbar {
+    width: 0px;
+  }
+
+/* .onboard {
     min-height: calc(100vh - 244px);
     justify-content: center;
-}
+} */
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .onboard {
         min-height: 100%;
         margin-top: 1rem;
         margin-bottom: 4rem;
     }
-}
+} */
 
 @media (max-width: 900px) {
     .auth-layout {

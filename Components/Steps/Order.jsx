@@ -85,7 +85,7 @@ function Order(props) {
     }, [])
 
     return (
-        <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
+        <div className='pt-8 flex flex-col items-center w-full'>
             <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                 <span className='price'>Confirm your order.</span>
                 <div className='flex flex-col gap-y-2 w-auto sm:w-full mx-2 py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>

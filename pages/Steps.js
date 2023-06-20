@@ -14,12 +14,12 @@ export default function Steps(props) {
         });
 
     return (
-        <StepsLayout>
+        <StepsLayout Title='Odering Process'>
             <StepWizard
-                isHashEnabled
+                // isHashEnabled
                 nav={<StepsNavbar />}
                 instance={setInstance}
-                className="relative flex flex-col w-full items-center pt-0 sm:pt-40 min-h-screen"
+                className="relative flex flex-col w-full items-center pt-0 sm:pt-40"
             >
                 <Information hashKey={"one"} />
                 <Payment hashKey={"two"} />
