@@ -481,7 +481,7 @@ span.text-gray {
     margin-top: 10px;
     margin-top: 40px;
     text-transform: uppercase;
-    background-color: #aaa;
+    background-color: #aaa !important;
     color: #fff;
     cursor: pointer;
     transform: scale(1, 1);
