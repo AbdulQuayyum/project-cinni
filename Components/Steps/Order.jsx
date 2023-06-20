@@ -75,6 +75,9 @@ function Order(props) {
     }
 
     useEffect(() => {
+        if (!UserProfile) {
+            router.push('/')
+        }
         if (NewAddress === "") {
             props.goToStep(1)
         } if (NewPayment === "") {

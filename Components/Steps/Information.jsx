@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import UseAuthStore from '@/Store/AuthStore';
 
 function Information(props) {
+    const router = useRouter();
     const { UserProfile } = UseAuthStore()
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
