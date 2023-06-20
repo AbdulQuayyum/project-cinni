@@ -89,7 +89,7 @@ function Payment(props) {
     };
 
     return (
-        <div className='pt-8 sm:pt-20 flex flex-col items-center w-full'>
+        <div className='pt-8 px-4 sm:pt-20 flex flex-col items-center w-full'>
             <div className="my-4 flex justify-start max-w-xl w-full">
                 <span className='price'>Choose a payment method.</span>
             </div>

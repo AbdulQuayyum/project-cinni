@@ -77,7 +77,7 @@ function Information(props) {
     }
 
     return (
-        <form className='pt-8 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
+        <form className='pt-8 px-4 sm:pt-20 flex flex-col items-center w-full' onSubmit={HandleSubmit}>
             <div className="my-4 flex justify-start max-w-xl w-full">
                 <span className='price'>Fill your information.</span>
             </div>
