@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { getCookie, deleteCookie } from 'cookies-next';
 
+import { SendEmail } from '@/pages/api/Email';
 import UseAuthStore from '@/Store/AuthStore';
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
@@ -50,6 +49,23 @@ function Order(props) {
                 },
             }
             )
+            await SendEmail({
+                Charges: Charges,
+                TotalPrice: TotalPrice,
+                TotalCost: TotalCost,
+                PaymentMethod: NewPayment.value,
+                ShippingAddress: {
+                    Address: NewAddress.address,
+                    Landmark: NewAddress.landmark,
+                    Phone: NewAddress.phone,
+                },
+                OrderItems: CartItems,
+                UserName: UserProfile?.UserName,
+                User: {
+                    _type: 'reference',
+                    _ref: UserProfile._id,
+                },
+            })
             setLoading(false)
             ClearCart()
             deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
