@@ -4,9 +4,9 @@ const MESSAGE_FIELDS = {
   UserName: "User",
   UserEmail: "User Email Address",
   Phone: "User Contact Number",
-  OrderProductName: "Name of Product Ordered",
-  OrderProductQuantity: "Quantity of Product Ordered",
-  OrderProductPrice: "Price of Product Ordered",
+  // OrderProductName: "Name of Product Ordered",
+  // OrderProductQuantity: "Quantity of Product Ordered",
+  // OrderProductPrice: "Price of Product Ordered",
   PaymentMethod: "Preferred Method of Payment",
   TotalPrice: "Total Price of Product Ordered",
   Charges: "Additional Charges on Product Ordered",
@@ -34,7 +34,7 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
-    if (!data || !data.Charges || !data.TotalPrice || !data.PaymentMethod || !data.ShippingAddress || !data.OrderItems || !data.UserName) {
+    if (!data || !data.UserName || !data.UserEmail || !data.Phone || !data.PaymentMethod || !data.TotalPrice || !data.Charges || !data.TotalCost || !data.Address || !data.Landmark) {
       return res.status(400).send({ message: "Bad request" });
     }
 
