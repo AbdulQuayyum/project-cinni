@@ -19,7 +19,7 @@ const MainLayout = ({ children, Title }) => {
                 <Navbar />
             </header>
             <div className="flex gap-6">
-                <div className="h-[92vh] overflow-hidden lg:hover:overflow-auto">
+                <div className="h-[90vh] overflow-hidden lg:hover:overflow-auto">
                     <Sidebar />
                 </div>
                 <main className="overflow-auto h-[88vh] flex-1 main-container">
