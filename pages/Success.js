@@ -6,10 +6,10 @@ import { useStateContext } from '@/Context/StateContext';
 import { RunFireworks } from '@/Utilities/RunFireworks';
 
 const Success = () => {
-    const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+    const { setCartItems, setTotalPrice, setTotalQuantities, ClearCart } = useStateContext();
 
     useEffect(() => {
-        localStorage.clear();
+        ClearCart()
         setCartItems([]);
         setTotalPrice(0);
         setTotalQuantities(0);
