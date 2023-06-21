@@ -126,11 +126,21 @@ function OrderDetails({ params }) {
                             <span>Total Cost:</span>
                             <span className="">₦{TotalCost}</span>
                         </div>
-                        <button
-                            onClick={HandlePay}
-                            className='rounded-full border mt-10 border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
-                            Pay now
-                        </button>
+                        {PaymentMethod === 'nline' ? (
+                            <button
+                                onClick={HandlePay}
+                                className='rounded-full border mt-10 border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
+                                Pay now
+                            </button>
+                        ) : (
+                            <div className='flex flex-col justify-center items-center'>
+                                <span className='text-[#aaa] text-base font-extrabold'>Your Order is on the way</span>
+                                <Link href={`/TrackOrder/${OrderID}`}>
+                                    <span className='text-[#aaa] text-sm font-extrabold underline'>Click Here to track it</span>
+                                </Link>
+                            </div>
+                        )
+                        }
                     </div>
                 </div>
             </div>
