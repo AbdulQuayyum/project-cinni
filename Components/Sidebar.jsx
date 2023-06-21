@@ -20,14 +20,14 @@ const Sidebar = () => {
                 {showSidebar ? <TbChevronsLeft /> : <BsWindowSidebar />}
             </div>
             {showSidebar && (
-                <div className="xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3 ">
-                    <div className="xl:border-b-2 border-gray-200 xl:pb-4">
+                <div className="lg:w-40 w-16 flex flex-col justify-start mb-10 p-3 ">
+                    <div className="border-gray-200 xl:pb-4">
                         <Link href="/">
                             <div className={pathname === '/' ? activeLink : normalLink}>
                                 <p className="text-2xl">
                                     <RxDashboard />
                                 </p>
-                                <span className="capitalize text-xl hidden xl:block">
+                                <span className="capitalize text-xl hidden lg:block">
                                     Home
                                 </span>
                             </div>
