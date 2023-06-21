@@ -126,7 +126,7 @@ function OrderDetails({ params }) {
                             <span>Total Cost:</span>
                             <span className="">₦{TotalCost}</span>
                         </div>
-                        {PaymentMethod === 'nline' ? (
+                        {PaymentMethod === 'online' ? (
                             <button
                                 onClick={HandlePay}
                                 className='rounded-full border mt-10 border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'>
@@ -139,8 +139,7 @@ function OrderDetails({ params }) {
                                     <span className='text-[#aaa] text-sm font-extrabold underline'>Click Here to track it</span>
                                 </Link>
                             </div>
-                        )
-                        }
+                        )}
                     </div>
                 </div>
             </div>
