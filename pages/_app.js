@@ -7,6 +7,8 @@ import { StateContext } from '@/Context/StateContext';
 // import MainLayout from '@/Layout/Main.Layout';
 import '../Styles/BackToTop.css'
 import '../Styles/Index.css'
+import '../Styles/Navbar.css'
+import '../Styles/StepsLayout.css'
 import '../Styles/Style.css'
 
 const MyApp = ({ Component, pageProps }) => {

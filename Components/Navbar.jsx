@@ -38,12 +38,12 @@ const Navbar = () => {
         <div className="navbar-container px-4 py-2 flex-wrap items-center justify-between">
             <div className='logo items-center flex gap-x-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
-                {User ? (
+                {/* {User ? (
                     <div className='flex gap-x-4'>
                         <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
                         <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
                     </div>
-                ) : (<> </>)}
+                ) : (<> </>)} */}
             </div>
             <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
                 <div>
@@ -89,7 +89,21 @@ const Navbar = () => {
                     <HiOutlineShoppingCart size={32} />
                     <span className="cart-item-qty">{TotalQuantities}</span>
                 </button>
-
+                <div className="gpt3__navbar-menu">
+                    {toggleMenu
+                        ? <RiCloseLine color="#aaa" size={27} onClick={() => setToggleMenu(false)} />
+                        : <RiMenu3Line color="#aaa" size={27} onClick={() => setToggleMenu(true)} />}
+                    {toggleMenu && (
+                        <div className="gpt3__navbar-menu_container scale-up-center">
+                            {User ? (
+                                <div className='flex gap-x-4'>
+                                    <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
+                                    <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                                </div>
+                            ) : (<> </>)}
+                        </div>
+                    )}
+                </div>
                 {ShowCart && <Cart />}
             </div>
             <div className="relative navbar-2 lg:mt-0 mt-6 w-full justify-center lg:order-1 lg:w-auto lg:py-0">
@@ -111,21 +125,6 @@ const Navbar = () => {
                     </button>
                 </form>
             </div>
-            {/* <div className="gpt3__navbar-menu">
-                {toggleMenu
-                    ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
-                    : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />}
-                {toggleMenu && (
-                    <div className="gpt3__navbar-menu_container scale-up-center">
-                        {User ? (
-                            <div className='flex gap-x-4'>
-                                <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
-                                <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
-                            </div>
-                        ) : (<> </>)}
-                    </div>
-                )}
-            </div> */}
         </div>
     )
 }
