@@ -26,7 +26,7 @@ const Category = () => {
                     <span className='price'>Goods</span>
                     <div className="flex justify-center gap-3 flex-wrap">
                         {GoodsCategories?.map((item) => (
-                            <Link href={`/?PCategory=${item?.name}`} key={item?.name}>
+                            <Link href={`/Search/?Category=${item?.name}`} key={item?.name}>
                                 <div
                                     className={PCategory === item?.name ? activeCategoryStyle : categoryStyle}
                                 >
@@ -45,7 +45,7 @@ const Category = () => {
                     <span className='price'>Services</span>
                     <div className="flex justify-center gap-3 flex-wrap">
                         {ServicesCategories?.map((item) => (
-                            <Link href={`/?PCategory=${item?.name}`} key={item?.name}>
+                            <Link href={`/Search/?Category=${item?.name}`} key={item?.name}>
                                 <div
                                     className={PCategory === item?.name ? activeCategoryStyle : categoryStyle}
                                 >

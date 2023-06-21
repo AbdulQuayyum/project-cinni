@@ -160,7 +160,7 @@ export default function Search() {
     return (
         <MainLayout Title='Search Page'>
             <div className='flex flex-col gap-y-5 sm:grid sm:grid-cols-3 mt-4 sm:mt-10'>
-                <div className='flex flex-col px-10 gap-y-4'>
+                <div className='flex flex-col px-4 gap-y-4'>
                     <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Form of Product</span>
                         <Select
@@ -236,18 +236,7 @@ export default function Search() {
                             })}
                         />
                     </div>
-                </div>
-                <div className='flex px-10 flex-col sm:block sm:justify-between justify-center sm:col-span-2'>
-                    <div className='flex flex-col justify-center sm:flex-row sm:justify-between'>
-                        <div className='flex items-start gap-x-4 price'>
-                            {Products && Products.length !== 0 ? `${Products.length} Found` : <NoResults text={`No results found`} />}
-                            {Query !== 'All' && Query !== '' && ' : ' + Query}
-                            {Price !== 'All' && ' : Price ' + Price}
-                            {(Query !== 'All' && Query !== '') ||  Price !== 'All' ? (
-                                <button onClick={() => router.push('/Search')}>< MdClear size={24} /></button>
-                            ) : null}
-                        </div>
-                        <div className=''>
+                    <div className=''>
                             <span className='flex text-[#aaa] mb-2 font-extrabold'>Sort By</span>
                             <Select
                                 defaultValue={Prices[0]}
@@ -259,7 +248,7 @@ export default function Search() {
                                 id="SortList"
                                 instanceId="SortList"
                                 onChange={SortHandler}
-                                className='w-full max-w-5xl sm:max-w-xs focus:bg-[#aaa]'
+                                className='w-full focus:bg-[#aaa]'
                                 placeholder="Select a method to sort by"
                                 theme={(theme) => ({
                                     ...theme,
@@ -271,6 +260,17 @@ export default function Search() {
                                     },
                                 })}
                             />
+                        </div>
+                </div>
+                <div className='flex px-10 flex-col sm:block sm:justify-between justify-center sm:col-span-2'>
+                    <div className='flex justify-center'>
+                        <div className='flex price'>
+                            {Products && Products.length !== 0 ? `${Products.length} Found` : <NoResults text={`No results found`} />}
+                            {Query !== 'All' && Query !== '' && ' : ' + Query}
+                            {Price !== 'All' && ' : Price ' + Price}
+                            {(Query !== 'All' && Query !== '') ||  Price !== 'All' ? (
+                                <button onClick={() => router.push('/Search')}>< MdClear size={24} /></button>
+                            ) : null}
                         </div>
                     </div>
                     <div>
