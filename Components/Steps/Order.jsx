@@ -49,23 +49,24 @@ function Order(props) {
                 },
             }
             )
-            await SendEmail({
-                Charges: Charges,
-                TotalPrice: TotalPrice,
-                TotalCost: TotalCost,
-                PaymentMethod: NewPayment.value,
-                ShippingAddress: {
+            try {
+                await SendEmail({
+                    Charges: Charges,
+                    TotalPrice: TotalPrice,
+                    TotalCost: TotalCost,
+                    PaymentMethod: NewPayment.value,
                     Address: NewAddress.address,
                     Landmark: NewAddress.landmark,
                     Phone: NewAddress.phone,
-                },
-                OrderItems: CartItems,
-                UserName: UserProfile?.UserName,
-                User: {
-                    _type: 'reference',
-                    _ref: UserProfile._id,
-                },
-            })
+                    OrderProductName: CartItems.Name,
+                    OrderProductQuantity: CartItems.Quantity,
+                    OrderProductPrice: CartItems.Price,
+                    UserName: UserProfile?.UserName,
+                    UserEmail: UserProfile?.Email,
+                })
+            } catch (e) {
+                console.error(e)
+            }
             setLoading(false)
             ClearCart()
             deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
