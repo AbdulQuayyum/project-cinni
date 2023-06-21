@@ -135,7 +135,7 @@ function OrderDetails({ params }) {
                         ) : (
                             <div className='flex flex-col justify-center items-center'>
                                 <span className='text-[#aaa] text-base font-extrabold'>Your Order is on the way</span>
-                                <Link href={'/TrackOrder'}>
+                                <Link href={`/TrackOrder/${OrderID}`}>
                                     <span className='text-[#aaa] text-sm font-extrabold underline'>Click Here to track it</span>
                                 </Link>
                             </div>
