@@ -89,19 +89,19 @@ const Navbar = () => {
                     <HiOutlineShoppingCart size={32} />
                     <span className="cart-item-qty">{TotalQuantities}</span>
                 </button>
-                <div className="gpt3__navbar-menu">
+                <div className="cursor-pointer">
                     {toggleMenu
-                        ? <RiCloseLine color="#aaa" size={27} onClick={() => setToggleMenu(false)} />
-                        : <RiMenu3Line color="#aaa" size={27} onClick={() => setToggleMenu(true)} />}
+                        ? <RiCloseLine color="#aaa" size={32} onClick={() => setToggleMenu(false)} />
+                        : <RiMenu3Line color="#aaa" size={32} onClick={() => setToggleMenu(true)} />}
                     {toggleMenu && (
-                        <div className="gpt3__navbar-menu_container scale-up-center">
+                        <>
                             {User ? (
-                                <div className='flex gap-x-4'>
-                                    <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
-                                    <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                                <div className='navbar-menu-container scale-up-center'>
+                                    <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/Products">All Products</Link>
+                                    <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/OrderHistory">Order History</Link>
                                 </div>
                             ) : (<> </>)}
-                        </div>
+                        </>
                     )}
                 </div>
                 {ShowCart && <Cart />}
