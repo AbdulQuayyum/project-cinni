@@ -19,7 +19,7 @@ const ProductDetails = ({ product, products }) => {
 
     return (
         <MainLayout Title={'Product ' + Name + ' Page'}>
-            <div className="product-detail-container">
+            <div className="product-detail-container mt-36 lg:mt-24">
                 <div className='product-detail-image-container'>
                     <div className="image-container">
                         <img src={UrlFor(Image && Image[index])} className="product-detail-image" />

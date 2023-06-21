@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select'
 import { MdClear } from 'react-icons/md'
@@ -159,7 +159,7 @@ export default function Search() {
 
     return (
         <MainLayout Title='Search Page'>
-            <div className='flex flex-col gap-y-5 sm:grid sm:grid-cols-3 mt-4 sm:mt-10'>
+            <div className='flex flex-col gap-y-5 sm:grid sm:grid-cols-3 mt-36 lg:mt-24'>
                 <div className='flex flex-col px-4 gap-y-4'>
                     <div>
                         <span className='flex text-[#aaa] mb-2 font-extrabold'>Form of Product</span>

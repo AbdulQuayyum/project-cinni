@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
@@ -61,7 +61,7 @@ function OrderDetails({ params }) {
 
     return (
         <MainLayout Title={'Order ' + OrderID + ' Page'}>
-            <span className='price flex justify-center text-center mx-4 !mt-10 mb-4'>Order {OrderID}</span>
+            <span className='price flex justify-center text-center mx-4 mt-36 lg:mt-24 mb-4'>Order {OrderID}</span>
             <div className='flex flex-col gap-x-8 md:flex-row justify-around items-center md:items-start w-full'>
                 <div className="my-4 gap-y-6 flex flex-col w-full max-w-xl">
                     <div className='flex flex-col gap-y-2 w-full py-2 sm:py-6 px-4 sm:px-6 border border-gray-200 rounded-lg'>

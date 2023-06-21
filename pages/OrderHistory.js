@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import axios from 'axios';
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
