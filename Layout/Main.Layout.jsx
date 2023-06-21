@@ -15,7 +15,7 @@ const MainLayout = ({ children, Title }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="/logo.png" />
             </Head>
-            <header>
+            <header className='w-full justify-center flex'>
                 <Navbar />
             </header>
             <main className="main-container">

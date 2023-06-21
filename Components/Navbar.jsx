@@ -12,10 +12,12 @@ import { Cart } from "./Index"
 import { CreateOrGetUser } from '@/Utilities/CreateOrGetUser';
 import { useStateContext } from '@/Context/StateContext';
 import UseAuthStore from '@/Store/AuthStore';
+import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 
 const Navbar = () => {
     const router = useRouter();
     const [User, setUser] = useState()
+    const [toggleMenu, setToggleMenu] = useState(false);
     const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     const [searchValue, setSearchValue] = useState('')
     const { UserProfile, AddUser, RemoveUser } = UseAuthStore()
@@ -37,7 +39,10 @@ const Navbar = () => {
             <div className='logo items-center flex gap-x-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
                 {User ? (
-                    <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                    <div className='flex gap-x-4'>
+                        <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
+                        <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                    </div>
                 ) : (<> </>)}
             </div>
             <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
@@ -106,6 +111,21 @@ const Navbar = () => {
                     </button>
                 </form>
             </div>
+            {/* <div className="gpt3__navbar-menu">
+                {toggleMenu
+                    ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+                    : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />}
+                {toggleMenu && (
+                    <div className="gpt3__navbar-menu_container scale-up-center">
+                        {User ? (
+                            <div className='flex gap-x-4'>
+                                <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
+                                <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                            </div>
+                        ) : (<> </>)}
+                    </div>
+                )}
+            </div> */}
         </div>
     )
 }
