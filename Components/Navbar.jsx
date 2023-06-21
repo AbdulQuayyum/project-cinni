@@ -89,27 +89,27 @@ const Navbar = () => {
                     <HiOutlineShoppingCart size={32} />
                     <span className="cart-item-qty">{TotalQuantities}</span>
                 </button>
-                <div className="cursor-pointer">
-                    {toggleMenu
-                        ? <RiCloseLine color="#aaa" size={32} onClick={() => setToggleMenu(false)} />
-                        : <RiMenu3Line color="#aaa" size={32} onClick={() => setToggleMenu(true)} />}
-                    {toggleMenu && (
-                        <>
-                            {User ? (
+                {User ? (
+                    <div className="">
+                        {toggleMenu
+                            ? <RiCloseLine className='cursor-pointer' color="#aaa" size={32} onClick={() => setToggleMenu(false)} />
+                            : <RiMenu3Line className='cursor-pointer' color="#aaa" size={32} onClick={() => setToggleMenu(true)} />}
+                        {toggleMenu && (
+                            <>
                                 <div className='navbar-menu-container scale-up-center'>
                                     <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/Products">All Products</Link>
                                     <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/OrderHistory">Order History</Link>
                                 </div>
-                            ) : (<> </>)}
-                        </>
-                    )}
-                </div>
+                            </>
+                        )}
+                    </div>
+                ) : (<> </>)}
                 {ShowCart && <Cart />}
             </div>
             <div className="relative navbar-2 lg:mt-0 mt-6 w-full justify-center lg:order-1 lg:w-auto lg:py-0">
                 <form
                     onSubmit={HandleSearch}
-                    className="bg-transparent static top-10 -left-20"
+                    className="bg-transparent top-10 -left-20"
                 >
                     <input
                         value={searchValue}
