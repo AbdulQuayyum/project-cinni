@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { BackToTop, Footer, Navbar } from "../Components/Index"
+import { BackToTop, Footer, Navbar, Sidebar } from "../Components/Index"
 
 const MainLayout = ({ children, Title }) => {
     return (
@@ -18,9 +18,14 @@ const MainLayout = ({ children, Title }) => {
             <header>
                 <Navbar />
             </header>
-            <main className="main-container">
-                {children}
-            </main>
+            <div className="flex">
+                <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
+                    <Sidebar />
+                </div>
+                <main className="overflow-auto h-[88vh] flex-1 main-container">
+                    {children}
+                </main>
+            </div>
             <footer>
                 <Footer />
                 <BackToTop />
