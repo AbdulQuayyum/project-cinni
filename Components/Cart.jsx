@@ -74,7 +74,7 @@ const Cart = () => {
                                             <span className="minus" onClick={() => ToggleCartItemQuantity(item._id, 'decrease')}>
                                                 <TbMinus />
                                             </span>
-                                            <span className="num" onClick="">{item?.Quantity}</span>
+                                            <span className="num">{item?.Quantity}</span>
                                             <span className="plus" onClick={() => ToggleCartItemQuantity(item._id, 'increase')}><TbPlus /></span>
                                         </div>
                                     </div>

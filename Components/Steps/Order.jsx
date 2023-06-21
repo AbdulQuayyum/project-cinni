@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { getCookie, deleteCookie } from 'cookies-next';
 
+import { SendEmail } from '@/pages/api/Email';
 import UseAuthStore from '@/Store/AuthStore';
 import { useStateContext } from '@/Context/StateContext'
 import { UrlFor } from '@/Utilities/Client'
@@ -50,16 +49,30 @@ function Order(props) {
                 },
             }
             )
+            await SendEmail({
+                Charges: Charges,
+                TotalPrice: TotalPrice,
+                TotalCost: TotalCost,
+                PaymentMethod: NewPayment.value,
+                Address: NewAddress.address,
+                Landmark: NewAddress.landmark,
+                Phone: NewAddress.phone,
+                // OrderProductName: CartItems.Name,
+                // OrderProductQuantity: CartItems.Quantity,
+                // OrderProductPrice: CartItems.Price,
+                UserName: UserProfile?.UserName,
+                UserEmail: UserProfile?.Email,
+            })
             setLoading(false)
-            ClearCart()
-            deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
-            deleteCookie('PLMOKN', { maxAge: 60 * 60 * 24 * 7 });
-            router.push(`/Order/${data?.OrderID}`)
+            // ClearCart()
+            // deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            // deleteCookie('PLMOKN', { maxAge: 60 * 60 * 24 * 7 });
+            // router.push(`/Order/${data?.OrderID}`)
             // setTimeout(() => {
             //     router.push(`/Order/${data}`)
             // }, 3000);
