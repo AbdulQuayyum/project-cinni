@@ -38,7 +38,14 @@ a {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    position: relative;
+    position: fixed;
+    z-index: 99999999;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .marquee-text {
@@ -572,20 +579,17 @@ span.text-gray {
 .price {
     font-weight: 700;
     font-size: 26px;
-    margin-top: 10px;
     color: #aaa;
 }
 
 @media screen and (max-width:600px) {
     .price {
-        padding: 0 10px;
         font-weight: 700;
         font-size: 20px;
-        margin-top: 10px;
         color: #aaa;
     }
 
-    .hero-banner-container  {
+    .hero-banner-container {
         height: 100%;
         padding: 50px 40px;
     }
@@ -831,7 +835,7 @@ span.text-gray {
 
     button {
         /* margin-top: 90px; */
-        z-index: 10000;
+        z-index: 100;
     }
 
     .desc {
@@ -1191,7 +1195,7 @@ span.text-gray {
 
 .onboard::-webkit-scrollbar {
     width: 0px;
-  }
+}
 
 /* .onboard {
     min-height: calc(100vh - 244px);

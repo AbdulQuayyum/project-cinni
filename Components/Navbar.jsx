@@ -33,9 +33,12 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar-container px-0 sm:px-4 flex-wrap items-center justify-between">
-            <div className='logo items-center md:w-full md:max-w-[154px] gap-4 navbar-1'>
+        <div className="navbar-container px-4 py-2 flex-wrap items-center justify-between">
+            <div className='logo items-center flex gap-x-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
+                {User ? (
+                    <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                ) : (<> </>)}
             </div>
             <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
                 <div>
