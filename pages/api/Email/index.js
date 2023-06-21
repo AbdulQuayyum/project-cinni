@@ -1,5 +1,5 @@
 export const SendEmail = async (data) =>
-    fetch("/api/Email/Email", {
+    fetch("/api/Email/Model", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json", Accept: "application/json" },
