@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { BackToTop, Footer, Navbar, Sidebar } from "../Components/Index"
+import { BackToTop, Footer, Navbar, Sidebar } from "@/Components/Index"
 
 const MainLayout = ({ children, Title }) => {
     return (
