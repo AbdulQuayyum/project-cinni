@@ -12,10 +12,12 @@ import { Cart } from "./Index"
 import { CreateOrGetUser } from '@/Utilities/CreateOrGetUser';
 import { useStateContext } from '@/Context/StateContext';
 import UseAuthStore from '@/Store/AuthStore';
+import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 
 const Navbar = () => {
     const router = useRouter();
     const [User, setUser] = useState()
+    const [toggleMenu, setToggleMenu] = useState(false);
     const { ShowCart, setShowCart, TotalQuantities } = useStateContext()
     const [searchValue, setSearchValue] = useState('')
     const { UserProfile, AddUser, RemoveUser } = UseAuthStore()
@@ -33,9 +35,15 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar-container px-0 sm:px-4 flex-wrap items-center justify-between">
-            <div className='logo items-center md:w-full md:max-w-[154px] gap-4 navbar-1'>
+        <div className="navbar-container px-4 py-2 flex-wrap items-center justify-between">
+            <div className='logo items-center flex gap-x-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
+                {/* {User ? (
+                    <div className='flex gap-x-4'>
+                        <Link className='price hover:text-[#000]' href="/Products">All Products</Link>
+                        <Link className='price hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                    </div>
+                ) : (<> </>)} */}
             </div>
             <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
                 <div>
@@ -81,13 +89,27 @@ const Navbar = () => {
                     <HiOutlineShoppingCart size={32} />
                     <span className="cart-item-qty">{TotalQuantities}</span>
                 </button>
-
+                {User ? (
+                    <div className="">
+                        {toggleMenu
+                            ? <RiCloseLine className='cursor-pointer' color="#aaa" size={32} onClick={() => setToggleMenu(false)} />
+                            : <RiMenu3Line className='cursor-pointer' color="#aaa" size={32} onClick={() => setToggleMenu(true)} />}
+                        {toggleMenu && (
+                            <>
+                                <div className='navbar-menu-container scale-up-center'>
+                                    <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/Products">All Products</Link>
+                                    <Link className='text-[#aaa] font-extrabold text-base hover:text-[#000]' href="/OrderHistory">Order History</Link>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                ) : (<> </>)}
                 {ShowCart && <Cart />}
             </div>
             <div className="relative navbar-2 lg:mt-0 mt-6 w-full justify-center lg:order-1 lg:w-auto lg:py-0">
                 <form
                     onSubmit={HandleSearch}
-                    className="bg-transparent static top-10 -left-20"
+                    className="bg-transparent top-10 -left-20"
                 >
                     <input
                         value={searchValue}

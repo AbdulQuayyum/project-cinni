@@ -15,17 +15,20 @@ const MainLayout = ({ children, Title }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="/logo.png" />
             </Head>
-            <header>
+            <header className='w-full justify-center flex'>
                 <Navbar />
             </header>
-            <div className="flex gap-6">
+            <main className="main-container">
+                {children}
+            </main>
+            {/* <div className="flex gap-6">
                 <div className="h-[90vh] overflow-hidden lg:hover:overflow-auto">
                     <Sidebar />
                 </div>
                 <main className="overflow-auto h-[88vh] flex-1 main-container">
                     {children}
                 </main>
-            </div>
+            </div> */}
             <footer>
                 <Footer />
                 <BackToTop />

@@ -1,23 +1,11 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import axios from 'axios'
-
-import { BASE_URL } from '@/Utilities/CreateOrGetUser'
 
 const AuthStore = (set) => ({
     UserProfile: null,
-    AllUsers: [],
 
     AddUser: (User) => set({ UserProfile: User }),
     RemoveUser: () => set({ UserProfile: null }),
-
-    FetchAllUsers: async () => {
-        const response = await axios.get(`${BASE_URL}/api/Users`)
-
-        // console.log(response)
-
-        set({ AllUsers: response.data })
-    },
 })
 
 const UseAuthStore = create(

@@ -6,7 +6,7 @@
     opacity: 0.8;
     padding: 0.3rem 0.5rem;
     border-radius: 0.4rem;
-    z-index: var(--z-tooltip);
+    z-index: 9999999;
     transition: .4s;
 }
 
