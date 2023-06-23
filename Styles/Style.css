@@ -351,6 +351,10 @@ span.text-gray {
 
 .footer-container {
     color: #aaa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
     margin-top: 20px;
     /* margin: 6px 18px; */
