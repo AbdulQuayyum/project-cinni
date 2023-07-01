@@ -4,6 +4,7 @@ const Email = process.env.NEXT_PUBLIC_EMAIL
 const Password = process.env.NEXT_PUBLIC_EMAIL_PASSWORD
 
 export const transporter = nodemailer.createTransport({
+    secure: true,
     service: "gmail",
     auth: { user: Email, pass: Password }
 })
