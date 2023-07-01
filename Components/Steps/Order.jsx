@@ -69,15 +69,15 @@ function Order(props) {
                 UserEmail: UserProfile?.Email,
             })
             setLoading(false)
-            // ClearCart()
-            // deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
-            // deleteCookie('PLMOKN', { maxAge: 60 * 60 * 24 * 7 });
-            // router.push(`/Order/${data?.OrderID}`)
+            ClearCart()
+            deleteCookie('123456', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('7890', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('QAZWSX', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('UJMIK', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('EDCRFV', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('TGBYHN', { maxAge: 60 * 60 * 24 * 7 });
+            deleteCookie('PLMOKN', { maxAge: 60 * 60 * 24 * 7 });
+            router.push(`/Order/${data?.OrderID}`)
             // setTimeout(() => {
             //     router.push(`/Order/${data}`)
             // }, 3000);
