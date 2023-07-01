@@ -13,7 +13,7 @@ function Payment(props) {
     const { nextStep } = props;
 
     const options = [
-        { label: "Online Payment", value: "online" },
+        // { label: "Online Payment", value: "online" },
         { label: "Cash Payment", value: "cash" }
     ]
 
@@ -90,11 +90,11 @@ function Payment(props) {
     };
 
     return (
-        <div className='pt-8 px-4 sm:pt-20 flex flex-col items-center w-full'>
-            <div className="my-4 flex justify-start max-w-xl w-full">
+        <div className='flex flex-col items-center w-full px-4 pt-8 sm:pt-20'>
+            <div className="flex justify-start w-full max-w-xl my-4">
                 <span className='price'>Choose a payment method.</span>
             </div>
-            <div className='flex items-start flex-col max-w-xl w-full gap-y-4 my-6'>
+            <div className='flex flex-col items-start w-full max-w-xl my-6 gap-y-4'>
                 <Select
                     value={options.find((option) => option.value === value)}
                     options={options}
@@ -115,11 +115,11 @@ function Payment(props) {
                     })}
                 />
             </div>
-            <div className='flex max-w-xl mt-10 w-full justify-end'>
+            <div className='flex justify-end w-full max-w-xl mt-10'>
                 <button
                     disabled={!formValid}
                     onClick={HandleNext}
-                    className='rounded-full border border-black bg-black py-3 px-8 text-sm text-white transition-all hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed'>
+                    className='px-8 py-3 text-sm text-white transition-all bg-black border border-black rounded-full hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed'>
                     Continue
                 </button>
             </div>
