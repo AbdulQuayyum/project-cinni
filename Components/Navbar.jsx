@@ -35,8 +35,8 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar-container px-4 py-2 flex-wrap items-center justify-between">
-            <div className='logo items-center flex gap-x-4 navbar-1'>
+        <div className="flex-wrap items-center justify-between px-4 py-2 navbar-container">
+            <div className='flex items-center logo gap-x-4 navbar-1'>
                 <Link className='price' href="/">Project Cinni</Link>
                 {/* {User ? (
                     <div className='flex gap-x-4'>
@@ -45,7 +45,7 @@ const Navbar = () => {
                     </div>
                 ) : (<> </>)} */}
             </div>
-            <div className='flex navbar-3 items-center justify-end gap-2 lg:order-2 gap-x-4'>
+            <div className='flex items-center justify-end gap-2 navbar-3 lg:order-2 gap-x-4'>
                 <div>
                     {User ? (
                         <div className="flex items-center gap-2">
@@ -80,6 +80,7 @@ const Navbar = () => {
                             onError={() => { toast.error('Try again') }}
                             shape="circle"
                             size="large"
+                            type= "icon"
                             text="continue_with"
                             theme="filled_black"
                         />
@@ -106,7 +107,7 @@ const Navbar = () => {
                 ) : (<> </>)}
                 {ShowCart && <Cart />}
             </div>
-            <div className="relative navbar-2 lg:mt-0 mt-6 w-full justify-center lg:order-1 lg:w-auto lg:py-0">
+            <div className="relative justify-center w-full mt-6 navbar-2 lg:mt-0 lg:order-1 lg:w-auto lg:py-0">
                 <form
                     onSubmit={HandleSearch}
                     className="bg-transparent top-10 -left-20"
