@@ -14,7 +14,7 @@ function Payment(props) {
 
     const options = [
         // { label: "Online Payment", value: "online" },
-        { label: "Cash Payment", value: "cash" }
+        { label: "Payment on delivery", value: "cash" }
     ]
 
     useEffect(() => {
